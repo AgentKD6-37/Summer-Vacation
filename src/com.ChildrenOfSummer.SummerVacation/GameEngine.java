@@ -85,6 +85,7 @@ public class GameEngine {
                 sceneOneWithItems();
             }
             else if (answer.equalsIgnoreCase("No")){
+                System.out.println("No additional items were added");
                 break;
             }
             else{
