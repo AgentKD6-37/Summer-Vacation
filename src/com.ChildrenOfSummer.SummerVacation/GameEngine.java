@@ -1,26 +1,37 @@
 package com.ChildrenOfSummer.SummerVacation;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameEngine {
     ArrayList<String> inventory = new ArrayList<String>();
+    String save = "Assets/save-game.JSON";
+    Scanner scanner = new Scanner(System.in);
 
 
     public void execute() {
-        System.out.println("Welcome to Summer Vacation");
-        System.out.println("Insert first intro paragraph");
+        startMenu();
         introduction();
     }
+    public void startMenu() {
+        SaveEditor.menuFiles();
+        String startMenuChoice = scanner.nextLine().strip().toLowerCase();
+        switch (startMenuChoice) {
+            case "new game" -> playerCreator();
+            case "load game" -> SaveEditor.getSaveFile();
+            case "quit" -> System.exit(0);
+        }
 
+    }
+
+    public void playerCreator() {
+        System.out.println("this is the player creator");
+    }
     public void introduction(){
+        System.out.println("Insert first intro paragraph");
         System.out.println("Sara says we should go to the abandoned airport today, do you wish to go?");
 
-        Scanner startingQuestion = new Scanner(System.in);
-        String startingAnswer = startingQuestion.nextLine().strip();
+        String startingAnswer = scanner.nextLine().strip();
 
         if (startingAnswer.equalsIgnoreCase("Yes")) {
             sceneOne();
