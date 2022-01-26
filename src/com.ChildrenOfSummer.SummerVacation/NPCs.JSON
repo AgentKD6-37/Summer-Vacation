@@ -423,7 +423,8 @@
               }
             }
           ]
-        },{
+        },
+        {
           "Kory": [
             {
               "first_name": "Kory",
@@ -467,8 +468,50 @@
           ]
         }
       ]
-    },{
-
+    },
+    {
+      "Best_Friend": [
+        {
+          "first_name": "Sara",
+          "last_name": "Lincoln-Noble"
+        },
+        {
+          "locations": {
+            "Monday": "Warehouse",
+            "Tuesday": "Player's House",
+            "Wednesday": "Sara's House",
+            "Thursday": "New House3",
+            "Friday": "Sara's House",
+            "Saturday": "Old House2",
+            "Sunday": "Old Airport"
+          }
+        },{
+          "dialogue": {
+            "1": "Glad you found me!",
+            "2": "I'm so bored...",
+            "3": "Let's do something!",
+            "4": "Have you seen the old man since we spied on him at the farm?",
+            "5": "If there's something going on we will get to the bottom of it.",
+            "6": "Yeah? Is there something on my face?"
+          }
+        },{
+          "follow": {
+            "1": "duh.",
+            "2": "I'm always down to hang out.",
+            "3": "We better get into some trouble!"
+          }
+        },
+        {
+          "unfollow": {
+            "1": "Wait you can't sleep over?",
+            "2": "Really? Okay.",
+            "3": "Later dude!"
+          }
+        },
+        {
+          "hints": {}
+        }
+      ]
     }
   ]
 }
