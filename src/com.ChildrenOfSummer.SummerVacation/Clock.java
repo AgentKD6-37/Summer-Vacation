@@ -9,7 +9,7 @@ class Clock {
     private static int THREEHOURCOUNTER;
     static int daysCounter = 42;
 
-    static void incrementNextDay(){
+    static void incrementNextDay() {
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -19,7 +19,7 @@ class Clock {
         daysCounter++;
     }
 
-    void incrementByThreeHours(){
+    void incrementByThreeHours() {
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -29,7 +29,7 @@ class Clock {
         THREEHOURCOUNTER++;
     }
 
-    static void wakeUpTime(){
+    static void wakeUpTime() {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -37,21 +37,22 @@ class Clock {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.HOUR_OF_DAY, 7);
-        calendar.add(Calendar.DATE,1);
+        calendar.add(Calendar.DATE, 1);
         System.out.println(calendar.getTime());
     }
 
-   void today(){
+    void today() {
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         System.out.println(date);
     }
 
-    void timeTravel(){
-        if (THREEHOURCOUNTER == 5){
+    void timeTravel() {
+        if (THREEHOURCOUNTER == 5) {
             daysCounter++;
             incrementNextDay();
         }
     }
+
 }

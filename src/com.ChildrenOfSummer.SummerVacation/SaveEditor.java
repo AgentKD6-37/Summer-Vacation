@@ -25,11 +25,15 @@ public class SaveEditor {
 
     //returns the save file to the game engine to be read
 
-    public static void getAssetFile(String fileName) throws IOException{
-        String art = "Assets/" + fileName;
-        var out = new BufferedOutputStream(System.out);
-        Files.copy(Path.of(art), out);
-        out.flush();
+    public static void getAssetFile(String fileName) {
+        try {
+            String art = "Assets/" + fileName;
+            var out = new BufferedOutputStream(System.out);
+            Files.copy(Path.of(art), out);
+            out.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -37,11 +41,7 @@ public class SaveEditor {
      */
 
     public static void menuFiles() {
-        try {
-            getAssetFile("opening-menu.txt");
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        getAssetFile("opening-menu.txt");
     }
 
     //save-game.properties is set by default to null/0 values and then overwritten by the newPlayerCreator
