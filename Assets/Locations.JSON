@@ -1,0 +1,293 @@
+{
+  "Wild Field": {
+    "Wood1": [
+      {
+        "location_name": "Woods West"
+      },
+      {
+        "directions": {
+          "north": "Island",
+          "east": "Woods East",
+          "south": "Corn Field",
+          "west": "Off Map"
+        }
+      },
+      {
+        "description": "The woods stretch on in front of you. To the north, you hear the splashing of a river, to the east, you see more woods. To the south, you see the the end of the woods and the Corn Fields of the Old Man's farm. To the west, the woods become impassable. You don't think you could go further west than this!"
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Wood2": [
+      {
+        "location_name": "Woods East"
+      },
+      {
+        "directions": {
+          "north": "River",
+          "east": "Fred's House",
+          "south": "Hay Field",
+          "west": "Woods West"
+        }
+      },
+      {
+        "description": "You are at the edge of the woods. To the north, you hear the rushing sounds of a river, to the east, you can make out Fred Barkley's house through the trees. To the south, you see the the end of the woods and the Hay Fields of the Old Man's farm. To the west, the woods continue on."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "River": [
+      {
+        "location_name": "River"
+      },
+      {
+        "directions": {
+          "north": "Off Map",
+          "east": "Korey's House",
+          "south": "Woods East",
+          "west": "Island"
+        }
+      },
+      {
+        "description": "You on the bank of a mighty river! To the north, you see the river continuing on but it is too fast to cross here. To the east, you think you could follow the river to the edge of the forest and Korey's house. To the south, the woods stretch on. To the west, The river becomes more shallow and you can make out what looks like an island."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Island": [
+      {
+        "location_name": "Island"
+      },
+      {
+        "directions": {
+          "north": "Off Map",
+          "east": "River",
+          "south": "Woods West",
+          "west": "Off Map"
+        }
+      },
+      {
+        "description": "Placeholder"
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ]
+  },
+  "Town Center": {
+    "School": [
+      {
+        "location_name": "School"
+      },
+      {
+        "directions": {
+          "north": "Dead Presidents",
+          "east": "Beth's Treats",
+          "south": "Off Map",
+          "west": "Bill's Produce"
+        }
+      },
+      {
+        "description": "You are at the school. It's a bit creepy being here during the summer and seeing it completely empty. To the north, you see Dead Presidents. To the east, you see Beth's Treats. To the south is the interstate! You can't go there! To the west is Bill's Produce."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Dollar Store": [
+      {
+        "location_name": "Dead Presidents"
+      },
+      {
+        "directions": {
+          "north": "Player's House",
+          "east": "Angus Queen",
+          "south": "School",
+          "west": "Fast Journey"
+        }
+      },
+      {
+        "description_open": "You're in Dead Presidents! You can see tons of affordable novelty items lining the shelves. To the north is your house! To the east is Angus Queen, to the south you see the School. To the west is Fast Journey, the gas station.",
+        "description_closed": "Dead Presidents is closed today. To the north is your house! To the east is Angus Queen, to the south you see the School. To the west is Fast Journey, the gas station."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Gas Station": [
+      {
+        "location_name": "Fast Journey"
+      },
+      {
+        "directions": {
+          "north": "Fred's House",
+          "east": "Dead Presidents",
+          "south": "Bill's Produce",
+          "west": "Hay Fields"
+        }
+      },
+      {
+        "description_open": "You're in Fast Journey! There's snacks and candy available. Fred looks at you suspiciously. To the north is Fred's House. To the east is Dead Presidents, the dollar store. To the south is Bill's Produce. To the west are the Hay Fields of the Old Man's farm.",
+        "description_closed": "There's a sign on the door: FAST JOURNEY IS CLOSED ON TUESDAY -FRED. To the north is Fred's House. To the east is Dead Presidents, the dollar store. To the south is Bill's Produce. To the west are the Hay Fields of the Old Man's farm."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Corner Store": [
+      {
+        "location_name": "Bill's Produce"
+      },
+      {
+        "directions": {
+          "north": "Fast Journey",
+          "east": "School",
+          "south": "Off Map",
+          "west": "Barn"
+        }
+      },
+      {
+        "description_open": "Bill Stands at the front of Bill's Produce! Inside you see grown-ups shopping for food. To the north is Fast Journey. To the east is the school. To the south is the interstate! You can't go there! To the west is a big red barn.",
+        "description_closed": "The Store is dark inside and the door is locked. Looks like Bill's is closed. To the north is Fast Journey. To the east is the school. To the south is the interstate! You can't go there! To the west is a big red barn."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Treat Store": [
+      {
+        "location_name": "Beth's Treats"
+      },
+      {
+        "directions": {
+          "north": "Angus Queen",
+          "east": "Old House South",
+          "south": "Off Map",
+          "west": "School"
+        }
+      },
+      {
+        "description_open": "You're in Beth's treats! There's candies, baked goods, and ice-cream! Beth looks at you all fondly. To the north is Angus Queen, the burger joint. To the east is the southern abandoned house. To the south is the interstate! You can't go there! To the west is the school.",
+        "description_closed": "There's a sign on the door that say: OUT FOR TEA -BETH. To the north is Angus Queen, the burger joint. To the east is the southern abandoned house. To the south is the interstate! You can't go there! To the west is the school."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ]
+  },
+  "Old Town": {
+    "Warehouse": [
+      {
+        "location_name": "Warehouse"
+      },
+      {
+        "directions": {
+          "north": "Waste Pile",
+          "east": "Off Map",
+          "south": "Paine Field",
+          "west": "Old House North"
+        }
+      },
+      {
+        "description": "The Warehouse is massive, and mostly empty. In the dim light it's hard to see where you are going. To the north is the Waste Pile from the new construction. To the east is the edge of town! Your mom won't let you go further. To the south is the old airport, Paine Field. To the west is the northern-most abandoned old house."
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Old Airport": [
+      {
+        "location_name": "Paine Field"
+      },
+      {
+        "directions": {
+          "north": "Warehouse",
+          "east": "Off Map",
+          "south": "Off Map",
+          "west": "Old House South"
+        }
+      },
+      {
+        "description": "The Paine Field stretches before you. It's definitely seen better days. A security booth sits at the far side of the airport. There are three Hangars in front of you, labelled 'HANGAR 1','HANGAR 2' and 'HANGAR 3'. To the north is the abandoned Warehouse. To the east is the edge of town! Your mom won't let you go further. To the south is the interstate! You can't go there. To the west is the southern-most abandoned old house."
+      },
+      {
+        "Hanger 1": [
+      {
+        "directions": {
+          "back": "Paine Field"
+        }
+      },
+      {
+        "description": "There's nothing here. You can go back"
+      }
+      ],
+      {
+        "Hanger 2": "There's nothing here"
+      },
+      {
+        "Hanger 3": "There's an old aircraft in the middle of the hanger"
+      },
+      {
+        "items": ""
+      },
+      {
+        "NPCs": []
+      }
+    ],
+    "Old house1": "Old House North",
+    "Old house2": "Old House South"
+  },
+  "Suburb": {
+    "Sara House": "Sara's House",
+    "Player House": "Player's House",
+    "Fred House": "Fred's House",
+    "Friend House West": "Korey's house",
+    "Friend house East": "Dewey's house",
+    "Maisel house": "Miss Maisel's house"
+  },
+  "New Suburb": {
+    "Waste Stuff": "Waste Pile",
+    "New House 1": "New House Northeast",
+    "New House 2": "New House North",
+    "New House 3": "New House South"
+  },
+  "Farm": {
+    "Field 1": "Corn Field",
+    "Field 2": "Hay Field",
+    "Barn": "Barn",
+    "FarmHouse": "Farmhouse"
+  }
+}
