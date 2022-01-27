@@ -1,18 +1,23 @@
 package com.ChildrenOfSummer.SummerVacation;
 
 
+import java.io.IOException;
 import java.util.*;
 
 public class GameEngine {
     ArrayList<String> inventory = new ArrayList<String>();
     String save = "Assets/save-game.JSON";
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     String ANSWER;
+    Player player1 = new Player();
 
     public void execute() {
         startMenu();
         introduction();
+        preSceneOne();
+        sceneOne();
     }
+
     public void startMenu() {
         SaveEditor.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
@@ -31,45 +36,59 @@ public class GameEngine {
     public void playerCreator() {
         System.out.println("this is the player creator");
     }
-    public void introduction(){
-        System.out.println("Insert first intro paragraph");
-        System.out.println("Sara says we should go to the abandoned airport today, do you wish to go?");
 
-        ANSWER = scanner.nextLine().strip();
+    public void introduction() {
+        SaveEditor.getAssetFile("introduction.txt");
+    }
 
-        if (ANSWER.equalsIgnoreCase("Yes")) {
-            sceneOne();
-        } else if (ANSWER.equalsIgnoreCase("No")) {
-            System.out.println("Exiting game");
-            System.exit(0);
-        }
-        else {
-            System.out.println("User input not valid, type 'Yes' or 'No'");
-            introduction();
+    public void preSceneOne() {
+        System.out.println("Which way would you like to go?\n");
+        ANSWER = scanner.next().strip().toLowerCase();
+        if (ANSWER.startsWith("go")) {
+            switch (ANSWER) {
+                case "go north":
+                    player1.move("north");
+                    break;
+                case "go east":
+                    player1.move("east");
+                    break;
+                case "go south":
+                    player1.move("south");
+                    break;
+                case "go west":
+                    player1.move("west");
+                    break;
+                default:
+                    System.out.println("I can't go that way!");
+                    preSceneOne();
+            }
+        }else{
+            System.out.println("Invalid command! Currently I can only: GO DIRECTION");
+            preSceneOne();
         }
     }
 
     // At the airport
-    public void sceneOne(){
-        System.out.println("Insert paragraph from scene one");
+    public void sceneOne() {
+        if(player1.playerLocation.equals("Paine Field"))
+        SaveEditor.getAssetFile("scene-one.txt");
         sceneOneAction();
     }
 
-    public void sceneOneAction(){
-        System.out.println("You see random items scattered across the ground. You see some planks, rope,\n" +
-                "shoes, hat, a rock, and a notebook.\n" +
-                "Would you like to add some items?");
+    public void sceneOneAction() {
+        System.out.println("""
+                You see random items scattered across the ground. You see some planks, rope,
+                shoes, hat, a rock, and a notebook.
+                Would you like to add some items?""");
 
 
         ANSWER = scanner.nextLine().strip();
-        if (ANSWER.equalsIgnoreCase("Yes")){
+        if (ANSWER.equalsIgnoreCase("Yes")) {
             sceneOneWithItems();
-        }
-        else if (ANSWER.equalsIgnoreCase("No")){
+        } else if (ANSWER.equalsIgnoreCase("No")) {
             System.out.println("You decided not to add any items to your inventory.");
             sceneTwo();
-        }
-        else{
+        } else {
             System.out.println("User input not valid, type 'Yes' or 'No'");
             sceneOneAction();
         }
@@ -91,37 +110,37 @@ public class GameEngine {
                 inventory.add("planks");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             case "rope":
                 inventory.add("rope");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             case "shoes":
                 inventory.add("shoes");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             case "hat":
                 inventory.add("hat");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             case "rock":
                 inventory.add("rock");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             case "notebook":
                 inventory.add("notebook");
                 System.out.println("Adding items...\n" +
                         "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList );
+                        + "The items remaining on the ground are " + itemsList);
                 break;
             default:
                 System.out.println("Input invalid. Choose among the following: " + Arrays.toString(itemsArray));
@@ -131,51 +150,48 @@ public class GameEngine {
     }
 
 
-    public void sceneOneEnd(){
+    public void sceneOneEnd() {
         System.out.println("Do you want to add additional items?");
         ANSWER = scanner.nextLine().strip();
-        if (ANSWER.equalsIgnoreCase("yes")){
+        if (ANSWER.equalsIgnoreCase("yes")) {
             sceneOneWithItems();
-        }
-        else if (ANSWER.equalsIgnoreCase("no")) {
+        } else if (ANSWER.equalsIgnoreCase("no")) {
             sceneTwo();
-        }
-        else {
+        } else {
             System.out.println("Input not valid");
             sceneOneEnd();
         }
     }
 
-    public void sceneTwo(){
+    public void sceneTwo() {
         System.out.println("Insert paragraph for scene two");
         System.out.println("Hello");
         sceneThree();
     }
 
-    public void sceneThree(){
+    public void sceneThree() {
         System.out.println("Insert paragraph for scene three");
     }
 
-    public void sceneFour(){
+    public void sceneFour() {
         System.out.println("work in progress");
     }
 
-    public void sceneFive(){
+    public void sceneFive() {
         System.out.println("work in progress");
     }
 
-    public void sceneSix(){
+    public void sceneSix() {
         System.out.println("work in progress");
     }
 
-    public void sceneSeven(){
+    public void sceneSeven() {
         System.out.println("work in progress");
     }
 
-    public int randomNumberGenerator(){
+    public int randomNumberGenerator() {
         //1-3, 3-6, 1-6
-        int randomNumber = (int)(Math.random() * ((6) + 1));
-        return randomNumber;
+        return (int) (Math.random() * ((6) + 1));
     }
 
 }
