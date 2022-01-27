@@ -17,9 +17,14 @@ public class GameEngine {
         SaveEditor.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
-            case "new game" -> playerCreator();
-            case "load game" -> SaveEditor.getSaveFile();
-            case "quit" -> System.exit(0);
+            case "new game":
+                playerCreator();
+                break;
+            case "load game":
+                SaveEditor.getSaveFile();
+                break;
+            case "quit":
+                System.exit(0);
         }
 
     }
