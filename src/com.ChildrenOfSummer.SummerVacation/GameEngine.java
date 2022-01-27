@@ -7,7 +7,7 @@ public class GameEngine {
     ArrayList<String> inventory = new ArrayList<String>();
     String save = "Assets/save-game.JSON";
     Scanner scanner = new Scanner(System.in);
-
+    String ANSWER;
 
     public void execute() {
         startMenu();
@@ -17,11 +17,15 @@ public class GameEngine {
         SaveEditor.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
-            case "new game" -> playerCreator();
-            case "load game" -> SaveEditor.getSaveFile();
-            case "quit" -> System.exit(0);
+            case "new game":
+                playerCreator();
+                break;
+            case "load game":
+                SaveEditor.getSaveFile();
+                break;
+            case "quit":
+                System.exit(0);
         }
-
     }
 
     public void playerCreator() {
@@ -31,11 +35,11 @@ public class GameEngine {
         System.out.println("Insert first intro paragraph");
         System.out.println("Sara says we should go to the abandoned airport today, do you wish to go?");
 
-        String startingAnswer = scanner.nextLine().strip();
+        ANSWER = scanner.nextLine().strip();
 
-        if (startingAnswer.equalsIgnoreCase("Yes")) {
+        if (ANSWER.equalsIgnoreCase("Yes")) {
             sceneOne();
-        } else if (startingAnswer.equalsIgnoreCase("No")) {
+        } else if (ANSWER.equalsIgnoreCase("No")) {
             System.out.println("Exiting game");
             System.exit(0);
         }
@@ -56,12 +60,12 @@ public class GameEngine {
                 "shoes, hat, a rock, and a notebook.\n" +
                 "Would you like to add some items?");
 
-        Scanner sceneOneQuestionInventory = new Scanner(System.in);
-        String sceneOneQuestionInventoryAnswer = sceneOneQuestionInventory.nextLine().strip();
-        if (sceneOneQuestionInventoryAnswer.equalsIgnoreCase("Yes")){
+
+        ANSWER = scanner.nextLine().strip();
+        if (ANSWER.equalsIgnoreCase("Yes")){
             sceneOneWithItems();
         }
-        else if (sceneOneQuestionInventoryAnswer.equalsIgnoreCase("No")){
+        else if (ANSWER.equalsIgnoreCase("No")){
             System.out.println("You decided not to add any items to your inventory.");
             sceneTwo();
         }
@@ -70,10 +74,9 @@ public class GameEngine {
             sceneOneAction();
         }
 
-        while (sceneOneQuestionInventoryAnswer.equalsIgnoreCase("Yes")) {
+        while (ANSWER.equalsIgnoreCase("Yes")) {
             sceneOneWithItems();
         }
-
     }
 
     private void sceneOneWithItems() {
@@ -81,58 +84,60 @@ public class GameEngine {
         List<String> itemsList = Arrays.asList(itemsArray);
         System.out.println("Choose an item to add: planks, rope, shoes, a rock, a notebook");
         Scanner question = new Scanner(System.in);
-        String answer = question.nextLine().strip();
-        if (answer.equalsIgnoreCase("planks")){
-            System.out.println("Adding items...");
-            inventory.add("planks");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else if (answer.equalsIgnoreCase("rope")){
-            System.out.println("Adding items...");
-            inventory.add("rope");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else if (answer.equalsIgnoreCase("shoes")){
-            System.out.println("Adding items...");
-            inventory.add("shoes");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else if (answer.equalsIgnoreCase("hat")){
-            System.out.println("Adding items...");
-            inventory.add("hat");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else if (answer.equalsIgnoreCase("rock")){
-            System.out.println("Adding items...");
-            inventory.add("rock");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else if (answer.equalsIgnoreCase("notebook")){
-            System.out.println("Adding items...");
-            inventory.add("notebook");
-            System.out.println("Your inventory is: " + inventory);
-            System.out.println("The items remaining on the ground are: " + itemsList);
-        }
-        else {
-            System.out.println("Input invalid. Choose among the following: " + Arrays.toString(itemsArray));
-            sceneOneWithItems();
+        String answer = question.nextLine().strip().toLowerCase();
+
+        switch (answer) {
+            case "planks":
+                inventory.add("planks");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            case "rope":
+                inventory.add("rope");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            case "shoes":
+                inventory.add("shoes");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            case "hat":
+                inventory.add("hat");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            case "rock":
+                inventory.add("rock");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            case "notebook":
+                inventory.add("notebook");
+                System.out.println("Adding items...\n" +
+                        "Your inventory is: " + inventory + "\n"
+                        + "The items remaining on the ground are " + itemsList );
+                break;
+            default:
+                System.out.println("Input invalid. Choose among the following: " + Arrays.toString(itemsArray));
+                sceneOneWithItems();
         }
         sceneOneEnd();
     }
 
+
     public void sceneOneEnd(){
         System.out.println("Do you want to add additional items?");
-        Scanner question = new Scanner(System.in);
-        String answer = question.nextLine().strip();
-        if (answer.equalsIgnoreCase("yes")){
+        ANSWER = scanner.nextLine().strip();
+        if (ANSWER.equalsIgnoreCase("yes")){
             sceneOneWithItems();
         }
-        else if (answer.equalsIgnoreCase("no")) {
+        else if (ANSWER.equalsIgnoreCase("no")) {
             sceneTwo();
         }
         else {
@@ -165,6 +170,12 @@ public class GameEngine {
 
     public void sceneSeven(){
         System.out.println("work in progress");
+    }
+
+    public int randomNumberGenerator(){
+        //1-3, 3-6, 1-6
+        int randomNumber = (int)(Math.random() * ((6) + 1));
+        return randomNumber;
     }
 
 }
