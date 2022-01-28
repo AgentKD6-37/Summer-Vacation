@@ -17,10 +17,10 @@
         "description": "The woods stretch on in front of you. To the north, you hear the splashing of a river, to the east, you see more woods. To the south, you see the the end of the woods and the Corn Fields of the Old Man's farm. To the west, the woods become impassable. You don't think you could go further west than this!"
       },
       {
-        "items":""
+        "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Woods East": [
@@ -43,7 +43,7 @@
         "items": ""
       },
       {
-        "NPCs": ["Kory"]
+        "NPCs": []
       }
     ],
     "River": [
@@ -66,7 +66,7 @@
         "items": ""
       },
       {
-        "NPCs":["None"]
+        "NPCs": []
       }
     ],
     "Island": [
@@ -89,7 +89,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ]
   },
@@ -114,7 +114,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Dead Presidents": [
@@ -138,7 +138,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Fast Journey": [
@@ -162,7 +162,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Bill's Produce": [
@@ -186,7 +186,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Beth's Treats": [
@@ -210,7 +210,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Angus Queen": [
@@ -233,7 +233,9 @@
       "items": ""
     },
     {
-      "NPCs":["None"]
+      "NPCs": [
+        "Al"
+      ]
     }
   ]
   },
@@ -258,7 +260,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Paine Field": [
@@ -278,49 +280,10 @@
         "description": "The Paine Field stretches before you. It's definitely seen better days. A security booth sits at the far side of the airport. There are three Hangars in front of you, labelled 'HANGAR 1','HANGAR 2' and 'HANGAR 3'. To the north is the abandoned Warehouse. To the east is the edge of town! Your mom won't let you go further. To the south is the interstate! You can't go there. To the west is the southern-most abandoned old house."
       },
       {
-
-        "Hanger 1": [
-          {
-            "directions": {
-              "back": "Paine Field"
-            }
-          },
-          {
-            "description": "There's nothing here. You can go back"
-          }
-        ]
-      },
-      {
-        "Hanger 2": [
-          {
-            "directions": {
-              "back": "Paine Field"
-            }
-          },
-          {
-            "description": "There's nothing here. You can go back"
-          }
-        ]
-      },
-      {
-        "Hanger 3": [
-          {
-            "directions": {
-              "back": "Paine Field"
-            }
-          },
-          {
-            "description": "An old Aircraft sits in the middle of the hangar"
-          }
-        ]
-      },
-      {
-
         "items": ["planks", "rope", "shoes", "hat", "rock", "notebook"]
-
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Old House North": [
@@ -343,7 +306,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Old House South": [
@@ -354,7 +317,7 @@
       {
         "directions": {
           "north": "Old House North",
-          "east": "Paige Field",
+          "east": "Paine Field",
           "south": "Off Map",
           "west": "Beth's Treats"
         }
@@ -366,7 +329,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ]
   },
@@ -391,7 +354,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Player's House": [
@@ -441,7 +404,7 @@
         "items": "Steering Wheel"
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Dewey's House": [
@@ -464,7 +427,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Kory's House": [
@@ -487,7 +450,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Janie's House": [
@@ -511,7 +474,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ]
   },
@@ -582,7 +545,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "New House Northeast": [
@@ -605,7 +568,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ]},
   "Farm": {
@@ -629,7 +592,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Hay Field": [
@@ -652,7 +615,7 @@
         "items": ""
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ],
     "Barn": [
@@ -675,7 +638,7 @@
         "items": ["tractor"]
       },
       {
-        "NPCs": ["None"]
+        "NPCs": []
       }
     ]
   }
