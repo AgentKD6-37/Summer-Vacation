@@ -67,7 +67,7 @@ public class SaveEditor {
         String descriptionText = null;
 
         JSONObject locationJSON = grabJSONData();
-        JSONObject zoneData = (JSONObject) locationJSON.get(zone);
+        JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
         JSONArray locationData = (JSONArray) zoneData.get(location);
         JSONObject descriptionData = (JSONObject) locationData.get(2);
         while (descriptionText == null) {
@@ -86,6 +86,13 @@ public class SaveEditor {
 
     public static String getNewZone(String location) {
         String zone = null;
+        /*
+         * This big dumb stupid function checks every zone in the game for the updated player location and then
+         * returns the new zone location to the player object so that when you travers zones the game doesn't break.
+         * It is very ugly, and can probably be done more efficiently. It was like midnight, and I was like, super tired.
+         * Sorry.
+         */
+
         try {
             JSONObject locationData = grabJSONData();
             JSONArray zones = new JSONArray();
