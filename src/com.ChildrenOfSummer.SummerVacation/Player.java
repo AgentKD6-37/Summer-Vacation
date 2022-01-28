@@ -3,7 +3,8 @@ package com.ChildrenOfSummer.SummerVacation;
 import java.util.Objects;
 
 class Player {
-    String playerLocation;
+    String playerZone = "Suburb";
+    String playerLocation = "Player's House";
     String playerName;
     String[] playerInventory;
 
@@ -12,13 +13,16 @@ class Player {
     }
 
     public void move(String direction){
-        String tempLocation = Location.getNewLocation(playerLocation, direction);
+        String tempLocation = SaveEditor.getNewLocation(playerZone, playerLocation, direction);
+
         if (tempLocation.equals("Off Map")){
+            System.out.println(tempLocation);
             System.out.println("You can't go that way!");
         }else{
             playerLocation = tempLocation;
+            playerZone = SaveEditor.getNewZone(playerLocation);
             System.out.println("You move "+ direction + ".");
-            Location.getDescription(playerLocation);
+            SaveEditor.getLocationDescription(playerLocation, playerZone);
         }
     }
 
@@ -29,7 +33,7 @@ class Player {
     public void talk(String npcName){
         int number = randomNumberGenerator();
         if (number <= 3) {
-            System.out.println(Location.getDialogue(npcName, number));
+            //System.out.println(Location.getDialogue(npcName, number));
         }else{
             talk(npcName);
         }
