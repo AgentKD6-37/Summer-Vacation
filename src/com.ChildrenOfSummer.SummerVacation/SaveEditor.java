@@ -7,8 +7,10 @@ import org.json.simple.parser.ParseException;
 import org.w3c.dom.ls.LSOutput;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -21,6 +23,7 @@ public class SaveEditor {
 
     private static String save = "Assets/save-game.properties";
     private static String locationsJSON = "Assets/Locations.JSON";
+
 
 
     //business methods
@@ -116,6 +119,18 @@ public class SaveEditor {
         return zone;
     }
 
+    public ArrayList getLocationItems(){
+        ArrayList<String> temp = new ArrayList<>();
+        return temp;
+    }
+
+    public void updateLocationItems(String item){
+
+    }
+
+    public void updatePlayerInventory(String item, String verb){
+
+    }
 
     public static JSONObject grabJSONData() {
         JSONObject locationJSON = null;

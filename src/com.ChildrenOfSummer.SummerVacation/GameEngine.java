@@ -15,7 +15,6 @@ public class GameEngine {
         startMenu();
         introduction();
         preSceneOne();
-        sceneOne();
     }
 
     public void startMenu() {
@@ -47,18 +46,22 @@ public class GameEngine {
             switch (ANSWER) {
                 case "go north":
                     player1.move("north");
+                    sceneOne();
                     preSceneOne();
                     break;
                 case "go east":
                     player1.move("east");
+                    sceneOne();
                     preSceneOne();
                     break;
                 case "go south":
                     player1.move("south");
+                    sceneOne();
                     preSceneOne();
                     break;
                 case "go west":
                     player1.move("west");
+                    sceneOne();
                     preSceneOne();
                     break;
                 case "quit":
@@ -78,22 +81,33 @@ public class GameEngine {
     }
 
     public void sceneOneAction() {
-        System.out.println(" You see random items scattered across the ground. \nYou see some planks, rope, shoes, hat, a rock, and a notebook. \nWould you like to add some items?");
-
         ANSWER = scanner.nextLine().strip();
-        if (ANSWER.equalsIgnoreCase("Yes")) {
-            sceneOneWithItems();
-        } else if (ANSWER.equalsIgnoreCase("No")) {
-            System.out.println("You decided not to add any items to your inventory.");
-            sceneTwo();
-        } else {
-            System.out.println("User input not valid, type 'Yes' or 'No'");
-            sceneOneAction();
-        }
+        String[] answerWords = ANSWER.split(" ");
+        System.out.println(Arrays.toString(answerWords));
+        String verb = answerWords[0];
+        String noun = answerWords[answerWords.length-1];
 
-        while (ANSWER.equalsIgnoreCase("Yes")) {
-            sceneOneWithItems();
+        System.out.println(" You see these items scattered across the ground: .");
+        System.out.print("What would you like to do?");
+        switch (verb){
+            case "get":
+                //do stuff
+            case "combine":
+                //do other stuff
+            case "use":
+                //do final stuff
+            case "talk":
+                System.out.println("There's no one to talk to!");
+                break;
+            case "help":
+                System.out.println("No help is currently available. Blame the Developers!");
+                break;
+            case "quit":
+                System.exit(0);
+            default:
+                System.out.println("I didn't understand that command. for help type help.");
         }
+        sceneOneAction();
     }
 
     private void sceneOneWithItems() {
@@ -140,6 +154,7 @@ public class GameEngine {
                         "Your inventory is: " + inventory + "\n"
                         + "The items remaining on the ground are " + itemsList);
                 break;
+
             default:
                 System.out.println("Input invalid. Choose among the following: " + Arrays.toString(itemsArray));
                 sceneOneWithItems();
