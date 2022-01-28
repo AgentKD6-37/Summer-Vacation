@@ -43,44 +43,40 @@ public class GameEngine {
 
     public void preSceneOne() {
         System.out.println("Which way would you like to go?\n");
-        ANSWER = scanner.next().strip().toLowerCase();
-        if (ANSWER.startsWith("go")) {
+        ANSWER = scanner.nextLine().strip().toLowerCase();
             switch (ANSWER) {
                 case "go north":
                     player1.move("north");
+                    preSceneOne();
                     break;
                 case "go east":
                     player1.move("east");
+                    preSceneOne();
                     break;
                 case "go south":
                     player1.move("south");
+                    preSceneOne();
                     break;
                 case "go west":
                     player1.move("west");
+                    preSceneOne();
                     break;
                 default:
                     System.out.println("I can't go that way!");
                     preSceneOne();
             }
-        }else{
-            System.out.println("Invalid command! Currently I can only: GO DIRECTION");
-            preSceneOne();
-        }
     }
 
     // At the airport
     public void sceneOne() {
-        if(player1.playerLocation.equals("Paine Field"))
-        SaveEditor.getAssetFile("scene-one.txt");
-        sceneOneAction();
+        if(player1.playerLocation.equals("Paine Field")) {
+            SaveEditor.getAssetFile("scene-one.txt");
+            sceneOneAction();
+        }
     }
 
     public void sceneOneAction() {
-        System.out.println("""
-                You see random items scattered across the ground. You see some planks, rope,
-                shoes, hat, a rock, and a notebook.
-                Would you like to add some items?""");
-
+        System.out.println(" You see random items scattered across the ground. \nYou see some planks, rope, shoes, hat, a rock, and a notebook. \nWould you like to add some items?");
 
         ANSWER = scanner.nextLine().strip();
         if (ANSWER.equalsIgnoreCase("Yes")) {

@@ -1,8 +1,9 @@
 {
   "Wild Field": {
-    "Wood1": [
+    "Woods West": [
       {
-        "location_name": "Woods West"
+        "location_name": "Woods West",
+        "location_zone": "Wild Field"
       },
       {
         "directions": {
@@ -22,9 +23,10 @@
         "NPCs": []
       }
     ],
-    "Wood2": [
+    "Woods East": [
       {
-        "location_name": "Woods East"
+        "location_name": "Woods East",
+        "location_zone": "Wild Field"
       },
       {
         "directions": {
@@ -46,7 +48,8 @@
     ],
     "River": [
       {
-        "location_name": "River"
+        "location_name": "River",
+        "location_zone": "Wild Field"
       },
       {
         "directions": {
@@ -68,7 +71,8 @@
     ],
     "Island": [
       {
-        "location_name": "Island"
+        "location_name": "Island",
+        "location_zone": "Wild Field"
       },
       {
         "directions": {
@@ -92,7 +96,8 @@
   "Town Center": {
     "School": [
       {
-        "location_name": "School"
+        "location_name": "School",
+        "location_zone": "Town Center"
       },
       {
         "directions": {
@@ -112,9 +117,10 @@
         "NPCs": []
       }
     ],
-    "Dollar Store": [
+    "Dead Presidents": [
       {
-        "location_name": "Dead Presidents"
+        "location_name": "Dead Presidents",
+        "location_zone": "Town Center"
       },
       {
         "directions": {
@@ -135,9 +141,10 @@
         "NPCs": []
       }
     ],
-    "Gas Station": [
+    "Fast Journey": [
       {
-        "location_name": "Fast Journey"
+        "location_name": "Fast Journey",
+        "location_zone": "Town Center"
       },
       {
         "directions": {
@@ -158,9 +165,10 @@
         "NPCs": []
       }
     ],
-    "Corner Store": [
+    "Bill's Produce": [
       {
-        "location_name": "Bill's Produce"
+        "location_name": "Bill's Produce",
+        "location_zone": "Town Center"
       },
       {
         "directions": {
@@ -181,9 +189,10 @@
         "NPCs": []
       }
     ],
-    "Treat Store": [
+    "Beth's Treats": [
       {
-        "location_name": "Beth's Treats"
+        "location_name": "Beth's Treats",
+        "location_zone": "Town Center"
       },
       {
         "directions": {
@@ -203,11 +212,11 @@
       {
         "NPCs": []
       }
-    ]
-  },
-  "burger_place": [
+    ],
+    "Angus Queen": [
     {
-      "location_name": "Angus Queen"
+      "location_name": "Angus Queen",
+      "location_zone": "Town Center"
     },
     {
       "directions": {
@@ -228,11 +237,13 @@
         "Al"
       ]
     }
-  ],
+  ]
+  },
   "Old Town": {
     "Warehouse": [
       {
-        "location_name": "Warehouse"
+        "location_name": "Warehouse",
+        "location_zone": "Old Town"
       },
       {
         "directions": {
@@ -252,9 +263,10 @@
         "NPCs": []
       }
     ],
-    "Old Airport": [
+    "Paine Field": [
       {
-        "location_name": "Paine Field"
+        "location_name": "Paine Field",
+        "location_zone": "Old Town"
       },
       {
         "directions": {
@@ -310,9 +322,10 @@
         "NPCs": []
       }
     ],
-    "Old house1": [
+    "Old House North": [
       {
-        "location_name": "Old House North"
+        "location_name": "Old House North",
+        "location_zone": "Old Town"
       },
       {
         "directions": {
@@ -332,9 +345,10 @@
         "NPCs": []
       }
     ],
-    "Old house2": [
+    "Old House South": [
       {
-        "location_name": "Old House South"
+        "location_name": "Old House South",
+        "location_zone": "Old Town"
       },
       {
         "directions": {
@@ -358,7 +372,8 @@
   "Suburb": {
     "Sara's House": [
       {
-        "location_name": "Sara's House"
+        "location_name": "Sara's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -378,9 +393,10 @@
         "NPCs": []
       }
     ],
-    "Player House": [
+    "Player's House": [
       {
-        "location_name": "Player's House"
+        "location_name": "Player's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -406,7 +422,8 @@
     ],
     "Fred's House": [
       {
-        "location_name": "Fred's House"
+        "location_name": "Fred's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -428,7 +445,8 @@
     ],
     "Dewey's House": [
       {
-        "location_name": "Dewey's House"
+        "location_name": "Dewey's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -450,7 +468,8 @@
     ],
     "Kory's House": [
       {
-        "location_name": "Kory's House"
+        "location_name": "Kory's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -470,9 +489,10 @@
         "NPCs": []
       }
     ],
-    "Janie's house": [
+    "Janie's House": [
       {
-        "location_name": "Janie's House"
+        "location_name": "Janie's House",
+        "location_zone": "Suburb"
       },
       {
         "directions": {
@@ -497,7 +517,8 @@
   "New Suburb": {
     "Waste Pile":[
       {
-        "location_name": "Waste Pile"
+        "location_name": "Waste Pile",
+        "location_zone": "New Suburb"
       },
       {
         "directions": {
@@ -517,9 +538,10 @@
         "NPCs": []
       }
     ],
-    "New House 1":[
+    "New House North":[
       {
-        "location_name": "New House North"
+        "location_name": "New House North",
+        "location_zone": "New Suburb"
       },
       {
         "directions": {
@@ -539,9 +561,10 @@
         "NPCs": []
       }
     ],
-    "New House 2": [
+    "New House South": [
       {
-        "location_name": "New House South"
+        "location_name": "New House South",
+        "location_zone": "New Suburb"
       },
       {
         "directions": {
@@ -561,9 +584,10 @@
         "NPCs": []
       }
     ],
-    "New House 3": [
+    "New House Northeast": [
       {
-        "location_name": "New House Northeast"
+        "location_name": "New House Northeast",
+        "location_zone": "New Suburb"
       },
       {
         "directions": {
@@ -584,9 +608,10 @@
       }
     ]},
   "Farm": {
-    "Field 1": [
+    "Corn Field": [
       {
-        "location_name": "Corn Field"
+        "location_name": "Corn Field",
+        "location_zone": "Farm"
       },
       {
         "directions": {
@@ -606,9 +631,10 @@
         "NPCs": []
       }
     ],
-    "Field 2": [
+    "Hay Field": [
       {
-        "location_name": "Hay Field"
+        "location_name": "Hay Field",
+        "location_zone": "Farm"
       },
       {
         "directions": {
@@ -630,7 +656,8 @@
     ],
     "Barn": [
       {
-        "location_name": "Barn"
+        "location_name": "Barn",
+        "location_zone": "Farm"
       },
       {
         "directions": {
