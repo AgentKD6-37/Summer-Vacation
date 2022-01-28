@@ -31,7 +31,7 @@ Need JSON.simple to processing the json files in this game
 _Michael_ || _Fan_ || _Zed_
 
 ## Release Version
-beata 1.1 
+beta 1.1 
 
 ```Installation Instructions:
 1. Download the .zip file
