@@ -4,7 +4,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -12,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 
 
 /*
@@ -23,6 +23,7 @@ public class SaveEditor {
 
     private static String save = "Assets/save-game.properties";
     private static String locationsJSON = "Assets/Locations.JSON";
+    private static String NPCsJSON="Assets/NPCs.JSON";
 
 
 
@@ -119,6 +120,30 @@ public class SaveEditor {
         return zone;
     }
 
+    public static JSONArray getNPCsName(String zone, String location) {
+        JSONArray NPCname=null;
+
+        JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
+        JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
+        JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
+        JSONObject NPCshowing = (JSONObject) locationArea.get(4); //JUST THE NPC
+        NPCname=(JSONArray) NPCshowing.get("NPCs");
+
+        return NPCname;
+    }
+
+
+
+    public static String getNPCsDialog (String NPCname) {
+        String NPCdia="Yo";
+
+        JSONObject npcJSON = grabNPC();//THIS IS THE WHOLE JSON FILE
+
+        return NPCdia;
+
+    }
+
+
     public ArrayList getLocationItems(){
         ArrayList<String> temp = new ArrayList<>();
         return temp;
@@ -147,8 +172,25 @@ public class SaveEditor {
         return locationJSON;
     }
 
+    private static JSONObject grabNPC(){
+        JSONObject npcJSON = null;
+        try {
+            //create JSON Parser and file reader then create a JSON reader by combining them
+            JSONParser jsonParser = new JSONParser();
+            FileReader fileReader = new FileReader(NPCsJSON);
+            Object obj = jsonParser.parse(fileReader);
+            npcJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
+
+        } catch (IOException | ParseException e) {
+            System.err.print("Error. Failed to load location.");
+        }
+        return npcJSON;
+
+    }
+
     public static String getSaveFile() {
         String tempSaveResponse = "getting save file";
         return tempSaveResponse;
     }
+
 }

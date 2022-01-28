@@ -1,5 +1,8 @@
 package com.ChildrenOfSummer.SummerVacation;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.Objects;
 
 class Player {
@@ -14,17 +17,21 @@ class Player {
 
     public void move(String direction){
         String tempLocation = SaveEditor.getNewLocation(playerZone, playerLocation, direction);
+        JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
 
         if (tempLocation.equals("Off Map")){
             System.out.println(tempLocation);
             System.out.println("You can't go that way!");
-        }else{ //success on move
+        }else { //success on move
             playerLocation = tempLocation;
             playerZone = SaveEditor.getNewZone(playerLocation);
-            System.out.println("You move "+ direction + ".");
+            System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
+            System.out.println("You are bumped into: "+NPCname);
         }
+
     }
+
 
     void wakeUp(){
         Clock.wakeUpTime();

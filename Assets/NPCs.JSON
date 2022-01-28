@@ -1,7 +1,5 @@
 {
-  "NPCs": [
-    {
-      "GenericNPCs": [
+  "GenericNPCs": [
         {
           "Bill": [
             {
@@ -377,10 +375,8 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "Friends": [
+      ],
+  "Friends": [
         {
           "Dewey": [
             {
@@ -467,10 +463,8 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "Best_Friend": [
+      ],
+  "Best_Friend": [
         {
           "first_name": "Sara",
           "last_name": "Lincoln-Noble"
@@ -512,6 +506,4 @@
           "hints": {}
         }
       ]
-    }
-  ]
 }
