@@ -1,6 +1,6 @@
 {
   "Player": [
-{"name": "default"},
+    {"name": "default"},
     {"inventory": []},
     {"money": 0},
     {"scenes_complete": 0}

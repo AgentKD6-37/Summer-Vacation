@@ -1,6 +1,9 @@
 package com.ChildrenOfSummer.SummerVacation;
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -81,17 +84,20 @@ public class GameEngine {
     }
 
     public void sceneOneAction() {
+        JSONArray list = SaveEditor.getLocationItems(player1.playerLocation,player1.playerZone);
+        System.out.println(" You see these items scattered across the ground: " + list);
+        System.out.print("What would you like to do?");
         ANSWER = scanner.nextLine().strip();
         String[] answerWords = ANSWER.split(" ");
         System.out.println(Arrays.toString(answerWords));
         String verb = answerWords[0];
         String noun = answerWords[answerWords.length-1];
 
-        System.out.println(" You see these items scattered across the ground: .");
-        System.out.print("What would you like to do?");
+
+
         switch (verb){
             case "get":
-                //do stuff
+
             case "combine":
                 //do other stuff
             case "use":

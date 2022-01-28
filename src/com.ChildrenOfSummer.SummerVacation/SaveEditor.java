@@ -4,14 +4,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 /*
@@ -119,20 +116,27 @@ public class SaveEditor {
         return zone;
     }
 
-    public ArrayList getLocationItems(){
+    public static JSONArray getLocationItems(String location, String zone){
         ArrayList<String> temp = new ArrayList<>();
-        return temp;
+
+        JSONObject locationJSON = grabJSONData();
+        JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
+        JSONArray locationData = (JSONArray) zoneData.get(location);
+        JSONObject itemData = (JSONObject) locationData.get(3);
+
+        JSONArray inventory = (JSONArray) itemData.get("items");
+        return inventory;
     }
 
     public void updateLocationItems(String item){
-
+        
     }
 
     public void updatePlayerInventory(String item, String verb){
 
     }
 
-    public static JSONObject grabJSONData() {
+    private static JSONObject grabJSONData() {
         JSONObject locationJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them
