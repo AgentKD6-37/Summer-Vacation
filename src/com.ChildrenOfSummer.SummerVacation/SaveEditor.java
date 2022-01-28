@@ -144,9 +144,16 @@ public class SaveEditor {
     }
 
 
-    public ArrayList getLocationItems(){
-        ArrayList<String> temp = new ArrayList<>();
-        return temp;
+    public static JSONArray getLocationItems(String location, String zone){
+
+
+        JSONObject locationJSON = grabJSONData();
+        JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
+        JSONArray locationData = (JSONArray) zoneData.get(location);
+        JSONObject itemData = (JSONObject) locationData.get(3);
+
+        JSONArray inventory = (JSONArray) itemData.get("items");
+        return inventory;
     }
 
     public void updateLocationItems(String item){
@@ -157,7 +164,7 @@ public class SaveEditor {
 
     }
 
-    public static JSONObject grabJSONData() {
+    private static JSONObject grabJSONData() {
         JSONObject locationJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them
