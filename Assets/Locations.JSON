@@ -280,7 +280,7 @@
         "description": "The Paine Field stretches before you. It's definitely seen better days. A security booth sits at the far side of the airport. There are three Hangars in front of you, labelled 'HANGAR 1','HANGAR 2' and 'HANGAR 3'. To the north is the abandoned Warehouse. To the east is the edge of town! Your mom won't let you go further. To the south is the interstate! You can't go there. To the west is the southern-most abandoned old house."
       },
       {
-        "items": ""
+        "items": ["planks", "rope", "shoes", "hat", "rock", "notebook"]
       },
       {
         "NPCs": []
