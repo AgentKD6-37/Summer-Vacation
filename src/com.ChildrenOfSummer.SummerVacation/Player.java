@@ -18,7 +18,7 @@ class Player {
         if (tempLocation.equals("Off Map")){
             System.out.println(tempLocation);
             System.out.println("You can't go that way!");
-        }else{
+        }else{ //success on move
             playerLocation = tempLocation;
             playerZone = SaveEditor.getNewZone(playerLocation);
             System.out.println("You move "+ direction + ".");

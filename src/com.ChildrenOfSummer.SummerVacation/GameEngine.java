@@ -61,6 +61,8 @@ public class GameEngine {
                     player1.move("west");
                     preSceneOne();
                     break;
+                case "quit":
+                    System.exit(0);
                 default:
                     System.out.println("I can't go that way!");
                     preSceneOne();
