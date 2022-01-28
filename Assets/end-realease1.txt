@@ -1,0 +1,5 @@
+Game Over! But you didn't do anything wrong!
+
+This game is still in development. 
+To follow our progress check out our github at: 
+https://github.com/AgentKD6-37/Summer-Vacation

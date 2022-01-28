@@ -107,7 +107,9 @@ public class GameEngine {
             default:
                 System.out.println("I didn't understand that command. for help type help.");
         }
-        sceneOneAction();
+        //sceneOneAction();
+        SaveEditor.getAssetFile("end-release1.txt");
+
     }
 
     private void sceneOneWithItems() {
