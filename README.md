@@ -1,12 +1,12 @@
 # Summer-Vacation
 Java text based mystery-adventure game
 
-# Summer-Vacation
-Java text based mystery-adventure game
+
 ## About
-You are your friends are spending summer together exploring the surrounding areas.
-By moving around the places, you are trying to solve the mysteries within areas.
-You have whole summer(6 weeks) before the school start to solve the mysteries.
+Spend the summer with your best friend solving a creepy mystery and save the kids of your town!
+You and your best friend find yourselves at the heart of a plot involving a farmer, an airplane, and an old suitcase.
+Game written in Java using the JSON.Simple library for data manipulation.
+
 
 ## How to
 #### Interaction 
@@ -25,8 +25,6 @@ You have whole summer(6 weeks) before the school start to solve the mysteries.
 * go west
 * go east 
 
-## Note
-Need JSON.simple to processing the json files in this game
 ## Contributors
 _Michael_ || _Fan_ || _Zed_
 
