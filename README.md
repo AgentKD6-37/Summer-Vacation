@@ -11,13 +11,13 @@ Game written in Java using the JSON.Simple library for data manipulation.
 ## How to
 #### Interaction 
 * talk
-  * interacting with NPCs and friends
+  * interact with NPCs and friends
 * get
-  * gathering items  
+  * pick-up items items  
 * drop
-  * removing items  
+  * remove items  
 * combine
-  * combining items to make a new item 
+  * combine items to make a new items 
   
 ####Navigation
 * go north 
