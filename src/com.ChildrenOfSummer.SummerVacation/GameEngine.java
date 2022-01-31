@@ -48,69 +48,76 @@ public class GameEngine {
         System.out.println("Enter 'help' for help.\n");
 
         ANSWER = scanner.nextLine().strip().toLowerCase();
-            switch (ANSWER) {
-                case "map":
-                    SaveEditor.getAssetFile("map.txt");
-                    System.out.println("\nYour current location is " + player1.playerLocation);
-                    preSceneOne();
-                    break;
-                case "help":
-                    System.out.println("Your current location is " + player1.playerLocation);
-                    System.out.println("Type 'go east' to go east.\n" +
-                            "Type 'go west' to go west.\n" +
-                            "Type 'go north' to go north\n" +
-                            "Type 'go south' to go south");
-                    preSceneOne();
-                    break;
-                case "go north":
-                    player1.move("north");
-                    sceneOne();
-                    preSceneOne();
-                    break;
-                case "go east":
-                    player1.move("east");
-                    sceneOne();
-                    preSceneOne();
-                    break;
-                case "go south":
-                    player1.move("south");
-                    sceneOne();
-                    preSceneOne();
-                    break;
-                case "go west":
-                    player1.move("west");
-                    sceneOne();
-                    preSceneOne();
-                    break;
-                case "quit":
-                    System.exit(0);
-                default:
-                    System.out.println("I can't go that way!");
-                    preSceneOne();
-            }
+
+        switch (ANSWER) {
+            case "go north":
+                player1.move("north");
+                sceneOne();
+                preSceneOne();
+                break;
+            case "go east":
+                player1.move("east");
+                sceneOne();
+                preSceneOne();
+                break;
+            case "go south":
+                player1.move("south");
+                sceneOne();
+                preSceneOne();
+                break;
+            case "go west":
+                player1.move("west");
+                sceneOne();
+                preSceneOne();
+                break;
+            case "quit":
+                System.exit(0);
+            default:
+                System.out.println("I can't go that way!");
+                preSceneOne();
+        }
     }
 
     // At the airport
     public void sceneOne() {
-        if(player1.playerLocation.equals("Paine Field")) {
+        if (player1.playerLocation.equals("Paine Field")) {
             SaveEditor.getAssetFile("scene-one.txt");
             sceneOneAction();
         }
     }
 
     public void sceneOneAction() {
-        JSONArray list = SaveEditor.getLocationItems(player1.playerLocation,player1.playerZone);
-        System.out.println(" You see these items scattered across the ground: " + list);
+        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
+        ArrayList<String> playerList = SaveEditor.getPlayerItems();
+        System.out.println(" You see these items scattered across the ground: " + locationList);
         System.out.print("What would you like to do?");
         ANSWER = scanner.nextLine().strip();
         String[] answerWords = ANSWER.split(" ");
         System.out.println(Arrays.toString(answerWords));
         String verb = answerWords[0];
-        String noun = answerWords[answerWords.length-1];
+        String noun = answerWords[answerWords.length - 1];
 
-        switch (verb){
+        switch (verb) {
             case "get":
-                //do stuff
+                if (locationList.contains(noun)) {
+                    locationList.remove(noun);
+                    playerList.add(noun);
+                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
+                    SaveEditor.updatePlayerItems(playerList);
+                } else {
+                    System.out.println("I can't get that! There's no " + noun + " for me to pick up!");
+                }
+                break;
+            case "drop":
+                if (playerList.contains(noun)){
+                    locationList.add(noun);
+                    playerList.remove(noun);
+                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
+                    SaveEditor.updatePlayerItems(playerList);
+                }else{
+                    System.out.println("I can't drop what I don't have!");
+                }
+                break;
             case "combine":
                 //do other stuff
             case "use":
@@ -126,14 +133,8 @@ public class GameEngine {
             default:
                 System.out.println("I didn't understand that command. for help type help.");
         }
-        //sceneOneAction();
-        SaveEditor.getAssetFile("ending.txt");
-        try {
-            System.in.read();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        System.exit(0);
+        System.out.println("Your inventory has: " + playerList);
+        sceneOneAction();
     }
 
     private void sceneOneWithItems() {
