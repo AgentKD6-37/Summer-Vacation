@@ -6,11 +6,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 
 
@@ -149,13 +146,19 @@ public class SaveEditor {
 
 
 
-    public static String getNPCsDialog (String NPCname) {
-        String NPCdia="Yo";
+    public static String getNPCsDialog(String NPCname,int digNum) {
+        String NPCdia="Sounds like you don't feel like to talk today";
+        String digKey=Integer.toString(digNum);
 
         JSONObject npcJSON = grabNPC();//THIS IS THE WHOLE JSON FILE
-
+        JSONArray characterArray= (JSONArray) npcJSON.get(NPCname);
+        if (npcJSON.containsKey(NPCname)){
+            JSONObject digJson=(JSONObject) characterArray.get(2);
+            JSONObject digList=(JSONObject) digJson.get("dialogue");
+            NPCdia = (String) digList.get(digKey);
+        } else
+            System.out.println("......\n.......\n............");
         return NPCdia;
-
     }
 
 
