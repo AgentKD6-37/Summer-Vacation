@@ -20,8 +20,6 @@ import java.util.Iterator;
 
 public class SaveEditor {
 
-
-    private static String save = "Assets/save-game.properties";
     private static String locationsJSON = "Assets/Locations.JSON";
     private static String NPCsJSON="Assets/NPCs.JSON";
 
@@ -55,8 +53,18 @@ public class SaveEditor {
      */
 
     public static String getNewLocation(String zone, String location, String direction) {
-        String newLocation;
+        /*
+         * I hear you. Why oh why are there so many variable declarations?
+         * because as best as I can tell, this is the way to drill down into a JSON tree with JSON.simple
+         * This function does this:
+         * {zone:{location[1]:{directions:{**input**:**data we want**
+         * and then returns the data to the game engine.
+         *
+         * Ask Michael if you need more information.
+         */
 
+
+        String newLocation;
         JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
         JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
         JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
@@ -68,6 +76,13 @@ public class SaveEditor {
     }
 
     public static String getLocationDescription(String location, String zone) {
+        /*
+         * FOR NOW:
+         * this method just grabs *A* description from the JSON.
+         * There is a todo: IF THERE ARE TWO DESCRIPTIONS Check if NPC is present -> if present, give open, else give closed.
+         * This is not high on the priority list though so not too concerned if it doesn't get implemented now.
+         */
+
         String descriptionText = null;
 
         JSONObject locationJSON = grabJSONData();
@@ -145,6 +160,13 @@ public class SaveEditor {
 
 
     public static JSONArray getLocationItems(String location, String zone){
+        /*
+         * More drilling down to return the item Array
+         *
+         * visualization: {zone:{location[3]:{items:[**data we need**]
+         *
+         * Again, ask Michael for more info.
+         */
 
 
         JSONObject locationJSON = grabJSONData();
@@ -156,9 +178,20 @@ public class SaveEditor {
         return inventory;
     }
 
-    public void updateLocationItems(String item){
+    public void updateLocationItems(String item, String location, String zone){
+        // TODO: 1/31/2022 Finish this method. It should add an item to Player.JSON under "items" and remove from Locations.JSON
+        JSONArray areaItems = getLocationItems(location, zone);
 
+
+
+
+        try(FileWriter file = new FileWriter(locationsJSON)){
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
+
 
     public void updatePlayerInventory(String item, String verb){
 
