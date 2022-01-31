@@ -6,11 +6,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Scanner;
 
 
 
@@ -21,8 +20,9 @@ import java.util.Iterator;
 public class SaveEditor {
 
     private static String locationsJSON = "Assets/Locations.JSON";
-    private static String NPCsJSON="Assets/NPCs.JSON";
-
+    private static String NPCsJSON = "Assets/NPCs.JSON";
+    private static String playerJSON = "Assets/Player.JSON";
+    private static String playerInvPath = "Assets/Player_Items/player_inventory.txt";
 
 
     //business methods
@@ -46,10 +46,8 @@ public class SaveEditor {
         getAssetFile("opening-menu.txt");
     }
 
-
-
     /*
-     *These methods exist to return SPECIFIC data to the calling method from JSON files.
+     *These methods exist to return SPECIFIC JSON data to the calling method from the JSON asset files.
      */
 
     public static String getNewLocation(String zone, String location, String direction) {
@@ -109,7 +107,7 @@ public class SaveEditor {
          * This big dumb stupid function checks every zone in the game for the updated player location and then
          * returns the new zone location to the player object so that when you travers zones the game doesn't break.
          * It is very ugly, and can probably be done more efficiently. It was like midnight, and I was like, super tired.
-         * Sorry.
+         * Sorry. -MS
          */
 
         try {
@@ -136,21 +134,20 @@ public class SaveEditor {
     }
 
     public static JSONArray getNPCsName(String zone, String location) {
-        JSONArray NPCname=null;
+        JSONArray NPCname = null;
 
         JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
         JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
         JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
         JSONObject NPCshowing = (JSONObject) locationArea.get(4); //JUST THE NPC
-        NPCname=(JSONArray) NPCshowing.get("NPCs");
+        NPCname = (JSONArray) NPCshowing.get("NPCs");
 
         return NPCname;
     }
 
 
-
-    public static String getNPCsDialog (String NPCname) {
-        String NPCdia="Yo";
+    public static String getNPCsDialog(String NPCname, int num) {
+        String NPCdia = "Yo";
 
         JSONObject npcJSON = grabNPC();//THIS IS THE WHOLE JSON FILE
 
@@ -159,45 +156,77 @@ public class SaveEditor {
     }
 
 
-    public static JSONArray getLocationItems(String location, String zone){
+    public static String getLocationInvFilePath(String location, String zone) {
         /*
-         * More drilling down to return the item Array
-         *
+         * first we drill down to get the filepath:
          * visualization: {zone:{location[3]:{items:[**data we need**]
+         *
+         * next we use the filepath to get the txt file with the data
          *
          * Again, ask Michael for more info.
          */
-
 
         JSONObject locationJSON = grabJSONData();
         JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
         JSONArray locationData = (JSONArray) zoneData.get(location);
         JSONObject itemData = (JSONObject) locationData.get(3);
 
-        JSONArray inventory = (JSONArray) itemData.get("items");
+        return (String) itemData.get("items");
+    }
+
+
+    public static ArrayList<String> getPlayerItems(){
+        ArrayList<String> inventory = new ArrayList<>();
+        try (Scanner s = new Scanner(new FileReader(playerInvPath))) {
+            while (s.hasNext()) {
+                inventory.add(s.next());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return inventory;
     }
 
-    public void updateLocationItems(String item, String location, String zone){
-        // TODO: 1/31/2022 Finish this method. It should add an item to Player.JSON under "items" and remove from Locations.JSON
-        JSONArray areaItems = getLocationItems(location, zone);
+    public static ArrayList<String> getLocationItems(String location, String zone) {
+        String path = getLocationInvFilePath(location, zone);
+        ArrayList<String> inventory = new ArrayList<>();
+        try (Scanner s = new Scanner(new FileReader(path))) {
+            while (s.hasNext()) {
+                inventory.add(s.next());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inventory;
+    }
 
+    public static void updateLocationItems(String location, String zone, ArrayList<String> inventory) {
+        String path = getLocationInvFilePath(location, zone);
+        addToInventory(inventory,path);
+    }
 
+    public static void updatePlayerItems(ArrayList<String> inventory){
+        String path = playerInvPath;
+        addToInventory(inventory, path);
+    }
 
-
-        try(FileWriter file = new FileWriter(locationsJSON)){
-
-        }catch(IOException e){
+    public static void addToInventory(ArrayList<String> inventory, String path) {
+        try (FileWriter w = new FileWriter(path)){
+            for (String item : inventory) {
+                w.write(item + System.lineSeparator());
+            }
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
 
-
-    public void updatePlayerInventory(String item, String verb){
-
-    }
-
     private static JSONObject grabJSONData() {
+        /*
+         * We made this method to grab the whole dang JSON file to simplify some other methods from being a huge mess
+         * of variable declarations.
+         */
+
+
         JSONObject locationJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them
@@ -205,6 +234,7 @@ public class SaveEditor {
             FileReader fileReader = new FileReader(locationsJSON);
             Object obj = jsonParser.parse(fileReader);
             locationJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
+            fileReader.close();
 
         } catch (IOException | ParseException e) {
             System.err.print("Error. Failed to load location.");
@@ -212,7 +242,7 @@ public class SaveEditor {
         return locationJSON;
     }
 
-    private static JSONObject grabNPC(){
+    private static JSONObject grabNPC() {
         JSONObject npcJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them

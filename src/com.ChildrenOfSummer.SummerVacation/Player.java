@@ -8,7 +8,7 @@ import java.util.Objects;
 class Player {
     String playerZone = "Suburb";
     String playerLocation = "Player's House";
-    String playerName;
+    String playerName = "Default";
     String[] playerInventory;
 
     void sleep(){
@@ -40,7 +40,7 @@ class Player {
     public void talk(String npcName){
         int number = randomNumberGenerator();
         if (number <= 3) {
-            //System.out.println(Location.getDialogue(npcName, number));
+            //System.out.println(SaveEditor.getNPCsDialog(npcName, number));
         }else{
             talk(npcName);
         }
