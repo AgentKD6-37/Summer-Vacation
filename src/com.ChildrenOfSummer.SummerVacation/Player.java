@@ -27,10 +27,6 @@ class Player {
             System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
             System.out.println("You are bumped into: "+NPCname);
-            System.out.println("Who would you like to talk to ?");
-            Scanner input = new Scanner(System.in);
-            String chatyNPC= input.nextLine();
-            talk(chatyNPC);
         }
 
     }
@@ -43,6 +39,7 @@ class Player {
     public void talk(String npcName){
         int number = randomNumberGenerator();
         if (number <= 3) {
+            SaveEditor.getNPCsDialog(npcName,number);
         }else{
             talk(npcName);
         }
