@@ -43,8 +43,12 @@ public class GameEngine {
     }
 
     public void preSceneOne() {
-        System.out.println("Which way would you like to go?\n");
+        System.out.println("\nWhich way would you like to go?\n");
+        System.out.println("Enter 'map' for map.\n");
+        System.out.println("Enter 'help' for help.\n");
+
         ANSWER = scanner.nextLine().strip().toLowerCase();
+
         switch (ANSWER) {
             case "go north":
                 player1.move("north");
