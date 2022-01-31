@@ -43,9 +43,25 @@ public class GameEngine {
     }
 
     public void preSceneOne() {
-        System.out.println("Which way would you like to go?\n");
+        System.out.println("\nWhich way would you like to go?\n");
+        System.out.println("Enter 'map' for map.\n");
+        System.out.println("Enter 'help' for help.\n");
+
         ANSWER = scanner.nextLine().strip().toLowerCase();
             switch (ANSWER) {
+                case "map":
+                    SaveEditor.getAssetFile("map.txt");
+                    System.out.println("\nYour current location is " + player1.playerLocation);
+                    preSceneOne();
+                    break;
+                case "help":
+                    System.out.println("Your current location is " + player1.playerLocation);
+                    System.out.println("Type 'go east' to go east.\n" +
+                            "Type 'go west' to go west.\n" +
+                            "Type 'go north' to go north\n" +
+                            "Type 'go south' to go south");
+                    preSceneOne();
+                    break;
                 case "go north":
                     player1.move("north");
                     sceneOne();
