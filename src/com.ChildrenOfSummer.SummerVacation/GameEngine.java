@@ -7,31 +7,14 @@ import java.io.IOException;
 import java.util.*;
 
 public class GameEngine {
-    ArrayList<String> inventory = new ArrayList<String>();
-    String save = "Assets/save-game.JSON";
     Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     String ANSWER;
     Player player1 = new Player();
 
     public void execute() {
-        startMenu();
+        Input.startMenu();
         introduction();
-        preSceneOne();
-    }
-
-    public void startMenu() {
-        SaveEditor.menuFiles();
-        String startMenuChoice = scanner.nextLine().strip().toLowerCase();
-        switch (startMenuChoice) {
-            case "new game":
-                playerCreator();
-                break;
-            case "load game":
-                SaveEditor.getSaveFile();
-                break;
-            case "quit":
-                System.exit(0);
-        }
+        sceneOneCheck();
     }
 
     public void playerCreator() {
@@ -42,155 +25,20 @@ public class GameEngine {
         SaveEditor.getAssetFile("introduction.txt");
     }
 
-    public void preSceneOne() {
-        System.out.println("Which way would you like to go?\n");
-        ANSWER = scanner.nextLine().strip().toLowerCase();
-        switch (ANSWER) {
-            case "go north":
-                player1.move("north");
-                sceneOne();
-                preSceneOne();
-                break;
-            case "go east":
-                player1.move("east");
-                sceneOne();
-                preSceneOne();
-                break;
-            case "go south":
-                player1.move("south");
-                sceneOne();
-                preSceneOne();
-                break;
-            case "go west":
-                player1.move("west");
-                sceneOne();
-                preSceneOne();
-                break;
-            case "quit":
-                System.exit(0);
-            default:
-                System.out.println("I can't go that way!");
-                preSceneOne();
-        }
-    }
-
     // At the airport
-    public void sceneOne() {
-        if (player1.playerLocation.equals("Paine Field")) {
-            SaveEditor.getAssetFile("scene-one.txt");
-            sceneOneAction();
+    public void sceneOneCheck() {
+        while (!player1.playerLocation.equals("Paine Field")) {
+            Input.inputCommandsLogic();
         }
+        SaveEditor.getAssetFile("scene-one.txt");
+        Input.inputCommandsLogic();
     }
-
-    public void sceneOneAction() {
-        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
-        ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        System.out.println(" You see these items scattered across the ground: " + locationList);
-        System.out.print("What would you like to do?");
-        ANSWER = scanner.nextLine().strip();
-        String[] answerWords = ANSWER.split(" ");
-        System.out.println(Arrays.toString(answerWords));
-        String verb = answerWords[0];
-        String noun = answerWords[answerWords.length - 1];
-
-        switch (verb) {
-            case "get":
-                if (locationList.contains(noun)) {
-                    locationList.remove(noun);
-                    playerList.add(noun);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
-                } else {
-                    System.out.println("I can't get that! There's no " + noun + " for me to pick up!");
-                }
-                break;
-            case "drop":
-                if (playerList.contains(noun)){
-                    locationList.add(noun);
-                    playerList.remove(noun);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
-                }else{
-                    System.out.println("I can't drop what I don't have!");
-                }
-                break;
-            case "combine":
-                //do other stuff
-            case "use":
-                //do final stuff
-            case "talk":
-                System.out.println("There's no one to talk to!");
-                break;
-            case "help":
-                System.out.println("No help is currently available. Blame the Developers!");
-                break;
-            case "quit":
-                System.exit(0);
-            default:
-                System.out.println("I didn't understand that command. for help type help.");
-        }
-        System.out.println("Your inventory has: " + playerList);
-        sceneOneAction();
-    }
-
-    private void sceneOneWithItems() {
-        String itemsArray[] = {"planks", "rope", "shoes", "hat", "rock", "notebook"};
-        List<String> itemsList = Arrays.asList(itemsArray);
-        System.out.println("Choose an item to add: planks, rope, shoes, a rock, a notebook");
-        Scanner question = new Scanner(System.in);
-        String answer = question.nextLine().strip().toLowerCase();
-
-        switch (answer) {
-            case "planks":
-                inventory.add("planks");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-            case "rope":
-                inventory.add("rope");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-            case "shoes":
-                inventory.add("shoes");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-            case "hat":
-                inventory.add("hat");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-            case "rock":
-                inventory.add("rock");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-            case "notebook":
-                inventory.add("notebook");
-                System.out.println("Adding items...\n" +
-                        "Your inventory is: " + inventory + "\n"
-                        + "The items remaining on the ground are " + itemsList);
-                break;
-
-            default:
-                System.out.println("Input invalid. Choose among the following: " + Arrays.toString(itemsArray));
-                sceneOneWithItems();
-        }
-        sceneOneEnd();
-    }
-
 
     public void sceneOneEnd() {
         System.out.println("Do you want to add additional items?");
         ANSWER = scanner.nextLine().strip();
         if (ANSWER.equalsIgnoreCase("yes")) {
-            sceneOneWithItems();
+            //do stuff
         } else if (ANSWER.equalsIgnoreCase("no")) {
             sceneTwo();
         } else {

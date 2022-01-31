@@ -1,6 +1,6 @@
-planks
 rope
 hat
 rock
 notebook
 shoes
+planks
