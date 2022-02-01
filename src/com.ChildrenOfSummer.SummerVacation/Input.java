@@ -46,7 +46,7 @@ public class Input {
         System.out.println("You see the following items on the ground: " + locationList + ".");
         System.out.print("What would you like to do?\n");
         System.out.println("Enter 'help' for help\n");
-        ANSWER = scanner.nextLine().strip();
+        ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
         System.out.println(Arrays.toString(answerWords));
         String verb = answerWords[0];
@@ -110,8 +110,7 @@ public class Input {
                 System.out.println("Nothing happens...");
                 break;
             case "talk":
-                System.out.println("talk is called");
-                player1.talk(noun2);
+                System.out.println(player1.talk(noun2));
                 break;
             case "help":
                 System.out.println("Your current location is " + player1.playerLocation);
