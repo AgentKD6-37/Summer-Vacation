@@ -29,7 +29,7 @@ Game written in Java using the JSON.Simple library for data manipulation.
 _Michael_ || _Fan_ || _Zed_
 
 ## Release Version
-beta 1.1 
+1.1 
 
 ```Installation Instructions:
 1. Download the .zip file
