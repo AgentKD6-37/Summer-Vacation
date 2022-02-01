@@ -201,7 +201,7 @@
       }
     }
   ],
-  "Patty": [
+  "Mom": [
     {
       "first_name": "Patty"
     },
@@ -224,7 +224,7 @@
       }
     }
   ],
-  "Chad": [
+  "Dad": [
     {
       "first_name": "Chad"
     },
@@ -321,7 +321,7 @@
       }
     }
   ],
-  "Twins": [
+  "The Twins": [
     {
       "first_name": "Andrew",
       "second_name": "Wesley",
@@ -394,7 +394,7 @@
     },
     {
       "locations": {
-        "Monday": "Woods2",
+        "Monday": "Woods East",
         "Tuesday": "Kory's House",
         "Wednesday": "Kory's House",
         "Thursday": "Kory's House",

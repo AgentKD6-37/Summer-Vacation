@@ -63,8 +63,13 @@ public class Input {
 
         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
-
-        System.out.println("You see the following items on the ground: " + locationList + "."); //todo: only display if items are there
+        if(!locationList.isEmpty()) {
+            System.out.println("You see the following items on the ground: ");
+            for (String item: locationList) {
+                System.out.print("|" + item);
+            }
+            System.out.println("|");
+        }
         System.out.print("What would you like to do?");
 
         ANSWER = scanner.nextLine().strip().toLowerCase();
@@ -145,7 +150,9 @@ public class Input {
             default:
                 System.out.println("I didn't understand that command. for help type help.");
         }
-        System.out.println("Your inventory has: " + playerList);
+        if(!playerList.isEmpty()) {
+            System.out.println("Your inventory has: " + playerList);
+        }
         //recursion happens in the while loop of the scene
     }
 }
