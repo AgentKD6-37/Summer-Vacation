@@ -222,7 +222,7 @@ public class SaveEditor {
     }
 
     public static String getNPCsDialog(String NPCname, int digNum) {
-        String NPCdia = "Sounds like you don't feel like to talk today";
+        String NPCdia = "There was no one to talk to\n...\n......";
         String digKey = Integer.toString(digNum);
 
         JSONObject npcJSON = grabNPC();//THIS IS THE WHOLE JSON FILE
@@ -231,9 +231,8 @@ public class SaveEditor {
             JSONObject digJson = (JSONObject) characterArray.get(2);
             JSONObject digList = (JSONObject) digJson.get("dialogue");
             NPCdia = (String) digList.get(digKey);
-        } else
-            System.out.println("......\n.......\n............");
-        return NPCdia;
+        }
+      return NPCdia;
     }
 
     public static ArrayList<String> getPlayerItems() {

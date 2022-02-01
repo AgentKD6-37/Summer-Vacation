@@ -36,13 +36,16 @@ class Player {
         Clock.wakeUpTime();
     }
 
-    public void talk(String npcName){
+    public String talk(String npcName){
         int number = randomNumberGenerator();
-        if (number <= 3) {
-            SaveEditor.getNPCsDialog(npcName,number);
-        }else{
-            talk(npcName);
+        String dig;
+        npcName=npcName.substring(0, 1).toUpperCase() + npcName.substring(1);
+
+        while (number >3||number<1) {
+            number = randomNumberGenerator();
         }
+        dig=(SaveEditor.getNPCsDialog(npcName,number));
+        return dig;
     }
 
     void shop(){
