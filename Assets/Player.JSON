@@ -1,5 +1,7 @@
 {
       "name": "default",
       "inventory": [],
-      "money": 0
+      "money": 0,
+      "location": "Player's House",
+      "zone": "Suburb"
 }

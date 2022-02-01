@@ -13,12 +13,13 @@ public class GameEngine {
 
     public void execute() {
         Input.startMenu();
-        introduction();
+
         sceneOneCheck();
     }
 
     public void playerCreator() {
-        System.out.println("this is the player creator");
+        Input.playerCreator();
+        introduction();
     }
 
     public void introduction() {
