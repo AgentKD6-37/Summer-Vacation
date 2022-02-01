@@ -26,7 +26,9 @@ public class Input {
     }
 
     static void playerCreator(){
-        System.out.print("Enter your name:");
+        System.out.print("Enter your name: \n");
+        String name = scanner.nextLine();
+        System.out.println("Welcome to Summer Vacation, " + name);
     }
 
     public static void inputCommandsLogic(){
@@ -42,16 +44,20 @@ public class Input {
         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
         System.out.println("You see the following items on the ground: " + locationList + ".");
-        System.out.print("What would you like to do?");
+        System.out.print("What would you like to do?\n");
+        System.out.println("Enter 'help' for help\n");
         ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
         System.out.println(Arrays.toString(answerWords));
         String verb = answerWords[0];
-        String noun1 = answerWords[1]; //ONLY USED FOR COMBINING
+        String noun1 = "out of bounds saver";
+        if(answerWords.length > 1) {
+            noun1 = answerWords[1]; //ONLY USED FOR COMBINING
+        }
         String noun2 = answerWords[answerWords.length - 1];
 
         switch (verb) {
-            case "map":
+            case "see":
                 SaveEditor.getAssetFile("map.txt");
                 System.out.println("\nYour current location is " + player1.playerLocation);
                 break;
@@ -108,10 +114,7 @@ public class Input {
                 break;
             case "help":
                 System.out.println("Your current location is " + player1.playerLocation);
-                System.out.println("Type 'go east' to go east.\n" +
-                        "Type 'go west' to go west.\n" +
-                        "Type 'go north' to go north\n" +
-                        "Type 'go south' to go south");
+                SaveEditor.getAssetFile("help.txt");
                 break;
             case "quit":
                 System.exit(0);
