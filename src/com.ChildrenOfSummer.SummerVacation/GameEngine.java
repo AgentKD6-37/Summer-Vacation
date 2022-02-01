@@ -11,7 +11,6 @@ public class GameEngine {
         sceneOneCheck();
     }
 
-
     private void introduction() {
         SaveEditor.getAssetFile("introduction.txt");
         System.out.println("\n");

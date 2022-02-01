@@ -4,8 +4,11 @@ Sara looks at you and grins, “We should go to the abandoned airport today!”
 
 (TO MOVE THROUGH THE WORLD TYPE "GO" AND A DIRECTION)
 
+For help, type 'help'.
+
 You're in your house! Your family is home.
 To the north is Sara's house.
 To the east is Miss Maisel's.
 To the south is Dead Presidents, the dollar store.
 To the west is Mr. Barkley's.
+

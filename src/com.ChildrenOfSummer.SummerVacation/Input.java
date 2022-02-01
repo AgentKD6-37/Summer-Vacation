@@ -43,10 +43,12 @@ public class Input {
     }
 
     static void playerCreator(){
+
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
         player1.playerName = ANSWER;
         SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+
     }
 
     public static void inputCommandsLogic(){
@@ -61,8 +63,10 @@ public class Input {
 
         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
+
         System.out.println("You see the following items on the ground: " + locationList + "."); //todo: only display if items are there
         System.out.print("What would you like to do?");
+
         ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
         String verb = answerWords[0];
@@ -73,7 +77,7 @@ public class Input {
         String noun2 = answerWords[answerWords.length - 1];
 
         switch (verb) {
-            case "map":
+            case "see":
                 SaveEditor.getAssetFile("map.txt");
                 System.out.println("\nYour current location is " + player1.playerLocation);
                 break;
@@ -129,15 +133,11 @@ public class Input {
                 System.out.println("Nothing happens...");
                 break;
             case "talk":
-                System.out.println("talk is called");
-                player1.talk(noun2);
+                System.out.println(player1.talk(noun2));
                 break;
             case "help":
                 System.out.println("Your current location is " + player1.playerLocation);
-                System.out.println("Type 'go east' to go east.\n" +
-                        "Type 'go west' to go west.\n" +
-                        "Type 'go north' to go north\n" +
-                        "Type 'go south' to go south");
+                SaveEditor.getAssetFile("help.txt");
                 break;
             case "quit":
                 SaveEditor.saveGame(player1.playerName,player1.playerLocation, player1.playerZone,player1.playerInventory);

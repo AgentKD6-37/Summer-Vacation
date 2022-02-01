@@ -138,7 +138,7 @@
         "items": "Assets/Location_items/dead_presidents.txt"
       },
       {
-        "NPCs": []
+        "NPCs": ["Janie"]
       }
     ],
     "Fast Journey": [
@@ -162,7 +162,7 @@
         "items": "Assets/Location_items/fast_journey.txt"
       },
       {
-        "NPCs": []
+        "NPCs": ["Fred"]
       }
     ],
     "Bill's Produce": [
@@ -186,7 +186,7 @@
         "items": "Assets/Location_items/bills_produce.txt"
       },
       {
-        "NPCs": []
+        "NPCs": ["Bill"]
       }
     ],
     "Beth's Treats": [
@@ -210,7 +210,7 @@
         "items": "Assets/Location_items/beths_treats.txt"
       },
       {
-        "NPCs": []
+        "NPCs": ["Beth"]
       }
     ],
     "Angus Queen": [
@@ -233,9 +233,7 @@
       "items": "Assets/Location_items/angus_queen.txt"
     },
     {
-      "NPCs": [
-        "Al"
-      ]
+      "NPCs": ["Al"]
     }
   ]
   },
@@ -354,7 +352,7 @@
         "items": "Assets/Location_items/saras_house.txt"
       },
       {
-        "NPCs": []
+        "NPCs": ["Twins"]
       }
     ],
     "Player's House": [
