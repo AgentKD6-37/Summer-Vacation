@@ -1,82 +1,71 @@
 package com.ChildrenOfSummer.SummerVacation;
 
-
-import org.json.simple.JSONArray;
-
-import java.io.IOException;
-import java.util.*;
+import org.json.simple.JSONObject;
 
 public class GameEngine {
-    Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
-    String ANSWER;
-    Player player1 = new Player();
 
     public void execute() {
-        Input.startMenu();
-
+        if (Input.startMenu()) {
+            introduction();
+        }
         sceneOneCheck();
     }
 
-    public void playerCreator() {
-        Input.playerCreator();
-        introduction();
-    }
 
-    public void introduction() {
+    private void introduction() {
         SaveEditor.getAssetFile("introduction.txt");
+        System.out.println("\n");
     }
 
     // At the airport
-    public void sceneOneCheck() {
-        while (!player1.playerLocation.equals("Paine Field")) {
+    private void sceneOneCheck() {
+        /*
+         * This is the first cutscene check, essentially it allows the game to run in the background by calling Input.inputCommandsLogic()
+         * over and over again until the player location hits the required area. At that point it *SHOULD* trigger the scene-one.txt to play out.
+         */
+        JSONObject saveFile;
+        String playerLocation;
+        do  {
             Input.inputCommandsLogic();
-        }
+            saveFile = SaveEditor.loadGame();
+            playerLocation = (String) saveFile.get("location");
+        } while (!playerLocation.equals("Paine Field"));
         SaveEditor.getAssetFile("scene-one.txt");
-        Input.inputCommandsLogic();
+        sceneOne();
     }
 
-    public void sceneOneEnd() {
-        System.out.println("Do you want to add additional items?");
-        ANSWER = scanner.nextLine().strip();
-        if (ANSWER.equalsIgnoreCase("yes")) {
-            //do stuff
-        } else if (ANSWER.equalsIgnoreCase("no")) {
-            sceneTwo();
-        } else {
-            System.out.println("Input not valid");
-            sceneOneEnd();
-        }
+    private void sceneOne(){
+        boolean isSolved = false;
+        do {
+            Input.inputCommandsLogic();
+        } while (isSolved==false);
     }
 
-    public void sceneTwo() {
+
+    private void sceneTwo() {
         System.out.println("Insert paragraph for scene two");
         System.out.println("Hello");
         sceneThree();
     }
 
-    public void sceneThree() {
+    private void sceneThree() {
         System.out.println("Insert paragraph for scene three");
     }
 
-    public void sceneFour() {
+    private void sceneFour() {
         System.out.println("work in progress");
     }
 
-    public void sceneFive() {
+    private void sceneFive() {
         System.out.println("work in progress");
     }
 
-    public void sceneSix() {
+    private void sceneSix() {
         System.out.println("work in progress");
     }
 
-    public void sceneSeven() {
+    private void sceneSeven() {
         System.out.println("work in progress");
-    }
-
-    public int randomNumberGenerator() {
-        //1-3, 3-6, 1-6
-        return (int) (Math.random() * ((6) + 1));
     }
 
 }

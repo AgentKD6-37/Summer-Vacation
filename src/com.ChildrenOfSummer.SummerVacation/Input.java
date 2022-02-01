@@ -1,5 +1,7 @@
 package com.ChildrenOfSummer.SummerVacation;
 
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -7,26 +9,44 @@ import java.util.Scanner;
 public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
-    private static Player player1 = new Player();
+    private static ArrayList<String> empty = new ArrayList<>();
+    private static Player player1 = new Player("default","Player's House","Suburb",empty);
 
-    public static void startMenu() {
-        //pretty basic start menu. Switch over input. todo: add input validation -MS
+    public static boolean startMenu() {
+        /*
+         *Start menu, if you type new game it leaves the player1 we instantiate on class load as default or "new"
+         *Load will of course over-write those values with the Player.json values so that you can continue your game.
+         */
+
+        boolean newGame = false;
         SaveEditor.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
             case "new game":
                 playerCreator();
+                newGame = true;
                 break;
             case "load game":
-                //do stuff
+                JSONObject saveFile = SaveEditor.loadGame();
+                String name = (String) saveFile.get("name");
+                String location = (String) saveFile.get("location");
+                String zone = (String) saveFile.get("zone");
+                ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
+                player1 = new Player(name, location, zone, inventory);
                 break;
             case "quit":
                 System.exit(0);
+            default:
+                System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
         }
+        return newGame;
     }
 
     static void playerCreator(){
         System.out.print("Enter your name:");
+        ANSWER = scanner.nextLine().strip();
+        player1.playerName = ANSWER;
+        SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
     }
 
     public static void inputCommandsLogic(){
@@ -41,13 +61,15 @@ public class Input {
 
         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        System.out.println("You see the following items on the ground: " + locationList + ".");
+        System.out.println("You see the following items on the ground: " + locationList + "."); //todo: only display if items are there
         System.out.print("What would you like to do?");
-        ANSWER = scanner.nextLine().strip();
+        ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
-        System.out.println(Arrays.toString(answerWords));
         String verb = answerWords[0];
-        String noun1 = answerWords[1]; //ONLY USED FOR COMBINING
+        String noun1 = "out of bounds saver";
+        if(answerWords.length > 1) {
+            noun1 = answerWords[1]; //ONLY USED FOR COMBINING
+        }
         String noun2 = answerWords[answerWords.length - 1];
 
         switch (verb) {
@@ -56,14 +78,14 @@ public class Input {
                 System.out.println("\nYour current location is " + player1.playerLocation);
                 break;
             case "go":
-                Boolean didMove = false;
+                boolean didMove = false;
                 for (Directions dir : Directions.values()) {
                     if (dir.name().equals(noun2.toUpperCase())) {
                         player1.move(noun2);
                         didMove = true;
                     }
                 }
-                if(didMove == false){
+                if(!didMove){
                     System.out.println("you were unable to move "+ noun2 + ".");
                 }
                 break;
@@ -73,6 +95,7 @@ public class Input {
                     playerList.add(noun2);
                     SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
                     SaveEditor.updatePlayerItems(playerList);
+                    player1.playerInventory = playerList;
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
@@ -83,6 +106,7 @@ public class Input {
                     playerList.remove(noun2);
                     SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
                     SaveEditor.updatePlayerItems(playerList);
+                    player1.playerInventory = playerList;
                 }else{
                     System.out.println("I can't drop what I don't have!");
                 }
@@ -95,6 +119,7 @@ public class Input {
                         playerList.remove(noun2);
                         playerList.add("ladder");
                         SaveEditor.updatePlayerItems(playerList);
+                        player1.playerInventory = playerList;
                     }else {
                         System.out.println("I can't combine that!");
                     }
@@ -115,6 +140,7 @@ public class Input {
                         "Type 'go south' to go south");
                 break;
             case "quit":
+                SaveEditor.saveGame(player1.playerName,player1.playerLocation, player1.playerZone,player1.playerInventory);
                 System.exit(0);
             default:
                 System.out.println("I didn't understand that command. for help type help.");

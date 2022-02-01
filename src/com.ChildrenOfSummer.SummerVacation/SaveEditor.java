@@ -23,7 +23,7 @@ public class SaveEditor {
     private static String NPCsJSON = "Assets/NPCs.JSON";
     private static String playerJSON = "Assets/Player.JSON";
     private static String playerInvPath = "Assets/Player_Items/player_inventory.txt";
-
+    private static JSONParser jsonParser = new JSONParser();
 
     /*
      * Simple text loader for use by art or text callers
@@ -62,7 +62,6 @@ public class SaveEditor {
         JSONObject locationJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them
-            JSONParser jsonParser = new JSONParser();
             FileReader fileReader = new FileReader(locationsJSON);
             Object obj = jsonParser.parse(fileReader);
             locationJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
@@ -196,8 +195,6 @@ public class SaveEditor {
     private static JSONObject grabNPC() {
         JSONObject npcJSON = null;
         try {
-            //create JSON Parser and file reader then create a JSON reader by combining them
-            JSONParser jsonParser = new JSONParser();
             FileReader fileReader = new FileReader(NPCsJSON);
             Object obj = jsonParser.parse(fileReader);
             npcJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
@@ -248,13 +245,42 @@ public class SaveEditor {
         return inventory;
     }
 
+    public static void saveGame(String name, String location, String zone, ArrayList<String>inventory){
+            JSONObject saveFileJson = loadGame();
+            saveFileJson.put("name",name);
+            saveFileJson.put("location",location);
+            saveFileJson.put("zone", zone);
+            JSONArray inventoryArr = new JSONArray();
+            inventoryArr.addAll(inventory);
+            saveFileJson.put("inventory", inventoryArr);
+            try(FileWriter w = new FileWriter(playerJSON)) {
+                w.write(saveFileJson.toJSONString());
+                w.flush();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+    }
+
+    public static JSONObject loadGame(){
+        JSONObject saveFileJson = new JSONObject();
+        try(FileReader reader = new FileReader(playerJSON)){
+            Object saveFileObj = jsonParser.parse(reader);
+            saveFileJson = (JSONObject) saveFileObj;
+        }catch(IOException | ParseException e){
+            e.printStackTrace();
+        }
+        return saveFileJson;
+    }
 
     public static void updatePlayerItems(ArrayList<String> inventory) {
         String path = playerInvPath;
         addToInventory(inventory, path);
     }
 
+
+
     public static void addToInventory(ArrayList<String> inventory, String path) {
+        //this is generic and used by player and location inventory
         try (FileWriter w = new FileWriter(path)) {
             for (String item : inventory) {
                 w.write(item + System.lineSeparator());
