@@ -2,13 +2,21 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONArray;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Player {
-    String playerZone = "Suburb";
-    String playerLocation = "Player's House";
-    String playerName = "Default";
-    String[] playerInventory;
+    String playerZone;
+    String playerLocation;
+    String playerName;
+    ArrayList<String> playerInventory;
+
+    public Player(String playerName, String playerLocation, String playerZone, ArrayList<String> playerInventory) {
+        this.playerZone = playerZone;
+        this.playerLocation = playerLocation;
+        this.playerName = playerName;
+        this.playerInventory = playerInventory;
+    }
 
     void sleep(){
         Clock.incrementNextDay();
@@ -26,7 +34,7 @@ class Player {
             playerZone = SaveEditor.getNewZone(playerLocation);
             System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
-            System.out.println("You are bumped into: "+NPCname);
+            System.out.println(NPCname + " is here.");
         }
 
     }
