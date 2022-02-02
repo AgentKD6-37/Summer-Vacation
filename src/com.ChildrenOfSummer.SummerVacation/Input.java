@@ -4,7 +4,6 @@ import org.json.simple.JSONObject;
 
 import javax.sound.sampled.Clip;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Input {
@@ -19,6 +18,7 @@ public class Input {
         /*
          *Start menu, if you type new game it leaves the player1 we instantiate on class load as default or "new"
          *Load will of course over-write those values with the Player.json values so that you can continue your game.
+         * -MS
          */
 
         boolean newGame = false;
@@ -27,6 +27,7 @@ public class Input {
         switch (startMenuChoice) {
             case "new game":
                 playerCreator();
+                SaveEditor.loadDefaults();
                 newGame = true;
                 break;
             case "load game":
@@ -41,12 +42,18 @@ public class Input {
                 System.exit(0);
             default:
                 System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
+                startMenu();
         }
         return newGame;
     }
 
-    static void playerCreator() {
 
+    static void playerCreator(){
+        /*
+         *Takes in your name and saves the save file with default values.
+         * todo: also reset the location items to default!! IMPORTANT!!
+         *  -MS
+         */
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
         player1.playerName = ANSWER;
@@ -64,7 +71,7 @@ public class Input {
          * unknown command. -MS
          */
 
-        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
+        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
 
 
@@ -108,8 +115,8 @@ public class Input {
                 if (locationList.contains(noun2)) {
                     locationList.remove(noun2);
                     playerList.add(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
+                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
+                    SaveEditor.savePlayerItems(playerList);
                     player1.playerInventory = playerList;
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
@@ -119,8 +126,8 @@ public class Input {
                 if (playerList.contains(noun2)) {
                     locationList.add(noun2);
                     playerList.remove(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
+                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
+                    SaveEditor.savePlayerItems(playerList);
                     player1.playerInventory = playerList;
                 } else {
                     System.out.println("I can't drop what I don't have!");
@@ -133,7 +140,7 @@ public class Input {
                         playerList.remove(noun1);
                         playerList.remove(noun2);
                         playerList.add("ladder");
-                        SaveEditor.updatePlayerItems(playerList);
+                        SaveEditor.savePlayerItems(playerList);
                         player1.playerInventory = playerList;
                     } else {
                         System.out.println("I can't combine that!");
@@ -175,6 +182,6 @@ public class Input {
         if (!playerList.isEmpty()) {
             System.out.println("Your inventory has: " + playerList);
         }
-        //recursion happens in the while loop of the scene
+        //"recursion" happens in the while loop of the scene
     }
 }

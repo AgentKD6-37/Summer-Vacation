@@ -10,7 +10,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 
@@ -20,11 +19,14 @@ import java.util.Scanner;
 
 public class SaveEditor {
 
-    private static String locationsJSON = "Assets/Locations.JSON";
-    private static String NPCsJSON = "Assets/NPCs.JSON";
-    private static String playerJSON = "Assets/Player.JSON";
-    private static String playerInvPath = "Assets/Player_Items/player_inventory.txt";
+    private static String locationsJsonPath = "Assets/Locations.JSON";
+    private static String npcsJsonPath = "Assets/NPCs.JSON";
+    private static String playerJsonPath = "Assets/Player.JSON";
+    private static String locationItemsJsonPath = "Assets/Location_items.JSON";
+    private static String locationNpcsJsonPath = "Assets/Location_NPCs.JSON";
     private static JSONParser jsonParser = new JSONParser();
+    private static String defaultLocationItemsJsonPath = "Assets/defaults/Location_items_default.JSON";
+    private static String defaultLocationNpcsJsonPath = "Assets/defaults/Location_NPCs_default.JSON";
 
     /*
      * Simple text loader for use by art or text callers
@@ -54,16 +56,16 @@ public class SaveEditor {
      *These methods exist to return or update SPECIFIC JSON data to the calling method from the JSON asset files.
      */
 
-    private static JSONObject grabJSONData() {
+    private static JSONObject grabJSONData(String path) {
         /*
-         * We made this method to grab the whole dang JSON file to simplify some other methods from being a huge mess
+         * We made this method to grab any whole dang JSON file to simplify some other methods from being a huge mess
          * of variable declarations. -MS
          */
 
         JSONObject locationJSON = null;
         try {
             //create JSON Parser and file reader then create a JSON reader by combining them
-            FileReader fileReader = new FileReader(locationsJSON);
+            FileReader fileReader = new FileReader(path);
             Object obj = jsonParser.parse(fileReader);
             locationJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
             fileReader.close();
@@ -87,7 +89,7 @@ public class SaveEditor {
 
 
         String newLocation;
-        JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
+        JSONObject locationJSON = grabJSONData(locationsJsonPath);//THIS IS THE WHOLE JSON FILE
         JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
         JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
         JSONObject locationDirection = (JSONObject) locationArea.get(1); //JUST THE DIRECTIONS
@@ -107,7 +109,7 @@ public class SaveEditor {
 
         String descriptionText = null;
 
-        JSONObject locationJSON = grabJSONData();
+        JSONObject locationJSON = grabJSONData(locationsJsonPath);
         JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
         JSONArray locationData = (JSONArray) zoneData.get(location);
         JSONObject descriptionData = (JSONObject) locationData.get(2);
@@ -125,41 +127,17 @@ public class SaveEditor {
         return descriptionText;
     }
 
-    public static String getLocationInvFilePath(String location, String zone) {
-        /*
-         * first we drill down to get the filepath:
-         * visualization: {zone:{location[3]:{items:[**data we need**]
-         *
-         * next we use the filepath to get the txt file with the data
-         *
-         * Again, ask Michael for more info. -MS
-         */
-
-        JSONObject locationJSON = grabJSONData();
-        JSONObject zoneData = (JSONObject) locationJSON.get(zone); //null
-        JSONArray locationData = (JSONArray) zoneData.get(location);
-        JSONObject itemData = (JSONObject) locationData.get(3);
-
-        return (String) itemData.get("items");
-    }
-
-    public static ArrayList<String> getLocationItems(String location, String zone) {
-        String path = getLocationInvFilePath(location, zone);
-        ArrayList<String> inventory = new ArrayList<>();
-        try (Scanner s = new Scanner(new FileReader(path))) {
-            while (s.hasNext()) {
-                inventory.add(s.next());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static ArrayList<String> getLocationItems(String location) {
+        JSONObject locationItems = grabJSONData(locationItemsJsonPath);
+        ArrayList<String> inventory = (ArrayList<String>) locationItems.get(location);
         return inventory;
     }
 
-    public static void updateLocationItems(String location, String zone, ArrayList<String> inventory) {
+    public static void updateLocationItems(String location, ArrayList<String> inventory) {
         //This gets called frequently! (once per "tick" or "action") to track the movement of items through the game. -MS
-        String path = getLocationInvFilePath(location, zone);
-        addToInventory(inventory, path);
+        JSONObject locationItems = grabJSONData(locationItemsJsonPath);
+        locationItems.put(location, inventory);
+        writeJSONFile(locationItemsJsonPath, locationItems);
     }
 
     public static String getNewZone(String location) {
@@ -172,7 +150,7 @@ public class SaveEditor {
          */
 
         try {
-            JSONObject locationData = grabJSONData();
+            JSONObject locationData = grabJSONData(locationsJsonPath);
             JSONArray zones = new JSONArray();
             zones.add(locationData.get("Farm"));
             zones.add(locationData.get("Old Town"));
@@ -194,27 +172,13 @@ public class SaveEditor {
         return zone;
     }
 
-    private static JSONObject grabNPC() {
-        JSONObject npcJSON = null;
-        try {
-            FileReader fileReader = new FileReader(NPCsJSON);
-            Object obj = jsonParser.parse(fileReader);
-            npcJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
-
-        } catch (IOException | ParseException e) {
-            System.err.print("Error. Failed to load location.");
-        }
-        return npcJSON;
-
-    }
-
-    public static JSONArray getNPCsName(String zone, String location) {
+    public static JSONArray getNPCsName(String location) {
+        /*
+         * Searches the Locations_NPC.JSON file to see if there is an NPC in the location the player is in. -MS
+         */
         JSONArray NPCname;
-        JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
-        JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
-        JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
-        JSONObject NPCshowing = (JSONObject) locationArea.get(4); //JUST THE NPC
-        NPCname = (JSONArray) NPCshowing.get("NPCs");
+        JSONObject locationNpcJson = grabJSONData(locationNpcsJsonPath);//THIS IS THE WHOLE JSON FILE
+        NPCname = (JSONArray) locationNpcJson.get(location);
 
         return NPCname;
     }
@@ -223,7 +187,7 @@ public class SaveEditor {
         String NPCdia = "There was no one to talk to\n...\n......";
         String digKey = Integer.toString(digNum);
 
-        JSONObject npcJSON = grabNPC();//THIS IS THE WHOLE JSON FILE
+        JSONObject npcJSON = grabJSONData(npcsJsonPath);
         JSONArray characterArray = (JSONArray) npcJSON.get(NPCname);
         if (npcJSON.containsKey(NPCname)) {
             JSONObject digJson = (JSONObject) characterArray.get(2);
@@ -234,15 +198,10 @@ public class SaveEditor {
     }
 
     public static ArrayList<String> getPlayerItems() {
-        //this method only reads player_inventory.txt and returns the items within to the caller -MS
-        ArrayList<String> inventory = new ArrayList<>();
-        try (Scanner s = new Scanner(new FileReader(playerInvPath))) {
-            while (s.hasNext()) {
-                inventory.add(s.next());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //this method only reads Player.JSON and returns the items within to the caller -MS
+        ArrayList<String> inventory;
+        JSONObject playerSave = loadGame();
+        inventory = (ArrayList<String>) playerSave.get("inventory");
         return inventory;
     }
 
@@ -259,7 +218,7 @@ public class SaveEditor {
             JSONArray inventoryArr = new JSONArray();
             inventoryArr.addAll(inventory);
             saveFileJson.put("inventory", inventoryArr);
-            try(FileWriter w = new FileWriter(playerJSON)) {
+            try(FileWriter w = new FileWriter(playerJsonPath)) {
                 w.write(saveFileJson.toJSONString());
                 w.flush();
             }catch(IOException e){
@@ -270,7 +229,7 @@ public class SaveEditor {
     public static JSONObject loadGame(){
         //loads Player.JSON for parsing by save method and other load methods outside this class -MS
         JSONObject saveFileJson = new JSONObject();
-        try(FileReader reader = new FileReader(playerJSON)){
+        try(FileReader reader = new FileReader(playerJsonPath)){
             Object saveFileObj = jsonParser.parse(reader);
             saveFileJson = (JSONObject) saveFileObj;
         }catch(IOException | ParseException e){
@@ -279,24 +238,33 @@ public class SaveEditor {
         return saveFileJson;
     }
 
-    public static void updatePlayerItems(ArrayList<String> inventory) {
-        //This updates the player_inventory.txt -MS
-        String path = playerInvPath;
-        addToInventory(inventory, path);
+    public static void loadDefaults(){
+        //Sets the stage for a new game! -MS
+        JSONObject newLocationItems = grabJSONData(defaultLocationItemsJsonPath);
+        writeJSONFile(locationItemsJsonPath,newLocationItems);
+        JSONObject newNpcLocations = grabJSONData(defaultLocationNpcsJsonPath);
+        writeJSONFile(locationNpcsJsonPath,newNpcLocations);
     }
 
+    public static void savePlayerItems(ArrayList<String> inventory) {
+        //This updates the player_inventory.JSON -MS
+        JSONObject playerSave = loadGame();
+        JSONArray inventoryArr = new JSONArray();
+        inventoryArr.addAll(inventory);
+        playerSave.put("inventory", inventoryArr);
+        writeJSONFile(playerJsonPath,playerSave);
+    }
 
-
-    public static void addToInventory(ArrayList<String> inventory, String path) {
-        //this is generic and used by player and location inventory -MS
+    public static void writeJSONFile(String path, JSONObject obj){
+        //write JSON files. I was writing this too much.
         try (FileWriter w = new FileWriter(path)) {
-            for (String item : inventory) {
-                w.write(item + System.lineSeparator());
-            }
+            w.write(obj.toJSONString());
+            w.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public static Clip getMusic(Clip clip) {
 
         String AudioFile = "Assets/sample1.wav";
