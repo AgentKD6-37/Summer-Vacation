@@ -24,6 +24,7 @@ public class Input {
         switch (startMenuChoice) {
             case "new game":
                 playerCreator();
+                SaveEditor.loadDefaults();
                 newGame = true;
                 break;
             case "load game":
