@@ -70,11 +70,8 @@ public class Input {
          * and for the noun by some robust if->else or for loops, we can prevent the player from breaking the program with an
          * unknown command. -MS
          */
-
-        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
-        ArrayList<String> playerList = SaveEditor.getPlayerItems();
-
-
+         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
+         ArrayList<String> playerList = SaveEditor.getPlayerItems();
         if (!locationList.isEmpty()) {
             System.out.println("You see the following items on the ground: ");
             for (String item : locationList) {
@@ -92,6 +89,8 @@ public class Input {
             noun1 = answerWords[1]; //ONLY USED FOR COMBINING
         }
         String noun2 = answerWords[answerWords.length - 1];
+
+
 
         switch (verb) {
             case "see":
@@ -182,6 +181,37 @@ public class Input {
         if (!playerList.isEmpty()) {
             System.out.println("Your inventory has: " + playerList);
         }
-        //"recursion" happens in the while loop of the scene
+       //"recursion" happens in the while loop of the scene
+    }
+
+    static boolean sceneOneTransition(){
+        boolean sceneOnePass = SaveEditor.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = SaveEditor.getPlayerItems();
+        if (player1.playerLocation.equals("Paine Field") && !sceneOnePass) {
+            SaveEditor.getAssetFile("scene-one.txt");
+            if (playerList.contains("rope") && playerList.contains("planks")) {
+                System.out.println("You noticed that you have a rope and some planks. " +
+                        "You can create a ladder to get out. " +
+                        "Do you wish to combine the items to get out?");
+                String scan = scanner.nextLine().strip();
+                if (scan.equals("yes")) {
+                    sceneOnePass = true;
+                    playerList.remove("rope");
+                    playerList.remove("planks");
+                    playerList.add("ladder");
+                    SaveEditor.savePlayerItems(playerList);
+                    GameEngine.sceneOneEnd();
+                } else {
+                    System.out.println("Game Over. Press enter to continue");
+                    scanner.nextLine();
+                    startMenu();
+                }
+            } else {
+                System.out.println("Game Over. Press enter to continue");
+                scanner.nextLine();
+                startMenu();
+            }
+        }
+        return sceneOnePass;
     }
 }

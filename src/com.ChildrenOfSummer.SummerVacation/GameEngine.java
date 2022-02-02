@@ -2,15 +2,20 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-
 public class GameEngine {
+    boolean sceneOnePassed = false;
 
     public void execute() {
         if (Input.startMenu()) {
             introduction();
         }
-        sceneOneCheck();
+        else{
+            sceneOnePassed = SaveEditor.sceneReader("sceneOnePassed");
+        }
+        sceneOnePassed = sceneOne();
+        if (sceneOnePassed == true){
+            sceneTwo();
+        }
     }
 
     private void introduction() {
@@ -18,12 +23,13 @@ public class GameEngine {
         System.out.println("\n");
     }
 
-    // At the airport
-    private void sceneOneCheck() {
+//     At the airport
+    private boolean sceneOne() {
         /*
          * This is the first cutscene check, essentially it allows the game to run in the background by calling Input.inputCommandsLogic()
          * over and over again until the player location hits the required area. At that point it *SHOULD* trigger the scene-one.txt to play out.
          */
+        boolean sceneOnePassed = false;
         JSONObject saveFile;
         String playerLocation;
         do  {
@@ -31,40 +37,27 @@ public class GameEngine {
             saveFile = SaveEditor.loadGame();
             playerLocation = (String) saveFile.get("location");
         } while (!playerLocation.equals("Paine Field"));
-        SaveEditor.getAssetFile("scene-one.txt");
-        sceneOne();
-    }
-
-//    private void sceneOne(){
-//        boolean isSolved = false;
-//        do {
-//            Input.inputCommandsLogic();
-//        } while (isSolved==false);
-//    }
-    private void sceneOne(){
-        JSONObject saveFile = SaveEditor.loadGame();
-        ArrayList<String> playerList =(ArrayList<String>) saveFile.get("inventory");
-        String location = (String) saveFile.get("location");
-        boolean sceneOneCompleted = false;
-        while (sceneOneCompleted){
-            if (location.equals("Paine Field") && playerList.contains("rope") && playerList.contains("planks")) {
-                sceneOneCompleted = SceneOneCompletion.completion();
-                sceneOneEnd();
-            }
-            Input.inputCommandsLogic();
-        }
+//        SaveEditor.getAssetFile("scene-one.txt");
+       return sceneOnePassed = Input.sceneOneTransition();
     }
 
     static void sceneOneEnd(){
         SaveEditor.getAssetFile("scene-one-end.txt");
         sceneTwo();
+        SaveEditor.sceneWriter(true, "sceneOnePassed");
     }
 
-
     private static void sceneTwo() {
-        System.out.println("Insert paragraph for scene two");
-        System.out.println("Hello");
-        sceneThree();
+        boolean sceneTwoPassed = false;
+        JSONObject saveFile;
+        String playerLocation;
+        do  {
+            Input.inputCommandsLogic();
+            saveFile = SaveEditor.loadGame();
+            playerLocation = (String) saveFile.get("location");
+        }while (playerLocation.equals("Player's House"));{
+            System.out.println("SCENE TWO PLACEHOLDER");
+        }
     }
 
     private static void sceneThree() {
