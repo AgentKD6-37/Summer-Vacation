@@ -23,18 +23,49 @@ class Player {
     }
 
     public void move(String direction){
+        /*
+         * We create a temp location, and make sure that movement is valid for the player (not off map)
+         * If so, we execute the update, which involves getting a location description and any nearby NPCS
+         * so the player can interact with their surroundings -MS
+         */
+
         String tempLocation = SaveEditor.getNewLocation(playerZone, playerLocation, direction);
-        JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
 
         if (tempLocation.equals("Off Map")){
             System.out.println(tempLocation);
             System.out.println("You can't go that way!");
         }else { //success on move
+
             playerLocation = tempLocation;
             playerZone = SaveEditor.getNewZone(playerLocation);
+            JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
+            ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
-            System.out.println(NPCname + " is here.");
+            if(!npcNames.isEmpty()){
+                String nameThree = null;
+                String nameTwo = null;
+                String name = null;
+                switch (npcNames.size()){
+                    case 3:
+                        nameThree = npcNames.get(2);
+                    case 2:
+                        nameTwo = npcNames.get(1);
+                    case 1:
+                        name = npcNames.get(0);
+                }
+                switch (npcNames.size()){
+                    case 3:
+                        System.out.println("You see " + nameThree + ", " + nameTwo + ", and " + name + ".");
+                    break;
+                    case 2:
+                        System.out.println("You see " + name + " and " + nameTwo + ".");
+                    break;
+                    case 1:
+                        System.out.println("You see "+name+".");
+                    break;
+                }
+            }
         }
 
     }

@@ -131,7 +131,7 @@ public class SaveEditor {
          *
          * next we use the filepath to get the txt file with the data
          *
-         * Again, ask Michael for more info.
+         * Again, ask Michael for more info. -MS
          */
 
         JSONObject locationJSON = grabJSONData();
@@ -156,6 +156,7 @@ public class SaveEditor {
     }
 
     public static void updateLocationItems(String location, String zone, ArrayList<String> inventory) {
+        //This gets called frequently! (once per "tick" or "action") to track the movement of items through the game. -MS
         String path = getLocationInvFilePath(location, zone);
         addToInventory(inventory, path);
     }
@@ -207,8 +208,7 @@ public class SaveEditor {
     }
 
     public static JSONArray getNPCsName(String zone, String location) {
-        JSONArray NPCname = null;
-
+        JSONArray NPCname;
         JSONObject locationJSON = grabJSONData();//THIS IS THE WHOLE JSON FILE
         JSONObject locationZone = (JSONObject) locationJSON.get(zone); //JUST EVERYTHING IN OUR ZONE
         JSONArray locationArea = (JSONArray) locationZone.get(location); //JUST EVERYTHING IN OUR AREA
@@ -233,6 +233,7 @@ public class SaveEditor {
     }
 
     public static ArrayList<String> getPlayerItems() {
+        //this method only reads player_inventory.txt and returns the items within to the caller -MS
         ArrayList<String> inventory = new ArrayList<>();
         try (Scanner s = new Scanner(new FileReader(playerInvPath))) {
             while (s.hasNext()) {
@@ -245,6 +246,11 @@ public class SaveEditor {
     }
 
     public static void saveGame(String name, String location, String zone, ArrayList<String>inventory){
+        /*
+         * In order to save the game I found it helpful to copy over the current values from the Player fields used
+         * in construction and then pass them to this method to be saved. The game background saves frequently which
+         * isn't strictly necessary but is nice for when you are testing and just hit the x without typing quit. -MS
+         */
             JSONObject saveFileJson = loadGame();
             saveFileJson.put("name",name);
             saveFileJson.put("location",location);
@@ -261,6 +267,7 @@ public class SaveEditor {
     }
 
     public static JSONObject loadGame(){
+        //loads Player.JSON for parsing by save method and other load methods outside this class -MS
         JSONObject saveFileJson = new JSONObject();
         try(FileReader reader = new FileReader(playerJSON)){
             Object saveFileObj = jsonParser.parse(reader);
@@ -272,6 +279,7 @@ public class SaveEditor {
     }
 
     public static void updatePlayerItems(ArrayList<String> inventory) {
+        //This updates the player_inventory.txt -MS
         String path = playerInvPath;
         addToInventory(inventory, path);
     }
@@ -279,7 +287,7 @@ public class SaveEditor {
 
 
     public static void addToInventory(ArrayList<String> inventory, String path) {
-        //this is generic and used by player and location inventory
+        //this is generic and used by player and location inventory -MS
         try (FileWriter w = new FileWriter(path)) {
             for (String item : inventory) {
                 w.write(item + System.lineSeparator());
