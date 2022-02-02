@@ -38,6 +38,7 @@ public class Input {
                 System.exit(0);
             default:
                 System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
+                startMenu();
         }
         return newGame;
     }
