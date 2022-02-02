@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.sound.sampled.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -262,5 +263,20 @@ public class SaveEditor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Clip getMusic(Clip clip) {
+
+        String AudioFile = "Assets/sample1.wav";
+        try {
+            File file = new File(AudioFile);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+        return clip;
+
     }
 }
