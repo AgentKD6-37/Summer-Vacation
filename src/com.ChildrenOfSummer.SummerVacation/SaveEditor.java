@@ -27,6 +27,8 @@ public class SaveEditor {
     private static String defaultLocationItemsJsonPath = "Assets/defaults/Location_items_default.JSON";
     private static String defaultLocationNpcsJsonPath = "Assets/defaults/Location_NPCs_default.JSON";
 
+    private static String defaultPlayerJsonPath = "Assets/defaults/Player_default.JSON";
+
     /*
      * Simple text loader for use by art or text callers
      */
@@ -54,6 +56,7 @@ public class SaveEditor {
     /*
      *These methods exist to return or update SPECIFIC JSON data to the calling method from the JSON asset files.
      */
+
 
     private static JSONObject grabJSONData(String path) {
         /*
@@ -243,6 +246,9 @@ public class SaveEditor {
         writeJSONFile(locationItemsJsonPath,newLocationItems);
         JSONObject newNpcLocations = grabJSONData(defaultLocationNpcsJsonPath);
         writeJSONFile(locationNpcsJsonPath,newNpcLocations);
+
+        JSONObject newPlayer = grabJSONData(defaultPlayerJsonPath);
+        writeJSONFile(playerJsonPath, newPlayer);
     }
 
     public static void savePlayerItems(ArrayList<String> inventory) {
@@ -263,4 +269,17 @@ public class SaveEditor {
             e.printStackTrace();
         }
     }
+
+    public static boolean sceneReader(String fileName){
+        JSONObject saveFile = loadGame();
+        boolean sceneFlag = (boolean) saveFile.get(fileName);
+        return sceneFlag;
+    }
+
+    public static void sceneWriter(boolean scene, String fileName){
+        JSONObject saveFile = loadGame();
+        saveFile.put(fileName,scene);
+        writeJSONFile(playerJsonPath,saveFile);
+    }
+
 }
