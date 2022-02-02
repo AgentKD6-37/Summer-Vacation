@@ -2,20 +2,23 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
+import javax.sound.sampled.Clip;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
     private static ArrayList<String> empty = new ArrayList<>();
-    private static Player player1 = new Player("default","Player's House","Suburb",empty);
+    private static Player player1 = new Player("default", "Player's House", "Suburb", empty);
+    private static final Clip clip = SaveEditor.getMusic(null);
+
 
     public static boolean startMenu() {
         /*
          *Start menu, if you type new game it leaves the player1 we instantiate on class load as default or "new"
          *Load will of course over-write those values with the Player.json values so that you can continue your game.
+         * -MS
          */
 
         boolean newGame = false;
@@ -24,6 +27,7 @@ public class Input {
         switch (startMenuChoice) {
             case "new game":
                 playerCreator();
+                SaveEditor.loadDefaults();
                 newGame = true;
                 break;
             case "load game":
@@ -38,12 +42,18 @@ public class Input {
                 System.exit(0);
             default:
                 System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
+                startMenu();
         }
         return newGame;
     }
 
-    static void playerCreator(){
 
+    static void playerCreator(){
+        /*
+         *Takes in your name and saves the save file with default values.
+         * todo: also reset the location items to default!! IMPORTANT!!
+         *  -MS
+         */
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
         player1.playerName = ANSWER;
@@ -51,7 +61,7 @@ public class Input {
 
     }
 
-    public static void inputCommandsLogic(){
+    public static void inputCommandsLogic() {
         /*
          * THIS big boy is the main interaction point for the user with the game. It takes user commands in as verb x noun.
          * For example, you can type "get the dog" and the method will store [get, the, dog]
@@ -60,12 +70,11 @@ public class Input {
          * and for the noun by some robust if->else or for loops, we can prevent the player from breaking the program with an
          * unknown command. -MS
          */
-
-        ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
-        ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        if(!locationList.isEmpty()) {
+         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
+         ArrayList<String> playerList = SaveEditor.getPlayerItems();
+        if (!locationList.isEmpty()) {
             System.out.println("You see the following items on the ground: ");
-            for (String item: locationList) {
+            for (String item : locationList) {
                 System.out.print("|" + item);
             }
             System.out.println("|");
@@ -76,10 +85,12 @@ public class Input {
         String[] answerWords = ANSWER.split(" ");
         String verb = answerWords[0];
         String noun1 = "out of bounds saver";
-        if(answerWords.length > 1) {
+        if (answerWords.length > 1) {
             noun1 = answerWords[1]; //ONLY USED FOR COMBINING
         }
         String noun2 = answerWords[answerWords.length - 1];
+
+
 
         switch (verb) {
             case "see":
@@ -94,8 +105,8 @@ public class Input {
                         didMove = true;
                     }
                 }
-                if(!didMove){
-                    System.out.println("you were unable to move "+ noun2 + ".");
+                if (!didMove) {
+                    System.out.println("you were unable to move " + noun2 + ".");
                 }
                 SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 break;
@@ -103,34 +114,34 @@ public class Input {
                 if (locationList.contains(noun2)) {
                     locationList.remove(noun2);
                     playerList.add(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
+                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
+                    SaveEditor.savePlayerItems(playerList);
                     player1.playerInventory = playerList;
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
                 break;
             case "drop":
-                if (playerList.contains(noun2)){
+                if (playerList.contains(noun2)) {
                     locationList.add(noun2);
                     playerList.remove(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
-                    SaveEditor.updatePlayerItems(playerList);
+                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
+                    SaveEditor.savePlayerItems(playerList);
                     player1.playerInventory = playerList;
-                }else{
+                } else {
                     System.out.println("I can't drop what I don't have!");
                 }
                 break;
             case "combine":
-                if (playerList.contains(noun2)&&playerList.contains(noun1))
-                    if((noun1.equals("planks")||noun1.equals("rope"))&&(noun2.equals("rope")||noun2.equals("planks"))){
+                if (playerList.contains(noun2) && playerList.contains(noun1))
+                    if ((noun1.equals("planks") || noun1.equals("rope")) && (noun2.equals("rope") || noun2.equals("planks"))) {
                         System.out.println("You tie the planks to each other using the rope to create a ladder!");
                         playerList.remove(noun1);
                         playerList.remove(noun2);
                         playerList.add("ladder");
-                        SaveEditor.updatePlayerItems(playerList);
+                        SaveEditor.savePlayerItems(playerList);
                         player1.playerInventory = playerList;
-                    }else {
+                    } else {
                         System.out.println("I can't combine that!");
                     }
                 break;
@@ -145,15 +156,62 @@ public class Input {
                 System.out.println("Your current location is " + player1.playerLocation);
                 SaveEditor.getAssetFile("help.txt");
                 break;
+
+            case "music":
+                switch (noun2) {
+                    case "on":
+                        int loopTimes = 3;
+                        clip.loop(loopTimes);
+                        System.out.println("Back ground music turned on~~~~~");
+                        break;
+                    case "off":
+                        clip.stop();
+                        System.out.println("Back ground music stopped~~~~~");
+                        break;
+                    default: System.out.println("Not a valid response\n [on] [off]");
+                }
+
+                break;
             case "quit":
-                SaveEditor.saveGame(player1.playerName,player1.playerLocation, player1.playerZone,player1.playerInventory);
+                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 System.exit(0);
             default:
                 System.out.println("I didn't understand that command. for help type help.");
         }
-        if(!playerList.isEmpty()) {
+        if (!playerList.isEmpty()) {
             System.out.println("Your inventory has: " + playerList);
         }
-        //recursion happens in the while loop of the scene
+       //"recursion" happens in the while loop of the scene
+    }
+
+    static boolean sceneOneTransition(){
+        boolean sceneOnePass = SaveEditor.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = SaveEditor.getPlayerItems();
+        if (player1.playerLocation.equals("Paine Field") && !sceneOnePass) {
+            SaveEditor.getAssetFile("scene-one.txt");
+            if (playerList.contains("rope") && playerList.contains("planks")) {
+                System.out.println("You noticed that you have a rope and some planks. " +
+                        "You can create a ladder to get out. " +
+                        "Do you wish to combine the items to get out?");
+                String scan = scanner.nextLine().strip();
+                if (scan.equals("yes")) {
+                    sceneOnePass = true;
+                    playerList.remove("rope");
+                    playerList.remove("planks");
+                    playerList.add("ladder");
+                    SaveEditor.savePlayerItems(playerList);
+                    GameEngine.sceneOneEnd();
+                } else {
+                    System.out.println("Game Over. Press enter to continue");
+                    scanner.nextLine();
+                    startMenu();
+                }
+            } else {
+                System.out.println("Game Over. Press enter to continue");
+                scanner.nextLine();
+                startMenu();
+            }
+        }
+        return sceneOnePass;
     }
 }
