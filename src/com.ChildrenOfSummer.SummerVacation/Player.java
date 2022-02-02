@@ -38,7 +38,7 @@ class Player {
 
             playerLocation = tempLocation;
             playerZone = SaveEditor.getNewZone(playerLocation);
-            JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
+            JSONArray NPCname=SaveEditor.getNPCsName(playerLocation);
             ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
