@@ -9,7 +9,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 
@@ -25,6 +24,8 @@ public class SaveEditor {
     private static String locationItemsJsonPath = "Assets/Location_items.JSON";
     private static String locationNpcsJsonPath = "Assets/Location_NPCs.JSON";
     private static JSONParser jsonParser = new JSONParser();
+    private static String defaultLocationItemsJsonPath = "Assets/defaults/Location_items_default.JSON";
+    private static String defaultLocationNpcsJsonPath = "Assets/defaults/Location_NPCs_default.JSON";
 
     /*
      * Simple text loader for use by art or text callers
@@ -135,12 +136,7 @@ public class SaveEditor {
         //This gets called frequently! (once per "tick" or "action") to track the movement of items through the game. -MS
         JSONObject locationItems = grabJSONData(locationItemsJsonPath);
         locationItems.put(location, inventory);
-        try (FileWriter w = new FileWriter(locationItemsJsonPath)) {
-            w.write(locationItems.toJSONString());
-            w.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writeJSONFile(locationItemsJsonPath, locationItems);
     }
 
     public static String getNewZone(String location) {
@@ -241,18 +237,30 @@ public class SaveEditor {
         return saveFileJson;
     }
 
+    public static void loadDefaults(){
+        //Sets the stage for a new game! -MS
+        JSONObject newLocationItems = grabJSONData(defaultLocationItemsJsonPath);
+        writeJSONFile(locationItemsJsonPath,newLocationItems);
+        JSONObject newNpcLocations = grabJSONData(defaultLocationNpcsJsonPath);
+        writeJSONFile(locationNpcsJsonPath,newNpcLocations);
+    }
+
     public static void savePlayerItems(ArrayList<String> inventory) {
         //This updates the player_inventory.JSON -MS
         JSONObject playerSave = loadGame();
         JSONArray inventoryArr = new JSONArray();
         inventoryArr.addAll(inventory);
         playerSave.put("inventory", inventoryArr);
-        try (FileWriter w = new FileWriter(playerJsonPath)) {
-            w.write(playerSave.toJSONString());
+        writeJSONFile(playerJsonPath,playerSave);
+    }
+
+    public static void writeJSONFile(String path, JSONObject obj){
+        //write JSON files. I was writing this too much.
+        try (FileWriter w = new FileWriter(path)) {
+            w.write(obj.toJSONString());
             w.flush();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 }
