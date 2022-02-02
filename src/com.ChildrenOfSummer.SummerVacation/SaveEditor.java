@@ -297,11 +297,9 @@ public class SaveEditor {
             e.printStackTrace();
         }
     }
-
-    public static void getMusic(String response) {
+    public static Clip getMusic(Clip clip) {
 
         String AudioFile = "Assets/sample1.wav";
-        Clip clip = null;
         try {
             File file = new File(AudioFile);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
@@ -310,24 +308,7 @@ public class SaveEditor {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+        return clip;
 
-        if (response.equals("on")) {
-            clip.loop(2);
-
-            String choice = "";
-            System.out.println("continue playing?\n [Y]=continue, [N] = Quit");
-            System.out.print("Enter your choice: ");
-            Scanner scanner = new Scanner(System.in);
-
-            choice = scanner.next();
-            choice = choice.toUpperCase();
-
-            if (choice.equals("N")) {
-                clip.close();
-            }
-
-        }else {
-            System.out.println("Not a valid response");
-        }
     }
 }

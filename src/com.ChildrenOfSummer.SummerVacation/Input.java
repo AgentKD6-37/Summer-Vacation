@@ -2,6 +2,7 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
+import javax.sound.sampled.Clip;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,7 +11,9 @@ public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
     private static ArrayList<String> empty = new ArrayList<>();
-    private static Player player1 = new Player("default","Player's House","Suburb",empty);
+    private static Player player1 = new Player("default", "Player's House", "Suburb", empty);
+    private static final Clip clip = SaveEditor.getMusic(null);
+
 
     public static boolean startMenu() {
         /*
@@ -42,7 +45,7 @@ public class Input {
         return newGame;
     }
 
-    static void playerCreator(){
+    static void playerCreator() {
 
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
@@ -51,7 +54,7 @@ public class Input {
 
     }
 
-    public static void inputCommandsLogic(){
+    public static void inputCommandsLogic() {
         /*
          * THIS big boy is the main interaction point for the user with the game. It takes user commands in as verb x noun.
          * For example, you can type "get the dog" and the method will store [get, the, dog]
@@ -63,9 +66,11 @@ public class Input {
 
         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation, player1.playerZone);
         ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        if(!locationList.isEmpty()) {
+
+
+        if (!locationList.isEmpty()) {
             System.out.println("You see the following items on the ground: ");
-            for (String item: locationList) {
+            for (String item : locationList) {
                 System.out.print("|" + item);
             }
             System.out.println("|");
@@ -76,7 +81,7 @@ public class Input {
         String[] answerWords = ANSWER.split(" ");
         String verb = answerWords[0];
         String noun1 = "out of bounds saver";
-        if(answerWords.length > 1) {
+        if (answerWords.length > 1) {
             noun1 = answerWords[1]; //ONLY USED FOR COMBINING
         }
         String noun2 = answerWords[answerWords.length - 1];
@@ -94,8 +99,8 @@ public class Input {
                         didMove = true;
                     }
                 }
-                if(!didMove){
-                    System.out.println("you were unable to move "+ noun2 + ".");
+                if (!didMove) {
+                    System.out.println("you were unable to move " + noun2 + ".");
                 }
                 SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 break;
@@ -111,26 +116,26 @@ public class Input {
                 }
                 break;
             case "drop":
-                if (playerList.contains(noun2)){
+                if (playerList.contains(noun2)) {
                     locationList.add(noun2);
                     playerList.remove(noun2);
                     SaveEditor.updateLocationItems(player1.playerLocation, player1.playerZone, locationList);
                     SaveEditor.updatePlayerItems(playerList);
                     player1.playerInventory = playerList;
-                }else{
+                } else {
                     System.out.println("I can't drop what I don't have!");
                 }
                 break;
             case "combine":
-                if (playerList.contains(noun2)&&playerList.contains(noun1))
-                    if((noun1.equals("planks")||noun1.equals("rope"))&&(noun2.equals("rope")||noun2.equals("planks"))){
+                if (playerList.contains(noun2) && playerList.contains(noun1))
+                    if ((noun1.equals("planks") || noun1.equals("rope")) && (noun2.equals("rope") || noun2.equals("planks"))) {
                         System.out.println("You tie the planks to each other using the rope to create a ladder!");
                         playerList.remove(noun1);
                         playerList.remove(noun2);
                         playerList.add("ladder");
                         SaveEditor.updatePlayerItems(playerList);
                         player1.playerInventory = playerList;
-                    }else {
+                    } else {
                         System.out.println("I can't combine that!");
                     }
                 break;
@@ -145,18 +150,29 @@ public class Input {
                 System.out.println("Your current location is " + player1.playerLocation);
                 SaveEditor.getAssetFile("help.txt");
                 break;
+
             case "music":
-                System.out.println("~~~~Turn on back ground music~~~~~");
-                System.out.println(noun2);
-                SaveEditor.getMusic(noun2);
+                switch (noun2) {
+                    case "on":
+                        int loopTimes = 3;
+                        clip.loop(loopTimes);
+                        System.out.println("Back ground music turned on~~~~~");
+                        break;
+                    case "off":
+                        clip.stop();
+                        System.out.println("Back ground music stopped~~~~~");
+                        break;
+                    default: System.out.println("Not a valid response\n [on] [off]");
+                }
+
                 break;
             case "quit":
-                SaveEditor.saveGame(player1.playerName,player1.playerLocation, player1.playerZone,player1.playerInventory);
+                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 System.exit(0);
             default:
                 System.out.println("I didn't understand that command. for help type help.");
         }
-        if(!playerList.isEmpty()) {
+        if (!playerList.isEmpty()) {
             System.out.println("Your inventory has: " + playerList);
         }
         //recursion happens in the while loop of the scene
