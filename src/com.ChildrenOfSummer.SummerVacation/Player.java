@@ -1,33 +1,71 @@
 package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 class Player {
-    String playerZone = "Suburb";
-    String playerLocation = "Player's House";
+    String playerZone;
+    String playerLocation;
     String playerName;
-    String[] playerInventory;
+    ArrayList<String> playerInventory;
+
+    public Player(String playerName, String playerLocation, String playerZone, ArrayList<String> playerInventory) {
+        this.playerZone = playerZone;
+        this.playerLocation = playerLocation;
+        this.playerName = playerName;
+        this.playerInventory = playerInventory;
+    }
 
     void sleep(){
         Clock.incrementNextDay();
     }
 
     public void move(String direction){
+        /*
+         * We create a temp location, and make sure that movement is valid for the player (not off map)
+         * If so, we execute the update, which involves getting a location description and any nearby NPCS
+         * so the player can interact with their surroundings -MS
+         */
+
         String tempLocation = SaveEditor.getNewLocation(playerZone, playerLocation, direction);
-        JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
 
         if (tempLocation.equals("Off Map")){
             System.out.println(tempLocation);
             System.out.println("You can't go that way!");
         }else { //success on move
+
             playerLocation = tempLocation;
             playerZone = SaveEditor.getNewZone(playerLocation);
+            JSONArray NPCname=SaveEditor.getNPCsName(playerZone,playerLocation);
+            ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ".");
             SaveEditor.getLocationDescription(playerLocation, playerZone);
-            System.out.println("You are bumped into: "+NPCname);
+            if(!npcNames.isEmpty()){
+                String nameThree = null;
+                String nameTwo = null;
+                String name = null;
+                switch (npcNames.size()){
+                    case 3:
+                        nameThree = npcNames.get(2);
+                    case 2:
+                        nameTwo = npcNames.get(1);
+                    case 1:
+                        name = npcNames.get(0);
+                }
+                switch (npcNames.size()){
+                    case 3:
+                        System.out.println("You see " + nameThree + ", " + nameTwo + ", and " + name + ".");
+                    break;
+                    case 2:
+                        System.out.println("You see " + name + " and " + nameTwo + ".");
+                    break;
+                    case 1:
+                        System.out.println("You see "+name+".");
+                    break;
+                }
+            }
         }
 
     }
@@ -37,13 +75,16 @@ class Player {
         Clock.wakeUpTime();
     }
 
-    public void talk(String npcName){
+    public String talk(String npcName){
         int number = randomNumberGenerator();
-        if (number <= 3) {
-            //System.out.println(Location.getDialogue(npcName, number));
-        }else{
-            talk(npcName);
+        String dig;
+        npcName=npcName.substring(0, 1).toUpperCase() + npcName.substring(1);
+
+        while (number >3||number<1) {
+            number = randomNumberGenerator();
         }
+        dig=(SaveEditor.getNPCsDialog(npcName,number));
+        return dig;
     }
 
     void shop(){
@@ -62,7 +103,7 @@ class Player {
 
     }
 
-    public int randomNumberGenerator(){
+    public static int randomNumberGenerator(){
         //1-3, 3-6, 1-6
         return (int)(Math.random() * ((5) + 1)+1);
     }

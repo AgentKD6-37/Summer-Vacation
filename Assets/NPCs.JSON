@@ -1,509 +1,475 @@
 {
-  "GenericNPCs": [
-        {
-          "Bill": [
-            {
-              "first_name": "Bill"
-            },
-            {
-              "locations": {
-                "Monday": "Bill's Produce",
-                "Tuesday": "Bill's Produce",
-                "Wednesday": "Bill's Produce",
-                "Thursday": "Bill's Produce",
-                "Friday": "Bill's Produce",
-                "Saturday": "Bill's Produce",
-                "Sunday": "River"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Hey Kids!",
-                "2": "Need something?",
-                "3": "Welcome to Bill's!",
-                "4": "Fishing helps me relax.",
-                "5": "Found my secret spot huh? Don't tell my wife!",
-                "6": "The fish are biting today!"
-              }
-            }
-          ]
-        },
-        {
-          "Beth": [
-            {
-              "first_name": "Beth",
-              "last_name": "Maisel"
-            },
-            {
-              "locations": {
-                "Monday": "Janie Maisel's House",
-                "Tuesday": "Beth's Treats",
-                "Wednesday": "Beth's Treats",
-                "Thursday": "Beth's Treats",
-                "Friday": "Beth's Treats",
-                "Saturday": "Beth's Treats",
-                "Sunday": "Beth's Treats"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Hello Dearies!",
-                "2": "Sweet treats are good to eat!",
-                "3": "How can I help you?",
-                "4": "Janie is my grand-daughter.",
-                "5": "Would you like some tea?",
-                "6": "I come to Janie's house to visit every monday."
-              }
-            }
-          ]
-        },
-        {
-          "Al": [
-            {
-              "first_name": "Al"
-            },
-            {
-              "locations": {
-                "Monday": "Angus Queen",
-                "Tuesday": "Angus Queen",
-                "Wednesday": "Angus Queen",
-                "Thursday": "Angus Queen",
-                "Friday": "Angus Queen",
-                "Saturday": "Angus Queen",
-                "Sunday": "Angus Queen"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Howdy Y'all!",
-                "2": "Angus Queen is always Open!",
-                "3": "Want a burger?"
-              }
-            }
-          ]
-        },
-        {
-          "Janie": [
-            {
-              "first_name": "Janie",
-              "last_name": "Maisel"
-            },
-            {
-              "locations": {
-                "Monday": "Janie Maisel's House",
-                "Tuesday": "Dollar Store",
-                "Wednesday": "Dollar Store",
-                "Thursday": "Dollar Store",
-                "Friday": "Janie Maisel's House",
-                "Saturday": "Dollar Store",
-                "Sunday": "Dollar Store"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Hi.",
-                "2": "Just buy something...or whatever.",
-                "3": "Ugh. What do you want?",
-                "4": "My Grandmother visits me on Mondays so I get that day off.",
-                "5": "Don't make a mess in my house.",
-                "6": "If my grandma asks tell her I'm nice to you guys."
-              }
-            }
-          ]
-        },
-        {
-          "Fred": [
-            {
-              "first_name": "Fred",
-              "last_name": "Barkley"
-            },
-            {
-              "locations": {
-                "Monday": "Fast Journey",
-                "Tuesday": "Fred's House",
-                "Wednesday": "Fast Journey",
-                "Thursday": "Fast Journey",
-                "Friday": "Fast Journey",
-                "Saturday": "Fast Journey",
-                "Sunday": "Fast Journey"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Sup everyone",
-                "2": "Don't steal the merch I'm watching you",
-                "3": "Oh you want to buy something?",
-                "4": "I like to play guitar on my off days.",
-                "5": "I'm in a pretty cool band, you've probably heard of us. No?",
-                "6": "Might want some earplugs, kid."
-              }
-            }
-          ]
-        },
-        {
-          "Helena": [
-            {
-              "first_name": "Helena",
-              "last_name": "Cumberbatch"
-            },
-            {
-              "locations": {
-                "Monday": "Kory's House",
-                "Tuesday": "Kory's House",
-                "Wednesday": "Kory's House",
-                "Thursday": "Kory's House",
-                "Friday": "Kory's House",
-                "Saturday": "Kory's House",
-                "Sunday": "Kory's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Here to play with Kory?",
-                "2": "There's snacks in the kitchen if you get hungry kids!",
-                "3": "Did Kory ever show you his video tape from the last play he was in?"
-              }
-            }
-          ]
-        },
-        {
-          "Kristy": [
-            {
-              "first_name": "Kristy",
-              "last_name": "Booker"
-            },
-            {
-              "locations": {
-                "Monday": "Dewey's House",
-                "Tuesday": "Dewey's House",
-                "Wednesday": "Dewey's House",
-                "Thursday": "Dewey's House",
-                "Friday": "Dewey's House",
-                "Saturday": "Dewey's House",
-                "Sunday": "Dewey's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Dewey! Your friends are here!",
-                "2": "If you want to sleep over I'll need to talk to your mom.",
-                "3": "Would you kids like to watch a movie? I'm going to the video store."
-              }
-            }
-          ]
-        },
-        {
-          "Peter": [
-            {
-              "first_name": "Peter",
-              "last_name": "Booker"
-            },
-            {
-              "locations": {
-                "Monday": "Dewey's House",
-                "Tuesday": "Dewey's House",
-                "Wednesday": "Dewey's House",
-                "Thursday": "Dewey's House",
-                "Friday": "Dewey's House",
-                "Saturday": "Dewey's House",
-                "Sunday": "Dewey's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Keep the noise down kids, I have to work.",
-                "2": "Shouldn't you be outside?",
-                "3": "My wife said I should do lunges to stay in shape. That would be a big step forward."
-              }
-            }
-          ]
-        },
-        {
-          "Patty": [
-            {
-              "first_name": "Patty"
-            },
-            {
-              "locations": {
-                "Monday": "Player's House",
-                "Tuesday": "Player's House",
-                "Wednesday": "Player's House",
-                "Thursday": "Player's House",
-                "Friday": "Player's House",
-                "Saturday": "Player's House",
-                "Sunday": "Player's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Have fun today! Be nice to your brother!",
-                "2": "Remember not to go past the interstate, and stay out of trouble! Be back when the streetlights come on!",
-                "3": "If you need anything I'll be home all day!"
-              }
-            }
-          ]
-        },
-        {
-          "Chad": [
-            {
-              "first_name": "Chad"
-            },
-            {
-              "locations": {
-                "Monday": "Player's House",
-                "Tuesday": "Player's House",
-                "Wednesday": "Player's House",
-                "Thursday": "Player's House",
-                "Friday": "Player's House",
-                "Saturday": "Player's House",
-                "Sunday": "Player's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Don't have too much fun today!",
-                "2": "Hey, don't forget to clean your room before you go play!",
-                "3": "I thought the dryer was shrinking my clothes. Turns out it was the refrigerator all along. heh heh heh..."
-              }
-            }
-          ]
-        },
-        {
-          "Neville": [
-            {
-              "first_name": "Neville"
-            },
-            {
-              "locations": {
-                "Monday": "Player's House",
-                "Tuesday": "Player's House",
-                "Wednesday": "Player's House",
-                "Thursday": "Player's House",
-                "Friday": "Player's House",
-                "Saturday": "Player's House",
-                "Sunday": "Player's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Stay out of my room!",
-                "2": "Don't touch my toys without asking or I'll tell mom.",
-                "3": "Did you eat all the chips? MOM! THEY ATE ALL THE CHIPS AGAIN!"
-              }
-            }
-          ]
-        },
-        {
-          "Elanor": [
-            {
-              "first_name": "Elanor",
-              "last_name": "Lincoln-Noble"
-            },
-            {
-              "locations": {
-                "Monday": "Sara's House",
-                "Tuesday": "Sara's House",
-                "Wednesday": "Bill's Produce",
-                "Thursday": "Sara's House",
-                "Friday": "Bill's Produce",
-                "Saturday": "Sara's House",
-                "Sunday": "Sara's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Oh Hi dear! I don't know where Sara is! Sorry!",
-                "2": "Could you be a hero to me and help with these groceries?",
-                "3": "I never thought twins would be this much work.",
-                "4": "Shopping days are my only chance to get away from the twins...",
-                "5": "What should I buy this week?",
-                "6": "Maybe Godfrey will take us out to dinner this evening!"
-              }
-            }
-          ]
-        },
-        {
-          "Godfrey": [
-            {
-              "first_name": "Godfrey",
-              "last_name": "Lincoln-Noble"
-            },
-            {
-              "locations": {
-                "Monday": "Off Map",
-                "Tuesday": "Off Map",
-                "Wednesday": "Sara's House",
-                "Thursday": "Off Map",
-                "Friday": "Sara's House",
-                "Saturday": "Off Map",
-                "Sunday": "Off Map"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Looking for Sara? I think she's in her room.",
-                "2": "Wesley and Andrew are a riot!",
-                "3": "Have you heard about the chocolate record player? It sounds pretty sweet."
-              }
-            }
-          ]
-        },
-        {
-          "twins": [
-            {
-              "first_name": "Andrew",
-              "second_name": "Wesley",
-              "last_name": "Lincoln-Noble"
-            },
-            {
-              "locations": {
-                "Monday": "Sara's House",
-                "Tuesday": "Sara's House",
-                "Wednesday": "Sara's House",
-                "Thursday": "Sara's House",
-                "Friday": "Sara's House",
-                "Saturday": "Sara's House",
-                "Sunday": "Sara's House"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "WE'RE TWINS",
-                "2": "Can you tell us apart?",
-                "3": "Sometimes even we get confused about which one we are."
-              }
-            }
-          ]
-        }
-      ],
-  "Friends": [
-        {
-          "Dewey": [
-            {
-              "first_name": "Dewey",
-              "last_name": "Booker"
-            },
-            {
-              "locations": {
-                "Monday": "Dewey's House",
-                "Tuesday": "New House2",
-                "Wednesday": "Woods1",
-                "Thursday": "Dewey's House",
-                "Friday": "Old House1",
-                "Saturday": "Dewey's House",
-                "Sunday": "Beth's Treats"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Hey dude!",
-                "2": "My mom is always embarrassing me",
-                "3": "Let's go explore!",
-                "4": "Farmer Augustus is creepy huh?",
-                "5": "Do you really think Farmer Augustus is a Russian? Aren't they the bad guys?",
-                "6": "I'm not scared or a-a-anything..."
-              }
-            },
-            {
-              "follow": {
-                "1": "Yeah let's go!",
-                "2": "let's hang out!",
-                "3": "Better to be together. Not that I'm s-s-scared"
-              }
-            },
-            {
-              "unfollow": {
-                "1": "See ya later!",
-                "2": "Guess it's time to go home anyway.",
-                "3": "You're really gonna l-l-leave me alone?"
-              }
-            }
-          ]
-        },
-        {
-          "Kory": [
-            {
-              "first_name": "Kory",
-              "last_name": "Cumberbatch"
-            },
-            {
-              "locations": {
-                "Monday": "Woods2",
-                "Tuesday": "Kory's House",
-                "Wednesday": "Kory's House",
-                "Thursday": "Kory's House",
-                "Friday": "Woods2",
-                "Saturday": "New House1",
-                "Sunday": "Waste Pile"
-              }
-            },
-            {
-              "dialogue": {
-                "1": "Yo",
-                "2": "Want to play video games?",
-                "3": "My mom just bought me some new comics.",
-                "4": "This thing with the old man is just like this book I read.",
-                "5": "I bet he's killing children who figure out his secret!",
-                "6": "If we're going to catch him we'll need a plan."
-              }
-            },
-            {
-              "follow": {
-                "1": "I guess we can.",
-                "2": "Can I just stay at home? No? Okay...",
-                "3": "We aren't gonna play video games are we?"
-              }
-            },
-            {
-              "unfollow": {
-                "1": "Cool. See ya around.",
-                "2": "I'm gonna go read the latest issue of The Essential K-Dudes.",
-                "3": "Next time let's stay in."
-              }
-            }
-          ]
-        }
-      ],
-  "Best_Friend": [
-        {
-          "first_name": "Sara",
-          "last_name": "Lincoln-Noble"
-        },
-        {
-          "locations": {
-            "Monday": "Warehouse",
-            "Tuesday": "Player's House",
-            "Wednesday": "Sara's House",
-            "Thursday": "New House3",
-            "Friday": "Sara's House",
-            "Saturday": "Old House2",
-            "Sunday": "Old Airport"
-          }
-        },{
-          "dialogue": {
-            "1": "Glad you found me!",
-            "2": "I'm so bored...",
-            "3": "Let's do something!",
-            "4": "Have you seen the old man since we spied on him at the farm?",
-            "5": "If there's something going on we will get to the bottom of it.",
-            "6": "Yeah? Is there something on my face?"
-          }
-        },{
-          "follow": {
-            "1": "duh.",
-            "2": "I'm always down to hang out.",
-            "3": "We better get into some trouble!"
-          }
-        },
-        {
-          "unfollow": {
-            "1": "Wait you can't sleep over?",
-            "2": "Really? Okay.",
-            "3": "Later dude!"
-          }
-        },
-        {
-          "hints": {}
-        }
-      ]
+  "Bill": [
+    {
+      "first_name": "Bill"
+    },
+    {
+      "locations": {
+        "Monday": "Bill's Produce",
+        "Tuesday": "Bill's Produce",
+        "Wednesday": "Bill's Produce",
+        "Thursday": "Bill's Produce",
+        "Friday": "Bill's Produce",
+        "Saturday": "Bill's Produce",
+        "Sunday": "River"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Hey Kids!",
+        "2": "Need something?",
+        "3": "Welcome to Bill's!",
+        "4": "Fishing helps me relax.",
+        "5": "Found my secret spot huh? Don't tell my wife!",
+        "6": "The fish are biting today!"
+      }
+    }
+  ],
+  "Beth": [
+    {
+      "first_name": "Beth",
+      "last_name": "Maisel"
+    },
+    {
+      "locations": {
+        "Monday": "Janie Maisel's House",
+        "Tuesday": "Beth's Treats",
+        "Wednesday": "Beth's Treats",
+        "Thursday": "Beth's Treats",
+        "Friday": "Beth's Treats",
+        "Saturday": "Beth's Treats",
+        "Sunday": "Beth's Treats"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Hello Dearies!",
+        "2": "Sweet treats are good to eat!",
+        "3": "How can I help you?",
+        "4": "Janie is my grand-daughter.",
+        "5": "Would you like some tea?",
+        "6": "I come to Janie's house to visit every monday."
+      }
+    }
+  ],
+  "Al": [
+    {
+      "first_name": "Al"
+    },
+    {
+      "locations": {
+        "Monday": "Angus Queen",
+        "Tuesday": "Angus Queen",
+        "Wednesday": "Angus Queen",
+        "Thursday": "Angus Queen",
+        "Friday": "Angus Queen",
+        "Saturday": "Angus Queen",
+        "Sunday": "Angus Queen"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Howdy Y'all!",
+        "2": "Angus Queen is always Open!",
+        "3": "Want a burger?"
+      }
+    }
+  ],
+  "Janie": [
+    {
+      "first_name": "Janie",
+      "last_name": "Maisel"
+    },
+    {
+      "locations": {
+        "Monday": "Janie Maisel's House",
+        "Tuesday": "Dollar Store",
+        "Wednesday": "Dollar Store",
+        "Thursday": "Dollar Store",
+        "Friday": "Janie Maisel's House",
+        "Saturday": "Dollar Store",
+        "Sunday": "Dollar Store"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Hi.",
+        "2": "Just buy something...or whatever.",
+        "3": "Ugh. What do you want?",
+        "4": "My Grandmother visits me on Mondays so I get that day off.",
+        "5": "Don't make a mess in my house.",
+        "6": "If my grandma asks tell her I'm nice to you guys."
+      }
+    }
+  ],
+  "Fred": [
+    {
+      "first_name": "Fred",
+      "last_name": "Barkley"
+    },
+    {
+      "locations": {
+        "Monday": "Fast Journey",
+        "Tuesday": "Fred's House",
+        "Wednesday": "Fast Journey",
+        "Thursday": "Fast Journey",
+        "Friday": "Fast Journey",
+        "Saturday": "Fast Journey",
+        "Sunday": "Fast Journey"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Sup everyone",
+        "2": "Don't steal the merch I'm watching you",
+        "3": "Oh you want to buy something?",
+        "4": "I like to play guitar on my off days.",
+        "5": "I'm in a pretty cool band, you've probably heard of us. No?",
+        "6": "Might want some earplugs, kid."
+      }
+    }
+  ],
+  "Helena": [
+    {
+      "first_name": "Helena",
+      "last_name": "Cumberbatch"
+    },
+    {
+      "locations": {
+        "Monday": "Kory's House",
+        "Tuesday": "Kory's House",
+        "Wednesday": "Kory's House",
+        "Thursday": "Kory's House",
+        "Friday": "Kory's House",
+        "Saturday": "Kory's House",
+        "Sunday": "Kory's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Here to play with Kory?",
+        "2": "There's snacks in the kitchen if you get hungry kids!",
+        "3": "Did Kory ever show you his video tape from the last play he was in?"
+      }
+    }
+  ],
+  "Kristy": [
+    {
+      "first_name": "Kristy",
+      "last_name": "Booker"
+    },
+    {
+      "locations": {
+        "Monday": "Dewey's House",
+        "Tuesday": "Dewey's House",
+        "Wednesday": "Dewey's House",
+        "Thursday": "Dewey's House",
+        "Friday": "Dewey's House",
+        "Saturday": "Dewey's House",
+        "Sunday": "Dewey's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Dewey! Your friends are here!",
+        "2": "If you want to sleep over I'll need to talk to your mom.",
+        "3": "Would you kids like to watch a movie? I'm going to the video store."
+      }
+    }
+  ],
+  "Peter": [
+    {
+      "first_name": "Peter",
+      "last_name": "Booker"
+    },
+    {
+      "locations": {
+        "Monday": "Dewey's House",
+        "Tuesday": "Dewey's House",
+        "Wednesday": "Dewey's House",
+        "Thursday": "Dewey's House",
+        "Friday": "Dewey's House",
+        "Saturday": "Dewey's House",
+        "Sunday": "Dewey's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Keep the noise down kids, I have to work.",
+        "2": "Shouldn't you be outside?",
+        "3": "My wife said I should do lunges to stay in shape. That would be a big step forward."
+      }
+    }
+  ],
+  "Mom": [
+    {
+      "first_name": "Patty"
+    },
+    {
+      "locations": {
+        "Monday": "Player's House",
+        "Tuesday": "Player's House",
+        "Wednesday": "Player's House",
+        "Thursday": "Player's House",
+        "Friday": "Player's House",
+        "Saturday": "Player's House",
+        "Sunday": "Player's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Have fun today! Be nice to your brother!",
+        "2": "Remember not to go past the interstate, and stay out of trouble! Be back when the streetlights come on!",
+        "3": "If you need anything I'll be home all day!"
+      }
+    }
+  ],
+  "Dad": [
+    {
+      "first_name": "Chad"
+    },
+    {
+      "locations": {
+        "Monday": "Player's House",
+        "Tuesday": "Player's House",
+        "Wednesday": "Player's House",
+        "Thursday": "Player's House",
+        "Friday": "Player's House",
+        "Saturday": "Player's House",
+        "Sunday": "Player's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Don't have too much fun today!",
+        "2": "Hey, don't forget to clean your room before you go play!",
+        "3": "I thought the dryer was shrinking my clothes. Turns out it was the refrigerator all along. heh heh heh..."
+      }
+    }
+  ],
+  "Neville": [
+    {
+      "first_name": "Neville"
+    },
+    {
+      "locations": {
+        "Monday": "Player's House",
+        "Tuesday": "Player's House",
+        "Wednesday": "Player's House",
+        "Thursday": "Player's House",
+        "Friday": "Player's House",
+        "Saturday": "Player's House",
+        "Sunday": "Player's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Stay out of my room!",
+        "2": "Don't touch my toys without asking or I'll tell mom.",
+        "3": "Did you eat all the chips? MOM! THEY ATE ALL THE CHIPS AGAIN!"
+      }
+    }
+  ],
+  "Elanor": [
+    {
+      "first_name": "Elanor",
+      "last_name": "Lincoln-Noble"
+    },
+    {
+      "locations": {
+        "Monday": "Sara's House",
+        "Tuesday": "Sara's House",
+        "Wednesday": "Bill's Produce",
+        "Thursday": "Sara's House",
+        "Friday": "Bill's Produce",
+        "Saturday": "Sara's House",
+        "Sunday": "Sara's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Oh Hi dear! I don't know where Sara is! Sorry!",
+        "2": "Could you be a hero to me and help with these groceries?",
+        "3": "I never thought twins would be this much work.",
+        "4": "Shopping days are my only chance to get away from the twins...",
+        "5": "What should I buy this week?",
+        "6": "Maybe Godfrey will take us out to dinner this evening!"
+      }
+    }
+  ],
+  "Godfrey": [
+    {
+      "first_name": "Godfrey",
+      "last_name": "Lincoln-Noble"
+    },
+    {
+      "locations": {
+        "Monday": "Off Map",
+        "Tuesday": "Off Map",
+        "Wednesday": "Sara's House",
+        "Thursday": "Off Map",
+        "Friday": "Sara's House",
+        "Saturday": "Off Map",
+        "Sunday": "Off Map"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Looking for Sara? I think she's in her room.",
+        "2": "Wesley and Andrew are a riot!",
+        "3": "Have you heard about the chocolate record player? It sounds pretty sweet."
+      }
+    }
+  ],
+  "The Twins": [
+    {
+      "first_name": "Andrew",
+      "second_name": "Wesley",
+      "last_name": "Lincoln-Noble"
+    },
+    {
+      "locations": {
+        "Monday": "Sara's House",
+        "Tuesday": "Sara's House",
+        "Wednesday": "Sara's House",
+        "Thursday": "Sara's House",
+        "Friday": "Sara's House",
+        "Saturday": "Sara's House",
+        "Sunday": "Sara's House"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "WE'RE TWINS",
+        "2": "Can you tell us apart?",
+        "3": "Sometimes even we get confused about which one we are."
+      }
+    }
+  ],
+  "Dewey": [
+    {
+      "first_name": "Dewey",
+      "last_name": "Booker"
+    },
+    {
+      "locations": {
+        "Monday": "Dewey's House",
+        "Tuesday": "New House2",
+        "Wednesday": "Woods1",
+        "Thursday": "Dewey's House",
+        "Friday": "Old House1",
+        "Saturday": "Dewey's House",
+        "Sunday": "Beth's Treats"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Hey dude!",
+        "2": "My mom is always embarrassing me",
+        "3": "Let's go explore!",
+        "4": "Farmer Augustus is creepy huh?",
+        "5": "Do you really think Farmer Augustus is a Russian? Aren't they the bad guys?",
+        "6": "I'm not scared or a-a-anything..."
+      }
+    },
+    {
+      "follow": {
+        "1": "Yeah let's go!",
+        "2": "let's hang out!",
+        "3": "Better to be together. Not that I'm s-s-scared"
+      }
+    },
+    {
+      "unfollow": {
+        "1": "See ya later!",
+        "2": "Guess it's time to go home anyway.",
+        "3": "You're really gonna l-l-leave me alone?"
+      }
+    }
+  ],
+  "Kory": [
+    {
+      "first_name": "Kory",
+      "last_name": "Cumberbatch"
+    },
+    {
+      "locations": {
+        "Monday": "Woods East",
+        "Tuesday": "Kory's House",
+        "Wednesday": "Kory's House",
+        "Thursday": "Kory's House",
+        "Friday": "Woods2",
+        "Saturday": "New House1",
+        "Sunday": "Waste Pile"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Yo",
+        "2": "Want to play video games?",
+        "3": "My mom just bought me some new comics.",
+        "4": "This thing with the old man is just like this book I read.",
+        "5": "I bet he's killing children who figure out his secret!",
+        "6": "If we're going to catch him we'll need a plan."
+      }
+    },
+    {
+      "follow": {
+        "1": "I guess we can.",
+        "2": "Can I just stay at home? No? Okay...",
+        "3": "We aren't gonna play video games are we?"
+      }
+    },
+    {
+      "unfollow": {
+        "1": "Cool. See ya around.",
+        "2": "I'm gonna go read the latest issue of The Essential K-Dudes.",
+        "3": "Next time let's stay in."
+      }
+    }
+  ],
+  "Sara": [
+    {
+      "first_name": "Sara",
+      "last_name": "Lincoln-Noble"
+    },
+    {
+      "locations": {
+        "Monday": "Warehouse",
+        "Tuesday": "Player's House",
+        "Wednesday": "Sara's House",
+        "Thursday": "New House3",
+        "Friday": "Sara's House",
+        "Saturday": "Old House2",
+        "Sunday": "Old Airport"
+      }
+    },
+    {
+      "dialogue": {
+        "1": "Glad you found me!",
+        "2": "I'm so bored...",
+        "3": "Let's do something!",
+        "4": "Have you seen the old man since we spied on him at the farm?",
+        "5": "If there's something going on we will get to the bottom of it.",
+        "6": "Yeah? Is there something on my face?"
+      }
+    },
+    {
+      "follow": {
+        "1": "duh.",
+        "2": "I'm always down to hang out.",
+        "3": "We better get into some trouble!"
+      }
+    },
+    {
+      "unfollow": {
+        "1": "Wait you can't sleep over?",
+        "2": "Really? Okay.",
+        "3": "Later dude!"
+      }
+    },
+    {
+      "hints": {}
+    }
+  ]
 }

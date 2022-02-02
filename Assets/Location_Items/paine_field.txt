@@ -1,0 +1,4 @@
+shoes
+rock
+hat
+notebook
