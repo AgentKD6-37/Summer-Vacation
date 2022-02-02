@@ -97,6 +97,7 @@ public class Input {
                 if(!didMove){
                     System.out.println("you were unable to move "+ noun2 + ".");
                 }
+                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 break;
             case "get":
                 if (locationList.contains(noun2)) {
