@@ -277,8 +277,10 @@
           "south": "Dead Presidents",
           "west": "Fred's House"
         }
+      },
+      {
+        "description": "You're in your house! Your family is home"
       }
-
     ],
     "Fred's House": [
       {
