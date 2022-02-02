@@ -31,10 +31,14 @@ _Michael_ || _Fan_ || _Zed_
 ## Release Version
 1.2
 
-#NEW IN THIS RELEASE
+NEW IN THIS RELEASE
+
 Talk to NPCs!
+
 Interact with Items!
+
 Get help! (if you need it)
+
 See the map!
 
 
