@@ -92,6 +92,7 @@ public class Input {
                 if(!didMove){
                     System.out.println("you were unable to move "+ noun2 + ".");
                 }
+                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
                 break;
             case "get":
                 if (locationList.contains(noun2)) {
@@ -146,6 +147,8 @@ public class Input {
                 System.out.println("I didn't understand that command. for help type help.");
         }
         System.out.println("Your inventory has: " + playerList);
+
+
         //recursion happens in the while loop of the scene
     }
 }

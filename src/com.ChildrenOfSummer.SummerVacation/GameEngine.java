@@ -2,6 +2,8 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
+
 public class GameEngine {
 
     public void execute() {
@@ -33,21 +35,39 @@ public class GameEngine {
         sceneOne();
     }
 
+//    private void sceneOne(){
+//        boolean isSolved = false;
+//        do {
+//            Input.inputCommandsLogic();
+//        } while (isSolved==false);
+//    }
     private void sceneOne(){
-        boolean isSolved = false;
-        do {
+        JSONObject saveFile = SaveEditor.loadGame();
+        ArrayList<String> playerList =(ArrayList<String>) saveFile.get("inventory");
+        String location = (String) saveFile.get("location");
+        boolean sceneOneCompleted = false;
+        while (sceneOneCompleted){
+            if (location.equals("Paine Field") && playerList.contains("rope") && playerList.contains("planks")) {
+                sceneOneCompleted = SceneOneCompletion.completion();
+                sceneOneEnd();
+            }
             Input.inputCommandsLogic();
-        } while (isSolved==false);
+        }
+    }
+
+    static void sceneOneEnd(){
+        SaveEditor.getAssetFile("scene-one-end.txt");
+        sceneTwo();
     }
 
 
-    private void sceneTwo() {
+    private static void sceneTwo() {
         System.out.println("Insert paragraph for scene two");
         System.out.println("Hello");
         sceneThree();
     }
 
-    private void sceneThree() {
+    private static void sceneThree() {
         System.out.println("Insert paragraph for scene three");
     }
 
