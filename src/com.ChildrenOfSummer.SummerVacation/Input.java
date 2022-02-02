@@ -145,6 +145,11 @@ public class Input {
                 System.out.println("Your current location is " + player1.playerLocation);
                 SaveEditor.getAssetFile("help.txt");
                 break;
+            case "music":
+                System.out.println("~~~~Turn on back ground music~~~~~");
+                System.out.println(noun2);
+                SaveEditor.getMusic(noun2);
+                break;
             case "quit":
                 SaveEditor.saveGame(player1.playerName,player1.playerLocation, player1.playerZone,player1.playerInventory);
                 System.exit(0);
