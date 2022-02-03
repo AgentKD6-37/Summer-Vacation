@@ -10,8 +10,8 @@ public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
     private static ArrayList<String> empty = new ArrayList<>();
-    private static Player player1 = new Player("default", "Player's House", "Suburb", empty);
-    private static final Clip clip = SaveEditor.getMusic(null);
+    private static Player player1;
+    private static final Clip clip = FileManager.getMusic(null);
 
 
     public static boolean startMenu() {
@@ -22,21 +22,22 @@ public class Input {
          */
 
         boolean newGame = false;
-        SaveEditor.menuFiles();
+        FileManager.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
             case "new game":
                 playerCreator();
-                SaveEditor.loadDefaults();
+                FileManager.loadDefaults();
                 newGame = true;
+                player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
                 break;
             case "load game":
-                JSONObject saveFile = SaveEditor.loadGame();
+                JSONObject saveFile = FileManager.loadGame();
                 String name = (String) saveFile.get("name");
                 String location = (String) saveFile.get("location");
                 String zone = (String) saveFile.get("zone");
                 ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
-                player1 = new Player(name, location, zone, inventory);
+                player1 = Player.getInstance(name, location, zone, inventory);
                 break;
             case "quit":
                 System.exit(0);
@@ -51,13 +52,11 @@ public class Input {
     static void playerCreator(){
         /*
          *Takes in your name and saves the save file with default values.
-         * todo: also reset the location items to default!! IMPORTANT!!
-         *  -MS
          */
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
-        player1.playerName = ANSWER;
-        SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+        player1.setPlayerName(ANSWER);
+        FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
 
     }
 
@@ -70,8 +69,8 @@ public class Input {
          * and for the noun by some robust if->else or for loops, we can prevent the player from breaking the program with an
          * unknown command. -MS
          */
-         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
-         ArrayList<String> playerList = SaveEditor.getPlayerItems();
+         ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
+         ArrayList<String> playerList = FileManager.getPlayerItems();
         if (!locationList.isEmpty()) {
             System.out.println("You see the following items on the ground: ");
             for (String item : locationList) {
@@ -94,8 +93,8 @@ public class Input {
 
         switch (verb) {
             case "see":
-                SaveEditor.getAssetFile("map.txt");
-                System.out.println("\nYour current location is " + player1.playerLocation);
+                FileManager.getAssetFile("map.txt");
+                System.out.println("\nYour current location is " + player1.getPlayerLocation());
                 break;
             case "go":
                 boolean didMove = false;
@@ -108,15 +107,15 @@ public class Input {
                 if (!didMove) {
                     System.out.println("you were unable to move " + noun2 + ".");
                 }
-                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+                FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
                 break;
             case "get":
                 if (locationList.contains(noun2)) {
                     locationList.remove(noun2);
                     playerList.add(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
-                    SaveEditor.savePlayerItems(playerList);
-                    player1.playerInventory = playerList;
+                    FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
+                    FileManager.savePlayerItems(playerList);
+                    player1.setPlayerInventory(playerList);
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
@@ -125,9 +124,9 @@ public class Input {
                 if (playerList.contains(noun2)) {
                     locationList.add(noun2);
                     playerList.remove(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
-                    SaveEditor.savePlayerItems(playerList);
-                    player1.playerInventory = playerList;
+                    FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
+                    FileManager.savePlayerItems(playerList);
+                    player1.setPlayerInventory(playerList);
                 } else {
                     System.out.println("I can't drop what I don't have!");
                 }
@@ -139,8 +138,8 @@ public class Input {
                         playerList.remove(noun1);
                         playerList.remove(noun2);
                         playerList.add("ladder");
-                        SaveEditor.savePlayerItems(playerList);
-                        player1.playerInventory = playerList;
+                        FileManager.savePlayerItems(playerList);
+                        player1.setPlayerInventory(playerList);
                     } else {
                         System.out.println("I can't combine that!");
                     }
@@ -153,8 +152,8 @@ public class Input {
                 System.out.println(player1.talk(noun2));
                 break;
             case "help":
-                System.out.println("Your current location is " + player1.playerLocation);
-                SaveEditor.getAssetFile("help.txt");
+                System.out.println("Your current location is " + player1.getPlayerLocation());
+                FileManager.getAssetFile("help.txt");
                 break;
 
             case "music":
@@ -173,7 +172,7 @@ public class Input {
 
                 break;
             case "quit":
-                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+                FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
                 System.exit(0);
             default:
                 System.out.println("I didn't understand that command. for help type help.");
@@ -185,10 +184,10 @@ public class Input {
     }
 
     static boolean sceneOneTransition(){
-        boolean sceneOnePass = SaveEditor.sceneReader("sceneOnePassed");
-        ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        if (player1.playerLocation.equals("Paine Field") && !sceneOnePass) {
-            SaveEditor.getAssetFile("scene-one.txt");
+        boolean sceneOnePass = FileManager.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        if (player1.getPlayerLocation().equals("Paine Field") && !sceneOnePass) {
+            FileManager.getAssetFile("scene-one.txt");
             if (playerList.contains("rope") && playerList.contains("planks")) {
                 System.out.println("You noticed that you have a rope and some planks. " +
                         "You can create a ladder to get out. " +
@@ -199,7 +198,7 @@ public class Input {
                     playerList.remove("rope");
                     playerList.remove("planks");
                     playerList.add("ladder");
-                    SaveEditor.savePlayerItems(playerList);
+                    FileManager.savePlayerItems(playerList);
                     GameEngine.sceneOneEnd();
                 } else {
                     System.out.println("Game Over. Press enter to continue");

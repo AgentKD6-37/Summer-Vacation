@@ -3,20 +3,75 @@ package com.ChildrenOfSummer.SummerVacation;
 import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 class Player {
-    String playerZone;
-    String playerLocation;
-    String playerName;
-    ArrayList<String> playerInventory;
+    private static Player singleton = null;
+    private String playerZone;
+    private String playerLocation;
+    private String playerName;
+    private ArrayList<String> playerInventory;
+    private int playerMoney;
 
-    public Player(String playerName, String playerLocation, String playerZone, ArrayList<String> playerInventory) {
+
+    //singleton get instance method to prevent multiple player creations
+    public static Player getInstance(String playerName, String playerLocation, String playerZone, ArrayList<String> playerInventory){
+        if (singleton == null){
+            singleton = new Player(playerName,playerLocation,playerZone,playerInventory);
+        }
+        return singleton;
+    }
+
+
+    //private constructor
+    private Player(String playerName, String playerLocation, String playerZone, ArrayList<String> playerInventory) {
         this.playerZone = playerZone;
         this.playerLocation = playerLocation;
         this.playerName = playerName;
         this.playerInventory = playerInventory;
     }
+
+    //getters and setters
+    public String getPlayerZone() {
+        return playerZone;
+    }
+
+    public void setPlayerZone(String playerZone) {
+        this.playerZone = playerZone;
+    }
+
+    public String getPlayerLocation() {
+        return playerLocation;
+    }
+
+    public void setPlayerLocation(String playerLocation) {
+        this.playerLocation = playerLocation;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public ArrayList<String> getPlayerInventory() {
+        return playerInventory;
+    }
+
+    public void setPlayerInventory(ArrayList<String> playerInventory) {
+        this.playerInventory = playerInventory;
+    }
+
+    public int getPlayerMoney() {
+        return playerMoney;
+    }
+
+    public void setPlayerMoney(int playerMoney) {
+        this.playerMoney = playerMoney;
+    }
+
+    //business methods
 
     void sleep(){
         Clock.incrementNextDay();
@@ -29,19 +84,18 @@ class Player {
          * so the player can interact with their surroundings -MS
          */
 
-        String tempLocation = SaveEditor.getNewLocation(playerZone, playerLocation, direction);
+        String tempLocation = FileManager.getNewLocation(playerZone, playerLocation, direction);
 
         if (tempLocation.equals("Off Map")){
-            System.out.println(tempLocation);
             System.out.println("You can't go that way!");
         }else { //success on move
 
             playerLocation = tempLocation;
-            playerZone = SaveEditor.getNewZone(playerLocation);
-            JSONArray NPCname=SaveEditor.getNPCsName(playerLocation);
+            playerZone = FileManager.getNewZone(playerLocation);
+            JSONArray NPCname= FileManager.getNPCsName(playerLocation);
             ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ".");
-            SaveEditor.getLocationDescription(playerLocation, playerZone);
+            FileManager.getLocationDescription(playerLocation, playerZone);
             if(!npcNames.isEmpty()){
                 String nameThree = null;
                 String nameTwo = null;
@@ -83,24 +137,8 @@ class Player {
         while (number >3||number<1) {
             number = randomNumberGenerator();
         }
-        dig=(SaveEditor.getNPCsDialog(npcName,number));
+        dig=(FileManager.getNPCsDialog(npcName,number));
         return dig;
-    }
-
-    void shop(){
-
-    }
-
-    public void get(String item){
-
-    }
-
-    void drop(){
-
-    }
-
-    void combine(){
-
     }
 
     public static int randomNumberGenerator(){

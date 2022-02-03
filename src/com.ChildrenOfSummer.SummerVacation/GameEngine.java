@@ -10,7 +10,7 @@ public class GameEngine {
             introduction();
         }
         else{
-            sceneOnePassed = SaveEditor.sceneReader("sceneOnePassed");
+            sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
         }
         sceneOnePassed = sceneOne();
         if (sceneOnePassed == true){
@@ -19,7 +19,7 @@ public class GameEngine {
     }
 
     private void introduction() {
-        SaveEditor.getAssetFile("introduction.txt");
+        FileManager.getAssetFile("introduction.txt");
         System.out.println("\n");
     }
 
@@ -34,7 +34,7 @@ public class GameEngine {
         String playerLocation;
         do  {
             Input.inputCommandsLogic();
-            saveFile = SaveEditor.loadGame();
+            saveFile = FileManager.loadGame();
             playerLocation = (String) saveFile.get("location");
         } while (!playerLocation.equals("Paine Field"));
 //        SaveEditor.getAssetFile("scene-one.txt");
@@ -42,9 +42,9 @@ public class GameEngine {
     }
 
     static void sceneOneEnd(){
-        SaveEditor.getAssetFile("scene-one-end.txt");
+        FileManager.getAssetFile("scene-one-end.txt");
         sceneTwo();
-        SaveEditor.sceneWriter(true, "sceneOnePassed");
+        FileManager.sceneWriter(true, "sceneOnePassed");
     }
 
     private static void sceneTwo() {
@@ -53,7 +53,7 @@ public class GameEngine {
         String playerLocation;
         do  {
             Input.inputCommandsLogic();
-            saveFile = SaveEditor.loadGame();
+            saveFile = FileManager.loadGame();
             playerLocation = (String) saveFile.get("location");
         }while (playerLocation.equals("Player's House"));{
             System.out.println("SCENE TWO PLACEHOLDER");
