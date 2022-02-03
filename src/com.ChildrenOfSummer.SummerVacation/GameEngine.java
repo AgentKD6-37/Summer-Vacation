@@ -15,6 +15,8 @@ public class GameEngine {
         sceneOnePassed = sceneOne();
         if (sceneOnePassed == true){
             sceneTwo();
+        }else{
+            execute();
         }
     }
 
