@@ -2,6 +2,7 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONArray;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -98,6 +99,26 @@ class Player {
             ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ". Press Enter to continue...");
             scanner.nextLine();
+            switch (playerZone){
+                case "Wild Field":
+                    FileManager.getAssetFile("zone1.txt");
+                    break;
+                case "Suburb":
+                    FileManager.getAssetFile("zone2.txt");
+                    break;
+                case "New Suburb":
+                    FileManager.getAssetFile("zone3.txt");
+                    break;
+                case "Farm":
+                    FileManager.getAssetFile("zone4.txt");
+                    break;
+                case "Town Center":
+                    FileManager.getAssetFile("zone5.txt");
+                    break;
+                case "Old Town":
+                    FileManager.getAssetFile("zone6.txt");
+                    break;
+            }
             FileManager.getLocationDescription(playerLocation, playerZone);
             if(!npcNames.isEmpty()){
                 String nameThree = null;
