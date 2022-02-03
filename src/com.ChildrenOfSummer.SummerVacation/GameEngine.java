@@ -4,6 +4,8 @@ import org.json.simple.JSONObject;
 
 public class GameEngine {
     boolean sceneOnePassed = false;
+    boolean sceneTwoPassed = false;
+
 
     public void execute() {
         if (Input.startMenu()) {
@@ -14,7 +16,10 @@ public class GameEngine {
         }
         sceneOnePassed = sceneOne();
         if (sceneOnePassed == true){
-            sceneTwo();
+            sceneTwoPassed = sceneTwo();
+            if (sceneTwoPassed == true){
+                sceneThree();
+            }
         }
     }
 
@@ -37,17 +42,16 @@ public class GameEngine {
             saveFile = FileManager.loadGame();
             playerLocation = (String) saveFile.get("location");
         } while (!playerLocation.equals("Paine Field"));
-//        SaveEditor.getAssetFile("scene-one.txt");
        return sceneOnePassed = Input.sceneOneTransition();
     }
 
     static void sceneOneEnd(){
         FileManager.getAssetFile("scene-one-end.txt");
-        sceneTwo();
         FileManager.sceneWriter(true, "sceneOnePassed");
+        sceneTwo();
     }
 
-    private static void sceneTwo() {
+    static boolean sceneTwo() {
         boolean sceneTwoPassed = false;
         JSONObject saveFile;
         String playerLocation;
@@ -55,13 +59,32 @@ public class GameEngine {
             Input.inputCommandsLogic();
             saveFile = FileManager.loadGame();
             playerLocation = (String) saveFile.get("location");
-        }while (playerLocation.equals("Player's House"));{
-            System.out.println("SCENE TWO PLACEHOLDER");
+        }while (!playerLocation.equals("Player's House"));{
+            FileManager.getAssetFile("scene-two.txt");
+            sceneTwoPassed = true;
         }
+        FileManager.sceneWriter(true, "sceneTwoPassed");
+        return sceneTwoPassed;
     }
 
-    private static void sceneThree() {
-        System.out.println("Insert paragraph for scene three");
+    static boolean sceneThree() {
+        System.out.println("Insert paragraph for scene three, SCENE THREE PLACEHOLDER");
+        boolean sceneThreePassed = false;
+        JSONObject saveFile;
+        String playerLocation;
+        do  {
+            Input.inputCommandsLogic();
+            saveFile = FileManager.loadGame();
+            playerLocation = (String) saveFile.get("location");
+        }while (!playerLocation.equals("Barn"));{
+            FileManager.getAssetFile("scene-three.txt");
+            sceneThreePassed = Input.sceneThree();
+        }
+        FileManager.sceneWriter(true, "sceneThreePassed");
+        return sceneThreePassed;
+    }
+
+    public static void sceneThreeEnd() {
     }
 
     private void sceneFour() {
