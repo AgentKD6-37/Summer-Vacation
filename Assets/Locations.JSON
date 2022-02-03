@@ -209,7 +209,7 @@
         }
       },
       {
-        "description": "The Paine Field stretches before you. It's definitely seen better days. \nA security booth sits at the far side of the airport. \nThere are three Hangars in front of you, labelled 'HANGAR 1','HANGAR 2' and 'HANGAR 3'. \nTo the north is the abandoned Warehouse. \nTo the east is the edge of town! Your mom won't let you go further. \nTo the south is the interstate! You can't go there. \nTo the west is the southern-most abandoned old house."
+        "description": "The Paine Field stretches before you. It's definitely seen better days. \nA security booth sits at the far side of the airport. \nTo the north is the abandoned Warehouse. \nTo the east is the edge of town! Your mom won't let you go further. \nTo the south is the interstate! You can't go there. \nTo the west is the southern-most abandoned old house."
       }
     ],
     "Old House North": [
@@ -226,7 +226,7 @@
         }
       },
       {
-        "description": "This house has seen better days! Graffiti covers the walls and the sinks are all smashed for some reason.\n To the north is one of the under construction houses from the southern part of the suburbs.\n To the east is the abandoned warehouse.\n To the south is another old house. Looking slightly better than this one.\n To the west is Angus Queen."
+        "description": "This house has seen better days! Graffiti covers the walls and the sinks are all smashed for some reason. \nTo the north is one of the under construction houses from the southern part of the suburbs. \nTo the east is the abandoned warehouse. \nTo the south is another old house. Looking slightly better than this one. \nTo the west is Angus Queen."
       }
     ],
     "Old House South": [
@@ -243,7 +243,7 @@
         }
       },
       {
-        "description": "This house was recently abandoned. It looks like someone set fire to the back of it. \nTo the north is another old house, looking worse than this one. \nTo the east is the old airport, Paine Field.\n To the south is the interstate! You can't go there!\n To the west is beth's treats! You can smell the cookies!."
+        "description": "This house was recently abandoned. It looks like someone set fire to the back of it. \nTo the north is another old house, looking worse than this one. \nTo the east is the old airport, Paine Field. \nTo the south is the interstate! You can't go there! \nTo the west is beth's treats! You can smell the cookies!."
       }
     ]
   },
@@ -262,7 +262,7 @@
         }
       },
       {
-        "description": "Sara's house is massive!\n To the east is Dewey's house. \nTo the south is your house.\n To the west Kory's house."
+        "description": "Sara's house is massive! \nTo the east is Dewey's house. \nTo the south is your house. \nTo the west Kory's house."
       }
     ],
     "Player's House": [
@@ -279,7 +279,7 @@
         }
       },
       {
-        "description": "You're in your house! Your family is home"
+        "description": "You're in your house! Your family is home.\nTo the north is Sara's house. \nTo the east is Miss Janie's\nTo the south is Dead Presidents, the dollar store.\nTo the west is Fred's House"
       }
 
     ],
@@ -297,7 +297,7 @@
         }
       },
       {
-        "description": "Fred's house is a wreck. He has a car on blocks in the driveway. \nTo the north is Korey's House. \nTo the east is your house! \nTo the south is Fast Journey.\n To the west you see the woods."
+        "description": "Fred's house is a wreck. He has a car on blocks in the driveway. \nTo the north is Korey's House. \nTo the east is your house! \nTo the south is Fast Journey. \nTo the west you see the woods."
       }
     ],
     "Dewey's House": [
@@ -349,7 +349,7 @@
       },
       {
         "description_open": "Janie's house is well kept and tidy. \nTo the north is Dewey's House. \nTo the east the southernmost house under construction in the new suburbs. \nTo the south is Angus Queen. \nTo the west your house!",
-        "description_closed": "Janie's house is closed. She must be at work.\n To the north is Dewey's House.\n To the east the southernmost house under construction in the new suburbs.\n To the south is Angus Queen.\n To the west your house!"
+        "description_closed": "Janie's house is closed. She must be at work.\nTo the north is Dewey's House.\nTo the east the southernmost house under construction in the new suburbs.\n To the south is Angus Queen.\n To the west your house!"
       }
     ]
   },

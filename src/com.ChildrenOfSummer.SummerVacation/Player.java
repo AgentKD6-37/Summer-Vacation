@@ -3,6 +3,7 @@ package com.ChildrenOfSummer.SummerVacation;
 import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class Player {
     private static Player singleton = null;
@@ -84,6 +85,7 @@ class Player {
          * so the player can interact with their surroundings -MS
          */
 
+        Scanner scanner = new Scanner(System.in);
         String tempLocation = FileManager.getNewLocation(playerZone, playerLocation, direction);
 
         if (tempLocation.equals("Off Map")){
@@ -94,7 +96,8 @@ class Player {
             playerZone = FileManager.getNewZone(playerLocation);
             JSONArray NPCname= FileManager.getNPCsName(playerLocation);
             ArrayList<String> npcNames = (ArrayList<String>) NPCname;
-            System.out.println("You move " + direction + ".");
+            System.out.println("You move " + direction + ". Press Enter to continue...");
+            scanner.nextLine();
             FileManager.getLocationDescription(playerLocation, playerZone);
             if(!npcNames.isEmpty()){
                 String nameThree = null;
