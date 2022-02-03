@@ -62,13 +62,10 @@ public class GameEngine {
         boolean sceneThreePassed;
         doWhile("Barn");
         FileManager.getAssetFile("scene-three.txt");
-        sceneThreePassed = Input.sceneThree();
         FileManager.sceneWriter(true, "sceneThreePassed");
-        return sceneThreePassed;
-    }
-
-    public static void sceneThreeEnd() {
-
+        System.out.println("STOPPER 2");
+        sceneThreePassed = Input.sceneThree();
+        return sceneThreePassed = Input.sceneThree();
     }
 
     private void sceneFour() {
