@@ -95,6 +95,7 @@ public class Input {
             case "map":
                 FileManager.getAssetFile("map.txt");
                 System.out.println("\nYour current location is " + player1.getPlayerLocation());
+                inputCommandsLogic();
                 break;
             case "go":
                 boolean didMove = false;
@@ -131,19 +132,6 @@ public class Input {
                     System.out.println("I can't drop what I don't have!");
                 }
                 break;
-            case "combine":
-                if (playerList.contains(noun2) && playerList.contains(noun1))
-                    if ((noun1.equals("planks") || noun1.equals("rope")) && (noun2.equals("rope") || noun2.equals("planks"))) {
-                        System.out.println("You tie the planks to each other using the rope to create a ladder!");
-                        playerList.remove(noun1);
-                        playerList.remove(noun2);
-                        playerList.add("ladder");
-                        FileManager.savePlayerItems(playerList);
-                        player1.setPlayerInventory(playerList);
-                    } else {
-                        System.out.println("I can't combine that!");
-                    }
-                break;
             case "use":
                 //do final stuff
                 System.out.println("Nothing happens...");
@@ -154,8 +142,8 @@ public class Input {
             case "help":
                 System.out.println("Your current location is " + player1.getPlayerLocation());
                 FileManager.getAssetFile("help.txt");
+                inputCommandsLogic();
                 break;
-
             case "music":
                 switch (noun2) {
                     case "on":
@@ -176,6 +164,7 @@ public class Input {
                 System.exit(0);
             default:
                 System.out.println("I didn't understand that command. for help type help.");
+                inputCommandsLogic();
         }
         if (!playerList.isEmpty()) {
             System.out.println("Your inventory has: " + playerList);
@@ -188,9 +177,11 @@ public class Input {
         ArrayList<String> playerList = FileManager.getPlayerItems();
         if (player1.getPlayerLocation().equals("Paine Field") && !sceneOnePass) {
             FileManager.getAssetFile("scene-one.txt");
+            System.out.println("Press Enter to continue...");
+            scanner.nextLine();
             if (playerList.contains("rope") && playerList.contains("planks")) {
-                System.out.println("You noticed that you have a rope and some planks. " +
-                        "You can create a ladder to get out. " +
+                System.out.println("You noticed that your rope and planks could be combined!\n " +
+                        "You can create a ladder to get out!\n " +
                         "Do you wish to combine the items to get out?");
                 String scan = scanner.nextLine().strip();
                 if (scan.equals("yes")) {
@@ -202,8 +193,9 @@ public class Input {
                     player1.setPlayerInventory(playerList);
                     FileManager.savePlayerItems(playerList);
                     GameEngine.sceneOneEnd();
+
                 } else if (scan.equals("no")){
-                    System.out.println("Game Over. Press enter to continue");
+                    System.out.println("Game Over. Press enter to continue...");
                     scanner.nextLine();
                     startMenu();
                 }
@@ -211,9 +203,11 @@ public class Input {
                     System.out.println("Input not valid, enter yes or no");
                 }
             } else {
-                System.out.println("Game Over. Press enter to continue");
+                System.out.println();
+                System.out.println("With no items to help you, you and your friends are caught by security! You're grounded!");
+                System.out.println("Game Over. Press Enter to continue...");
                 scanner.nextLine();
-                startMenu();
+
             }
         }
         return sceneOnePass;

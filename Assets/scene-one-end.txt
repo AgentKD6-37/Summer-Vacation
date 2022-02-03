@@ -1,3 +1,4 @@
+========================================================================================================================
 You use your makeshift ladder to shamble out one of the back windows as you hear the sound of voices heading toward
 the back of the hangar.
 
@@ -7,3 +8,6 @@ Dropping from the window, you and your friends run for the fence! You notice Dew
 
 **New Task**
 HEAD HOME
+
+========================================================================================================================
+

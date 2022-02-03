@@ -1,3 +1,4 @@
+========================================================================================================================
 Once you are safe, You all examine the documents again.
 
 "Is this an obituary?" Kory holds up an old newspaper clipping. Unfortunately you can't understand the language it was
@@ -15,3 +16,6 @@ Your friends nod, and then leave to go prepare for your new mission...
 
 **New Task**
 GO TO BARN
+
+========================================================================================================================
+

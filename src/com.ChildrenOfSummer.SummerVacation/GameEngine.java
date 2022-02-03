@@ -20,6 +20,8 @@ public class GameEngine {
             if (sceneTwoPassed == true){
                 sceneThree();
             }
+        }else{
+            execute();
         }
     }
 
