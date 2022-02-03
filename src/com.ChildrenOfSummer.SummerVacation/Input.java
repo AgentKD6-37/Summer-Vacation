@@ -26,10 +26,10 @@ public class Input {
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
             case "new game":
+                player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
                 playerCreator();
                 FileManager.loadDefaults();
                 newGame = true;
-                player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
                 break;
             case "load game":
                 JSONObject saveFile = FileManager.loadGame();
