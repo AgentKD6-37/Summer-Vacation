@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import javax.sound.sampled.Clip;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Input {
@@ -226,20 +227,23 @@ public class Input {
     }
 
     static boolean sceneThree(){
-        boolean sceneThreePass = FileManager.sceneReader("sceneTwoPassed");
+        boolean sceneThreePass = FileManager.sceneReader("sceneThreePassed");
+
         ArrayList<String> playerList = FileManager.getPlayerItems();
-        if (player1.getPlayerLocation().equals("Barn") && !sceneThreePass) {
-            FileManager.getAssetFile("scene-two-end (barn scene).txt");
-            if (playerList.contains("ladder") && playerList.contains("rock")) {
+        System.out.println(player1.getPlayerLocation());
+        System.out.println(sceneThreePass);
+
+        if (player1.getPlayerLocation().equals("Barn") && sceneThreePass) {
+            if (playerList.contains("rock")) {
                 System.out.println("You can climb up the barn using the ladder. Do you want to?");
-                String scan = scanner.nextLine().strip();
+                String scan = scanner.nextLine().strip().toLowerCase();
                 if (scan.equals("yes")) {
                     sceneThreePass = true;
                     player1.getPlayerInventory();
                     playerList.remove("ladder");
                     player1.setPlayerInventory(playerList);
                     FileManager.savePlayerItems(playerList);
-                    GameEngine.sceneThreeEnd();
+//                    GameEngine.sceneThreeEnd();
                 } else if (scan.equals("no")){
                     System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
@@ -253,6 +257,9 @@ public class Input {
                 scanner.nextLine();
                 startMenu();
             }
+        }
+        else{
+            System.out.println("stopper 6");
         }
         return sceneThreePass;
     }
