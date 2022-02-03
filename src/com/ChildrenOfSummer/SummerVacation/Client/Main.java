@@ -1,4 +1,4 @@
-package com.ChildrenOfSummer.SummerVacation;
+package com.ChildrenOfSummer.SummerVacation.Client;
 
 import com.ChildrenOfSummer.SummerVacation.GameEngine;
 

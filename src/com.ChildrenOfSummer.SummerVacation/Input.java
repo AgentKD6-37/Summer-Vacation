@@ -1,5 +1,6 @@
 package com.ChildrenOfSummer.SummerVacation;
 
+import com.ChildrenOfSummer.SummerVacation.Util.Directions;
 import org.json.simple.JSONObject;
 
 import javax.sound.sampled.Clip;

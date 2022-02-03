@@ -1,1 +1,9 @@
-{"money":0,"zone":"Old Town","name":"default","location":"Paine Field","inventory":[],"sceneOnePassed":false}
+{"money":0,
+  "zone":"Old Town",
+  "name":"default",
+  "location":"Paine Field",
+  "inventory":[],
+  "sceneOnePassed":false,
+  "sceneTwoPassed": false,
+  "sceneThreePassed": false,
+  "sceneFourPassed": false}
