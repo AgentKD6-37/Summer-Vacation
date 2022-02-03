@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"money":0,"zone":"Old Town","name":"timmy","location":"Warehouse","inventory":["planks","rope"],"sceneOnePassed":true}
+=======
+{"money":0,"zone":"Farm","sceneTwoPassed":true,"name":"tim","sceneThreePassed":true,"location":"Barn","inventory":["ladder"],"sceneOnePassed":true}
+>>>>>>> Stashed changes
