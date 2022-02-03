@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 public class GameEngine {
     boolean sceneOnePassed = false;
     boolean sceneTwoPassed = false;
+    boolean sceneThreePassed = false;
 
 
     public void execute() {
@@ -13,15 +14,17 @@ public class GameEngine {
             introduction();
         } else {
             sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
+            sceneTwoPassed = FileManager.sceneReader("sceneTwoPassed");
+            sceneThreePassed = FileManager.sceneReader("sceneThreePassed");
         }
-        sceneOnePassed = sceneOne();
-        if (sceneOnePassed == true) {
+        if (sceneOnePassed == false){
+            sceneOnePassed = sceneOne();
+        }
+        if (sceneTwoPassed == false){
             sceneTwoPassed = sceneTwo();
-            if (sceneTwoPassed == true) {
-                sceneThree();
-            }
-        } else {
-            execute();
+        }
+        if (sceneThreePassed == false){
+            sceneThreePassed = sceneThree();
         }
     }
 
@@ -44,7 +47,6 @@ public class GameEngine {
     static void sceneOneEnd() {
         FileManager.getAssetFile("scene-one-end.txt");
         FileManager.sceneWriter(true, "sceneOnePassed");
-        sceneTwo();
     }
 
     static boolean sceneTwo() {
@@ -57,16 +59,16 @@ public class GameEngine {
     }
 
     boolean sceneThree() {
-        System.out.println("Insert paragraph for scene three, SCENE THREE PLACEHOLDER");
         boolean sceneThreePassed;
         doWhile("Barn");
-            FileManager.getAssetFile("scene-three-placeholder.txt");
-            sceneThreePassed = Input.sceneThree();
+        FileManager.getAssetFile("scene-three-placeholder.txt");
+        sceneThreePassed = Input.sceneThree();
         FileManager.sceneWriter(true, "sceneThreePassed");
         return sceneThreePassed;
     }
 
     public static void sceneThreeEnd() {
+
     }
 
     private void sceneFour() {

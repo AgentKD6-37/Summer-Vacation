@@ -1,1 +1,1 @@
-{"money":0,"zone":"Farm","name":"default","location":"Hay Field","inventory":[],"sceneOnePassed":false}
+{"money":0,"zone":"Farm","sceneTwoPassed":true,"name":"tim","sceneThreePassed":true,"location":"Barn","inventory":["ladder"],"sceneOnePassed":true}

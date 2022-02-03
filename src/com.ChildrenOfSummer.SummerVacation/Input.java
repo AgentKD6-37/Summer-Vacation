@@ -178,6 +178,34 @@ public class Input {
        //"recursion" happens in the while loop of the scene
     }
 
+    static boolean sceneOneAction() {
+        boolean sceneOnePass = FileManager.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        System.out.println("You noticed that your rope and planks could be combined!\n " +
+                "You can create a ladder to get out!\n " +
+                "Do you wish to combine the items to get out?");
+        String scan = scanner.nextLine().strip();
+        if (scan.equals("yes")) {
+            sceneOnePass = true;
+            player1.getPlayerInventory();
+            playerList.remove("rope");
+            playerList.remove("planks");
+            playerList.add("ladder");
+            player1.setPlayerInventory(playerList);
+            FileManager.savePlayerItems(playerList);
+            GameEngine.sceneOneEnd();
+
+        } else if (scan.equals("no")){
+            System.out.println("Game Over. Press enter to continue...");
+            scanner.nextLine();
+            startMenu();
+        }
+        else{
+            System.out.println("Input not valid, enter yes or no");
+            sceneOneAction();
+        }
+        return sceneOnePass;
+    }
     static boolean sceneOneTransition(){
         boolean sceneOnePass = FileManager.sceneReader("sceneOnePassed");
         ArrayList<String> playerList = FileManager.getPlayerItems();
@@ -186,34 +214,12 @@ public class Input {
             System.out.println("Press Enter to continue...");
             scanner.nextLine();
             if (playerList.contains("rope") && playerList.contains("planks")) {
-                System.out.println("You noticed that your rope and planks could be combined!\n " +
-                        "You can create a ladder to get out!\n " +
-                        "Do you wish to combine the items to get out?");
-                String scan = scanner.nextLine().strip();
-                if (scan.equals("yes")) {
-                    sceneOnePass = true;
-                    player1.getPlayerInventory();
-                    playerList.remove("rope");
-                    playerList.remove("planks");
-                    playerList.add("ladder");
-                    player1.setPlayerInventory(playerList);
-                    FileManager.savePlayerItems(playerList);
-                    GameEngine.sceneOneEnd();
-
-                } else if (scan.equals("no")){
-                    System.out.println("Game Over. Press enter to continue...");
-                    scanner.nextLine();
-                    startMenu();
-                }
-                else{
-                    System.out.println("Input not valid, enter yes or no");
-                }
+                sceneOnePass = sceneOneAction();
             } else {
                 System.out.println();
                 System.out.println("With no items to help you, you and your friends are caught by security! You're grounded!");
                 System.out.println("Game Over. Press Enter to continue...");
                 scanner.nextLine();
-
             }
         }
         return sceneOnePass;
