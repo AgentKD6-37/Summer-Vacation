@@ -6,6 +6,7 @@ public class GameEngine {
     boolean sceneOnePassed = false;
 
     public void execute() {
+        FileManager.loadDefaults();
         if (Input.startMenu()) {
             introduction();
         }
