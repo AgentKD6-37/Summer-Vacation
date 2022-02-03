@@ -10,7 +10,7 @@ public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
     private static ArrayList<String> empty = new ArrayList<>();
-    private static Player player1;
+    private static Player player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
     private static final Clip clip = FileManager.getMusic(null);
 
 
@@ -26,7 +26,10 @@ public class Input {
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
             case "new game":
-                player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
+                player1.setPlayerInventory(empty);
+                player1.setPlayerName("default");
+                player1.setPlayerLocation("Player's House");
+                player1.setPlayerZone("Suburb");
                 playerCreator();
                 FileManager.loadDefaults();
                 newGame = true;
@@ -37,7 +40,10 @@ public class Input {
                 String location = (String) saveFile.get("location");
                 String zone = (String) saveFile.get("zone");
                 ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
-                player1 = Player.getInstance(name, location, zone, inventory);
+                player1.setPlayerInventory(inventory);
+                player1.setPlayerName(name);
+                player1.setPlayerLocation(location);
+                player1.setPlayerZone(zone);
                 break;
             case "quit":
                 System.exit(0);

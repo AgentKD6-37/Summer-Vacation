@@ -8,6 +8,7 @@ public class GameEngine {
 
 
     public void execute() {
+        FileManager.loadDefaults();
         if (Input.startMenu()) {
             introduction();
         }
