@@ -87,7 +87,6 @@ class Player {
         String tempLocation = FileManager.getNewLocation(playerZone, playerLocation, direction);
 
         if (tempLocation.equals("Off Map")){
-            System.out.println(tempLocation);
             System.out.println("You can't go that way!");
         }else { //success on move
 
