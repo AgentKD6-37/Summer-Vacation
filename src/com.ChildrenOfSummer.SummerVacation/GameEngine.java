@@ -11,17 +11,16 @@ public class GameEngine {
         FileManager.loadDefaults();
         if (Input.startMenu()) {
             introduction();
-        }
-        else{
+        } else {
             sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
         }
         sceneOnePassed = sceneOne();
-        if (sceneOnePassed == true){
+        if (sceneOnePassed == true) {
             sceneTwoPassed = sceneTwo();
-            if (sceneTwoPassed == true){
+            if (sceneTwoPassed == true) {
                 sceneThree();
             }
-        }else{
+        } else {
             execute();
         }
     }
@@ -31,58 +30,38 @@ public class GameEngine {
         System.out.println("\n");
     }
 
-//     At the airport
+    //     At the airport
     private boolean sceneOne() {
         /*
          * This is the first cutscene check, essentially it allows the game to run in the background by calling Input.inputCommandsLogic()
          * over and over again until the player location hits the required area. At that point it *SHOULD* trigger the scene-one.txt to play out.
          */
         boolean sceneOnePassed = false;
-        JSONObject saveFile;
-        String playerLocation;
-        do  {
-            Input.inputCommandsLogic();
-            saveFile = FileManager.loadGame();
-            playerLocation = (String) saveFile.get("location");
-        } while (!playerLocation.equals("Paine Field"));
-       return sceneOnePassed = Input.sceneOneTransition();
+        doWhile("Paine Field");
+        return sceneOnePassed = Input.sceneOneTransition();
     }
 
-    static void sceneOneEnd(){
+    static void sceneOneEnd() {
         FileManager.getAssetFile("scene-one-end.txt");
         FileManager.sceneWriter(true, "sceneOnePassed");
         sceneTwo();
     }
 
     static boolean sceneTwo() {
-        boolean sceneTwoPassed = false;
-        JSONObject saveFile;
-        String playerLocation;
-        do  {
-            Input.inputCommandsLogic();
-            saveFile = FileManager.loadGame();
-            playerLocation = (String) saveFile.get("location");
-        }while (!playerLocation.equals("Player's House"));{
-            FileManager.getAssetFile("scene-two.txt");
-            sceneTwoPassed = true;
-        }
+        boolean sceneTwoPassed;
+        doWhile("Player's House");
+        FileManager.getAssetFile("scene-two.txt");
+        sceneTwoPassed = true;
         FileManager.sceneWriter(true, "sceneTwoPassed");
         return sceneTwoPassed;
     }
 
-    static boolean sceneThree() {
+    boolean sceneThree() {
         System.out.println("Insert paragraph for scene three, SCENE THREE PLACEHOLDER");
-        boolean sceneThreePassed = false;
-        JSONObject saveFile;
-        String playerLocation;
-        do  {
-            Input.inputCommandsLogic();
-            saveFile = FileManager.loadGame();
-            playerLocation = (String) saveFile.get("location");
-        }while (!playerLocation.equals("Barn"));{
-            FileManager.getAssetFile("scene-three.txt");
+        boolean sceneThreePassed;
+        doWhile("Barn");
+            FileManager.getAssetFile("scene-three-placeholder.txt");
             sceneThreePassed = Input.sceneThree();
-        }
         FileManager.sceneWriter(true, "sceneThreePassed");
         return sceneThreePassed;
     }
@@ -106,4 +85,13 @@ public class GameEngine {
         System.out.println("work in progress");
     }
 
+    private static void doWhile(String location) {
+        JSONObject saveFile;
+        String playerLocation;
+        do {
+            Input.inputCommandsLogic();
+            saveFile = FileManager.loadGame();
+            playerLocation = (String) saveFile.get("location");
+        } while (!playerLocation.equals(location));
+    }
 }
