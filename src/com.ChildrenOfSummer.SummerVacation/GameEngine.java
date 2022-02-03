@@ -61,7 +61,7 @@ public class GameEngine {
     boolean sceneThree() {
         boolean sceneThreePassed;
         doWhile("Barn");
-        FileManager.getAssetFile("scene-three-placeholder.txt");
+        FileManager.getAssetFile("scene-three.txt");
         sceneThreePassed = Input.sceneThree();
         FileManager.sceneWriter(true, "sceneThreePassed");
         return sceneThreePassed;
