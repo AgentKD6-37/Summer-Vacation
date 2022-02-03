@@ -186,15 +186,21 @@ public class Input {
                 String scan = scanner.nextLine().strip();
                 if (scan.equals("yes")) {
                     sceneOnePass = true;
+                    player1.getPlayerInventory();
                     playerList.remove("rope");
                     playerList.remove("planks");
                     playerList.add("ladder");
+                    player1.setPlayerInventory(playerList);
                     FileManager.savePlayerItems(playerList);
                     GameEngine.sceneOneEnd();
-                } else {
+
+                } else if (scan.equals("no")){
                     System.out.println("Game Over. Press enter to continue...");
                     scanner.nextLine();
                     startMenu();
+                }
+                else{
+                    System.out.println("Input not valid, enter yes or no");
                 }
             } else {
                 System.out.println();
@@ -205,5 +211,37 @@ public class Input {
             }
         }
         return sceneOnePass;
+    }
+
+    static boolean sceneThree(){
+        boolean sceneThreePass = FileManager.sceneReader("sceneTwoPassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        if (player1.getPlayerLocation().equals("Barn") && !sceneThreePass) {
+            FileManager.getAssetFile("scene-two-end (barn scene).txt");
+            if (playerList.contains("ladder") && playerList.contains("rock")) {
+                System.out.println("You can climb up the barn using the ladder. Do you want to?");
+                String scan = scanner.nextLine().strip();
+                if (scan.equals("yes")) {
+                    sceneThreePass = true;
+                    player1.getPlayerInventory();
+                    playerList.remove("ladder");
+                    player1.setPlayerInventory(playerList);
+                    FileManager.savePlayerItems(playerList);
+                    GameEngine.sceneThreeEnd();
+                } else if (scan.equals("no")){
+                    System.out.println("You got caught! Game Over. Press enter to continue");
+                    scanner.nextLine();
+                    startMenu();
+                }
+                else{
+                    System.out.println("Input not valid, enter yes or no");
+                }
+            } else {
+                System.out.println("Game Over. Press enter to continue");
+                scanner.nextLine();
+                startMenu();
+            }
+        }
+        return sceneThreePass;
     }
 }

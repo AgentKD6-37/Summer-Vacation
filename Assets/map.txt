@@ -1,4 +1,4 @@
-island-------river-------kory------------sara--------------dewey----------new house north------new north east
+island-------river-------kory------------sara--------------dewey----------new house north------new house north east
   |            |           |                |                |                 |               |
 woods west---woods east----lonely guy---player's house--janie's house---new house south---waste pile
   |           |            |                |                 |                |               |
