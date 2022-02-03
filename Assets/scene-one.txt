@@ -1,8 +1,5 @@
- You wait at a broken fence towards the back of the airfield for your friends. Once everyone has gathered, Sara nods to you to move in.
- You start exploring hangars until you stumble across an old airplane.
- You pretend to be a pilot while your friends explore the plane. Sara calls your name...
+ At Paine Field you find an abandoned airplane in one of the old hangars. Inside is a dirty brown leather suitcase!
 
- Inside one of the compartments was an old suitcase!
 
  You open the battered leather suitcase while your friends circle around to see.
  Inside, you find some yellowed paper documents with a young man’s face and some text you don’t recognize.
@@ -13,6 +10,3 @@
 
  The front door to the hangar is blocked off by the car and you can make out an open window in the back of the building.
  You search around for anything to help you climb out...
-
-**NEW TASK**
-ESCAPE

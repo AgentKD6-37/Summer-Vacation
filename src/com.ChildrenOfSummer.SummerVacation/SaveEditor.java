@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 
 /*
- * can import, read, write, or create files in txt or JSON
+ *File manager can import, read, write, or create files
  */
 
-public class FileManager {
+public class SaveEditor {
 
     private static String locationsJsonPath = "Assets/Locations.JSON";
     private static String npcsJsonPath = "Assets/NPCs.JSON";
