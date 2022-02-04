@@ -1,4 +1,4 @@
- =======================================================================================================================
+========================================================================================================================
  You wait at a broken fence towards the back of the airfield for your friends. Once everyone has gathered, Sara nods to
  you to move in.
  You start exploring hangars until you stumble across an old airplane.
@@ -13,7 +13,7 @@
  The sound of a car pulling up outside breaks the spell of the strange suitcase.
  You need to escape!
 
- The front door to the hangar is blocked off by the car and you can make out an open window in the back of the building.
+ The front door to the hangar is blocked off by the car, and you can make out an open window in the back of the building.
  You search around for anything to help you climb out...
 
 **NEW TASK**
