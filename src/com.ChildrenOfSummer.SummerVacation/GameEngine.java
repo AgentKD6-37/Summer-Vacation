@@ -68,7 +68,7 @@ public class GameEngine {
         return  Input.sceneThree();
     }
 
-    private static boolean sceneFour() {
+    static boolean sceneFour() {
         boolean sceneFourPassed;
         doWhile("Old House South");
         FileManager.getAssetFile("scene-four.txt");

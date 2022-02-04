@@ -109,6 +109,9 @@ public class Input {
                 System.out.println("\nYour current location is " + player1.getPlayerLocation());
                 inputCommandsLogic();
                 break;
+            case "inventory":
+                System.out.println("Your inventory has: " + playerList);
+                break;
             case "go":
                 boolean didMove = false;
                 for (Directions dir : Directions.values()) {
@@ -129,6 +132,7 @@ public class Input {
                     FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
                     FileManager.savePlayerItems(playerList);
                     player1.setPlayerInventory(playerList);
+                    System.out.println("Your inventory has: " + playerList);
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
@@ -191,9 +195,9 @@ public class Input {
                 System.out.println("I didn't understand that command. for help type help.");
                 inputCommandsLogic();
         }
-        if (!playerList.isEmpty()) {
-            System.out.println("Your inventory has: " + playerList);
-        }
+//        if (!playerList.isEmpty()) {
+//            System.out.println("Your inventory has: " + playerList);
+//        }
        //"recursion" happens in the while loop of the scene
     }
 
@@ -256,13 +260,9 @@ public class Input {
                 System.out.println("You can throw a rock to escape. Do you want to?");
                 String scan = scanner.nextLine().strip().toLowerCase();
                 if (scan.equals("yes")) {
-                    sceneThreePass = true;
-                    player1.getPlayerInventory();
-                    playerList.remove("rock");
-                    player1.setPlayerInventory(playerList);
-                    FileManager.savePlayerItems(playerList);
+                    System.out.println("You've escaped from the farmer.");
                     FileManager.getAssetFile("scene-three-end.txt");
-                    inputCommandsLogic();
+                    sceneThreePass = true;
                 } else if (scan.equals("no")){
                     System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
@@ -283,6 +283,10 @@ public class Input {
         else if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
             System.out.println("You're at the Hay Field. You should probably go to Paine Field first");
         }
+        player1.getPlayerInventory();
+        playerList.remove("rock");
+        player1.setPlayerInventory(playerList);
+        FileManager.savePlayerItems(playerList);
         return sceneThreePass;
     }
 
