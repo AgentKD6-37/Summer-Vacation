@@ -95,7 +95,7 @@ public class Input {
             }
             System.out.println("|");
         }
-        System.out.print("What would you like to do?");
+        System.out.print("\nWhat would you like to do?");
 
         ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
@@ -249,19 +249,19 @@ public class Input {
 
         ArrayList<String> playerList = FileManager.getPlayerItems();
         System.out.println(player1.getPlayerLocation());
-        System.out.println(sceneThreePass);
 
-        if (player1.getPlayerLocation().equals("Barn") && sceneThreePass) {
+        if (player1.getPlayerLocation().equals("Hay Field") && sceneThreePass) {
             if (playerList.contains("rock")) {
-                System.out.println("You can climb up the barn using the ladder. Do you want to?");
+                System.out.println("You can throw a rock to escape. Do you want to?");
                 String scan = scanner.nextLine().strip().toLowerCase();
                 if (scan.equals("yes")) {
                     sceneThreePass = true;
                     player1.getPlayerInventory();
-                    playerList.remove("ladder");
+                    playerList.remove("rock");
                     player1.setPlayerInventory(playerList);
                     FileManager.savePlayerItems(playerList);
-//                    GameEngine.sceneThreeEnd();
+                    FileManager.getAssetFile("scene-three-end.txt");
+                    inputCommandsLogic();
                 } else if (scan.equals("no")){
                     System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
@@ -271,13 +271,16 @@ public class Input {
                     System.out.println("Input not valid, enter yes or no");
                 }
             } else {
-                System.out.println("Game Over. Press enter to continue");
+                System.out.println("You reached into your inventory to find something to throw at the farmer" +
+                        "but there's nothing there! You've been caught!");
+                System.out.println("Game Over. You should explore the map to find something" +
+                        "to throw at the farmer to distract him. A rock, maybe? Press enter to continue");
                 scanner.nextLine();
                 startMenu();
             }
         }
-        else{
-            System.out.println("stopper 6");
+        else if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
+            System.out.println("You're at the Hay Field. You should probably go to Paine Field first");
         }
         return sceneThreePass;
     }

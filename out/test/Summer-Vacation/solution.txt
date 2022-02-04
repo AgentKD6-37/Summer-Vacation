@@ -1,0 +1,20 @@
+go east
+
+go east
+
+go east
+
+get planks
+go south
+
+get rope
+yes
+go west
+
+go west
+
+go west
+
+go north
+
+go north
