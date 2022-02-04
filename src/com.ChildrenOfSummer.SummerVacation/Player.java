@@ -3,6 +3,7 @@ package com.ChildrenOfSummer.SummerVacation;
 import org.json.simple.JSONArray;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -98,7 +99,6 @@ class Player {
             JSONArray NPCname= FileManager.getNPCsName(playerLocation);
             ArrayList<String> npcNames = (ArrayList<String>) NPCname;
             System.out.println("You move " + direction + ". Press Enter to continue...");
-            System.out.print("\033[H\033[2J");
             scanner.nextLine();
             switch (playerZone){
                 case "Wild Field":

@@ -2,10 +2,18 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
+import java.io.File;
+
 public class GameEngine {
-    static boolean sceneOnePassed = false;
-    static boolean sceneTwoPassed = false;
-    static boolean sceneThreePassed = false;
+    static boolean sceneOnePassed;
+    static boolean sceneTwoPassed;
+    static boolean sceneThreePassed;
+    static boolean sceneFourPassed;
+    static boolean sceneFivePassed;
+    static boolean sceneSixPassed;
+    static boolean sceneSevenPassed;
+    static boolean sceneEightPassed;
+    static boolean sceneNinePassed;
 
 
     public static void execute() {
@@ -17,15 +25,41 @@ public class GameEngine {
             sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
             sceneTwoPassed = FileManager.sceneReader("sceneTwoPassed");
             sceneThreePassed = FileManager.sceneReader("sceneThreePassed");
+            sceneFourPassed = FileManager.sceneReader("sceneFourPassed");
+            sceneFivePassed = FileManager.sceneReader("sceneFivePassed");
+            sceneSixPassed = FileManager.sceneReader("sceneSixPassed");
+            sceneSevenPassed = FileManager.sceneReader("sceneSevenPassed");
+            sceneEightPassed = FileManager.sceneReader("sceneEightPassed");
+            sceneNinePassed = FileManager.sceneReader("sceneNinePassed");
+
         }
-        if (sceneOnePassed == false){
+        if (!sceneOnePassed){
             sceneOnePassed = sceneOne();
         }
-        if (sceneTwoPassed == false){
+        if (!sceneTwoPassed){
             sceneTwoPassed = sceneTwo();
         }
-        if (sceneThreePassed == false){
+        if (!sceneThreePassed){
             sceneThreePassed = sceneThree();
+        }
+        if (!sceneFourPassed){
+            sceneFourPassed = sceneFour();
+        }
+        if (!sceneFivePassed){
+            sceneFivePassed = sceneFive();
+        }
+        if (!sceneSixPassed){
+            sceneSixPassed = sceneSix();
+        }
+        if (!sceneSevenPassed){
+            sceneSevenPassed = sceneSeven();
+        }
+        if (!sceneEightPassed){
+            sceneEightPassed = sceneEight();
+        }
+
+        if (!sceneNinePassed){
+            sceneNinePassed = sceneNine();
         }
     }
 
@@ -57,28 +91,44 @@ public class GameEngine {
 
     static boolean sceneThree() {
         boolean sceneThreePassed;
-        doWhile("Barn");
+        doWhile("Hay Field");
         FileManager.getAssetFile("scene-three.txt");
         FileManager.sceneWriter(true, "sceneThreePassed");
-        System.out.println("STOPPER 2");
         sceneThreePassed = Input.sceneThree();
         return sceneThreePassed = Input.sceneThree();
     }
 
-    private void sceneFour() {
+    private static boolean sceneFour() {
+
         System.out.println("work in progress");
+        doWhile("Island");
+        return false;
     }
 
-    private void sceneFive() {
+    private static boolean sceneFive() {
         System.out.println("work in progress");
+        return false;
     }
 
-    private void sceneSix() {
+    private static boolean sceneSix() {
         System.out.println("work in progress");
+        doWhile("Sara's House");
+        return false;
     }
 
-    private void sceneSeven() {
-        System.out.println("work in progress");
+    private static boolean sceneSeven() {
+        doWhile("Barn");
+        return false;
+    }
+
+    private static boolean sceneEight() {
+        doWhile("Player's House");
+        return false;
+    }
+
+    private static boolean sceneNine() {
+        doWhile("New House Northeast");
+        return false;
     }
 
     private static void doWhile(String location) {
