@@ -99,14 +99,16 @@ public class GameEngine {
     }
 
     private static boolean sceneFour() {
-
-        System.out.println("work in progress");
+        boolean sceneFourPassed;
         doWhile("Old House South");
-        return false;
+        FileManager.getAssetFile("scene-four.txt");
+        sceneFourPassed = true;
+        FileManager.sceneWriter(true,"sceneFourPassed");
+        return sceneFourPassed;
     }
 
     private static boolean sceneFive() {
-        System.out.println("work in progress");
+        doWhile("River");
         return false;
     }
 
