@@ -5,5 +5,6 @@ Enter 'drop' and the item to drop item.
 Enter 'use' and the item to use item.
 Enter 'talk [NPC NAME]' to talk to NPCs in the area.
 Enter 'music on' or 'music off' to toggle music.
+Enter 'inventory' to see player inventory.
 Enter 'quit game' to quit the game.
 
