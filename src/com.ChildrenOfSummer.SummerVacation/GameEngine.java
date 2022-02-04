@@ -94,11 +94,10 @@ public class GameEngine {
         doWhile("Hay Field");
         FileManager.getAssetFile("scene-three.txt");
         FileManager.sceneWriter(true, "sceneThreePassed");
-        sceneThreePassed = Input.sceneThree();
         return sceneThreePassed = Input.sceneThree();
     }
 
-    private static boolean sceneFour() {
+    static boolean sceneFour() {
         boolean sceneFourPassed;
         doWhile("Old House South");
         FileManager.getAssetFile("scene-four.txt");

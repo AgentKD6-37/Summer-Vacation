@@ -89,7 +89,7 @@ public class Input {
          ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
          ArrayList<String> playerList = FileManager.getPlayerItems();
         if (!locationList.isEmpty()) {
-            System.out.println("You see the following items on the ground: ");
+            System.out.println("\nYou see the following items on the ground: ");
             for (String item : locationList) {
                 System.out.print("|" + item);
             }
@@ -255,13 +255,9 @@ public class Input {
                 System.out.println("You can throw a rock to escape. Do you want to?");
                 String scan = scanner.nextLine().strip().toLowerCase();
                 if (scan.equals("yes")) {
-                    sceneThreePass = true;
-                    player1.getPlayerInventory();
-                    playerList.remove("rock");
-                    player1.setPlayerInventory(playerList);
-                    FileManager.savePlayerItems(playerList);
+                    System.out.println("You've escaped from the farmer.");
                     FileManager.getAssetFile("scene-three-end.txt");
-                    inputCommandsLogic();
+                    sceneThreePass = true;
                 } else if (scan.equals("no")){
                     System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
@@ -282,6 +278,10 @@ public class Input {
         else if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
             System.out.println("You're at the Hay Field. You should probably go to Paine Field first");
         }
+        player1.getPlayerInventory();
+        playerList.remove("rock");
+        player1.setPlayerInventory(playerList);
+        FileManager.savePlayerItems(playerList);
         return sceneThreePass;
     }
 
