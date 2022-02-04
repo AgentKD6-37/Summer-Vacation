@@ -101,7 +101,7 @@ public class GameEngine {
     private static boolean sceneFour() {
 
         System.out.println("work in progress");
-        doWhile("Island");
+        doWhile("Old House South");
         return false;
     }
 
