@@ -4,6 +4,7 @@ import com.ChildrenOfSummer.SummerVacation.Util.Directions;
 import org.json.simple.JSONObject;
 
 import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -89,7 +90,7 @@ public class Input {
          ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
          ArrayList<String> playerList = FileManager.getPlayerItems();
         if (!locationList.isEmpty()) {
-            System.out.println("You see the following items on the ground: ");
+            System.out.println("You see the following items lying around: ");
             for (String item : locationList) {
                 System.out.print("|" + item);
             }
@@ -285,5 +286,87 @@ public class Input {
         return sceneThreePass;
     }
 
-
+    static boolean sceneFive(){
+        boolean sceneFivePass = FileManager.sceneReader("sceneFivePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        System.out.println(player1.getPlayerLocation());
+        if (playerList.contains("raft")&& playerList.contains("paddle") && playerList.contains("shovel") && !sceneFivePass) {
+            FileManager.getAssetFile("scene-five.txt");
+            System.out.println("Press Enter to continue...");
+            scanner.nextLine();
+            boolean rapidsComplete = false;
+            int raftHP = 5;
+            while (raftHP > 0 && !rapidsComplete) {
+                System.out.println("Rapids rush up to meet you in the middle of the river!\n Which way will you paddle to avoid them?");
+                System.out.print("type 'paddle left' or 'paddle right': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                boolean complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "paddle left":
+                            System.out.println("You paddle left. A tree branch in the river snags your raft! It takes some damage.");
+                            raftHP--;
+                            complete = true;
+                            break;
+                        case "paddle right":
+                            System.out.println("You paddle right. A massive boulder stops your progress... \n After dislodging your raft you are free.");
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now!");
+                    }
+                }
+                System.out.println("The river curves left\n You need to choose to hug the inner bank of center the raft in the river.");
+                System.out.print("type 'hug the inner bank' or 'center the raft': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "hug the inner bank":
+                            System.out.println("A rock in the shallow inner bank scrapes your raft! ");
+                            raftHP-=2;
+                            complete = true;
+                            break;
+                        case "center the raft":
+                            System.out.println("The raft hits no obstacles as you glide around the bend.");
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now!");
+                    }
+                }
+                System.out.println("Ahead, thorny branches almost cover the water.\n They will snag you unless you find a way to avoid them!");
+                System.out.print("type 'duck under branches' or 'use paddle on branches': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "duck under branches":
+                            System.out.println("The branches puncture holes in your raft!");
+                            raftHP-=3;
+                            complete = true;
+                            break;
+                        case "use paddle on branches":
+                            System.out.println("You push the thorny branches out of the way of your raft.");
+                            rapidsComplete = true;
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now!");
+                    }
+                }
+            }
+            if(0 >= raftHP) {
+                System.out.println("The raft punctures dumping you and Sara into the water!\nYou didn't reach the island.\n Game Over! Press enter to continue...");
+                scanner.nextLine();
+                startMenu();
+            }
+            FileManager.getAssetFile("scene-five-end.txt");
+            sceneFivePass = true;
+        }else{
+            sceneFivePass = false;
+        }
+        return sceneFivePass;
+    }
 }
+
