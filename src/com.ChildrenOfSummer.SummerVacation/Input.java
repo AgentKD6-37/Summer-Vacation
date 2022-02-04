@@ -56,6 +56,15 @@ public class Input {
         return newGame;
     }
 
+    static void introduction() {
+        FileManager.getAssetFile("introduction.txt");
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
+        System.out.print("\033[H\033[2J");
+        FileManager.getAssetFile("zone2.txt");
+        FileManager.getAssetFile("game-start.txt");
+    }
+
 
     static void playerCreator(){
         /*
@@ -91,13 +100,7 @@ public class Input {
         ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
         String verb = answerWords[0];
-        String noun1 = "out of bounds saver";
-        if (answerWords.length > 1) {
-            noun1 = answerWords[1]; //ONLY USED FOR COMBINING
-        }
         String noun2 = answerWords[answerWords.length - 1];
-
-
 
         switch (verb) {
             case "map":
@@ -169,7 +172,20 @@ public class Input {
                 break;
             case "quit":
                 FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
-                System.exit(0);
+                System.out.println("Press 1 to quit to menu or 2 to exit game:");
+                int choice = scanner.nextInt();
+                switch (choice){
+                    case 2:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        GameEngine.execute();
+                        break;
+                    default:
+                        System.out.println("Invalid choice");
+                        inputCommandsLogic();
+                }
+
             default:
                 System.out.println("I didn't understand that command. for help type help.");
                 inputCommandsLogic();
@@ -222,6 +238,7 @@ public class Input {
                 System.out.println("With no items to help you, you and your friends are caught by security! You're grounded!");
                 System.out.println("Game Over. Press Enter to continue...");
                 scanner.nextLine();
+                GameEngine.execute();
             }
         }
         return sceneOnePass;

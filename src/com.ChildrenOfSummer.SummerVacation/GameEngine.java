@@ -3,15 +3,16 @@ package com.ChildrenOfSummer.SummerVacation;
 import org.json.simple.JSONObject;
 
 public class GameEngine {
-    boolean sceneOnePassed = false;
-    boolean sceneTwoPassed = false;
-    boolean sceneThreePassed = false;
+    static boolean sceneOnePassed = false;
+    static boolean sceneTwoPassed = false;
+    static boolean sceneThreePassed = false;
 
 
-    public void execute() {
+    public static void execute() {
         FileManager.loadDefaults();
         if (Input.startMenu()) {
-            introduction();
+            Input.introduction();
+
         } else {
             sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
             sceneTwoPassed = FileManager.sceneReader("sceneTwoPassed");
@@ -28,13 +29,9 @@ public class GameEngine {
         }
     }
 
-    private void introduction() {
-        FileManager.getAssetFile("introduction.txt");
-        System.out.println("\n");
-    }
 
     //     At the airport
-    private boolean sceneOne() {
+    private static boolean sceneOne() {
         /*
          * This is the first cutscene check, essentially it allows the game to run in the background by calling Input.inputCommandsLogic()
          * over and over again until the player location hits the required area. At that point it *SHOULD* trigger the scene-one.txt to play out.
@@ -58,7 +55,7 @@ public class GameEngine {
         return sceneTwoPassed;
     }
 
-    boolean sceneThree() {
+    static boolean sceneThree() {
         boolean sceneThreePassed;
         doWhile("Barn");
         FileManager.getAssetFile("scene-three.txt");
