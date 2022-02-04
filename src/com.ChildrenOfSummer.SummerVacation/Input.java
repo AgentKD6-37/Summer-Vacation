@@ -108,6 +108,9 @@ public class Input {
                 System.out.println("\nYour current location is " + player1.getPlayerLocation());
                 inputCommandsLogic();
                 break;
+            case "inventory":
+                System.out.println("Your inventory has: " + playerList);
+                break;
             case "go":
                 boolean didMove = false;
                 for (Directions dir : Directions.values()) {
@@ -128,6 +131,7 @@ public class Input {
                     FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
                     FileManager.savePlayerItems(playerList);
                     player1.setPlayerInventory(playerList);
+                    System.out.println("Your inventory has: " + playerList);
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
@@ -190,9 +194,9 @@ public class Input {
                 System.out.println("I didn't understand that command. for help type help.");
                 inputCommandsLogic();
         }
-        if (!playerList.isEmpty()) {
-            System.out.println("Your inventory has: " + playerList);
-        }
+//        if (!playerList.isEmpty()) {
+//            System.out.println("Your inventory has: " + playerList);
+//        }
        //"recursion" happens in the while loop of the scene
     }
 
