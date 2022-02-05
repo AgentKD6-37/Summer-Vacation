@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class FileManager {
 
-    private static String locationsJsonPath = "Assets/Locations.JSON";
-    private static String npcsJsonPath = "Assets/NPCs.JSON";
-    private static String playerJsonPath = "Assets/Player.JSON";
-    private static String locationItemsJsonPath = "Assets/Location_items.JSON";
-    private static String locationNpcsJsonPath = "Assets/Location_NPCs.JSON";
+    private static String locationsJsonPath = "Assets/json/Locations.JSON";
+    private static String npcsJsonPath = "Assets/json/NPCs.JSON";
+    private static String playerJsonPath = "Assets/json/Player.JSON";
+    private static String locationItemsJsonPath = "Assets/json/Location_items.JSON";
+    private static String locationNpcsJsonPath = "Assets/json/Location_NPCs.JSON";
     private static JSONParser jsonParser = new JSONParser();
     private static String defaultLocationItemsJsonPath = "Assets/defaults/Location_items_default.JSON";
     private static String defaultLocationNpcsJsonPath = "Assets/defaults/Location_NPCs_default.JSON";
@@ -37,6 +37,17 @@ public class FileManager {
     public static void getAssetFile(String fileName) {
         try {
             String art = "Assets/" + fileName;
+            var out = new BufferedOutputStream(System.out);
+            Files.copy(Path.of(art), out);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getZoneArtFile(String fileName) {
+        try {
+            String art = "Assets/zone-art/" + fileName;
             var out = new BufferedOutputStream(System.out);
             Files.copy(Path.of(art), out);
             out.flush();

@@ -102,22 +102,22 @@ class Player {
             scanner.nextLine();
             switch (playerZone){
                 case "Wild Field":
-                    FileManager.getAssetFile("zone1.txt");
+                    FileManager.getZoneArtFile("zone1.txt");
                     break;
                 case "Suburb":
-                    FileManager.getAssetFile("zone2.txt");
+                    FileManager.getZoneArtFile("zone2.txt");
                     break;
                 case "New Suburb":
-                    FileManager.getAssetFile("zone3.txt");
+                    FileManager.getZoneArtFile("zone3.txt");
                     break;
                 case "Farm":
-                    FileManager.getAssetFile("zone4.txt");
+                    FileManager.getZoneArtFile("zone4.txt");
                     break;
                 case "Town Center":
-                    FileManager.getAssetFile("zone5.txt");
+                    FileManager.getZoneArtFile("zone5.txt");
                     break;
                 case "Old Town":
-                    FileManager.getAssetFile("zone6.txt");
+                    FileManager.getZoneArtFile("zone6.txt");
                     break;
             }
             FileManager.getLocationDescription(playerLocation, playerZone);

@@ -62,7 +62,7 @@ public class Input {
         System.out.println("Press Enter to continue...");
         scanner.nextLine();
         System.out.print("\033[H\033[2J");
-        FileManager.getAssetFile("zone2.txt");
+        FileManager.getZoneArtFile("zone2.txt");
         FileManager.getAssetFile("game-start.txt");
     }
 
@@ -194,11 +194,9 @@ public class Input {
             default:
                 System.out.println("I didn't understand that command. for help type help.");
                 inputCommandsLogic();
+
         }
-//        if (!playerList.isEmpty()) {
-//            System.out.println("Your inventory has: " + playerList);
-//        }
-       //"recursion" happens in the while loop of the scene
+        FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
     }
 
     static boolean sceneOneAction() {
