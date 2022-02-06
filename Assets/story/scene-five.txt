@@ -1,0 +1,15 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: You make your way over to your friends, who are waiting for you by the river.                                      ::
+::                                                                                                                    ::
+:: "Got the stuff?" asks Dewey, looking up from playing with a stick in the dirt.                                     ::
+::                                                                                                                    ::
+:: "Got enough to go!" You reply.                                                                                     ::
+::                                                                                                                    ::
+:: You take turns inflating the cheap raft you found, and look out over the river. The river rapids swirl below.      ::
+:: You scramble down the banks of the river and hop in the raft with Sara.                                            ::
+::                                                                                                                    ::
+:: Once you push off from the riverbank, you realize you may have made a mistake!                                     ::
+::                                                                                                                    ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                                     **New Task**
+                                                    GET TO ISLAND

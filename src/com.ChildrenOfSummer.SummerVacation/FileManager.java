@@ -36,7 +36,7 @@ public class FileManager {
 
     public static void getAssetFile(String fileName) {
         try {
-            String art = "Assets/" + fileName;
+            String art = "Assets/story/" + fileName;
             var out = new BufferedOutputStream(System.out);
             Files.copy(Path.of(art), out);
             out.flush();
@@ -298,7 +298,7 @@ public class FileManager {
 
     public static Clip getMusic(Clip clip) {
 
-        String AudioFile = "Assets/sample1.wav";
+        String AudioFile = "Assets/summervacation.wav";
         try {
             File file = new File(AudioFile);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);

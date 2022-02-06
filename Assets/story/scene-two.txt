@@ -1,0 +1,32 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::                           _                                                                                        ::
+::                         _|=|__________                                                                             ::
+::                        /              \                                                                            ::
+::                       /                \                                                                           ::
+::                      /__________________\                                                                          ::
+::                       ||  || /--\ ||  ||                                                                           ::
+::                       ||[]|| | .| ||[]||                                                                           ::
+::                     ()||__||_|__|_||__||()           \ U /    S     K       |__                                    ::
+::                    ( )|-|-|-|====|-|-|-|( ) .          |  	/|\   /|\    D/                                       ::
+::                    ^^^^^^^^^^====^^^^^^^^^^^|         / \    / \   / \   / )                                       ::
+::                ^^^^^^^^^^^^^^==== ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                ::
+::              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                              ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Once you are safe, You all examine the documents again.                                                            ::
+::                                                                                                                    ::
+:: "Is this an obituary?" Kory holds up an old newspaper clipping.                                                    ::
+:: Unfortunately you can't understand the language it was written in.                                                 ::
+::                                                                                                                    ::
+:: "I think these are some sort of deeds," says Sara, pointing to a strange map.                                      ::
+::                                                                                                                    ::
+:: "This has to be the Farmer's plane then right?" she asks...                                                        ::
+::                                                                                                                    ::
+:: No one says anything. Finally, You break the silence.                                                              ::
+::                                                                                                                    ::
+:: "We should spy on him. Tonight. Meet me at the barn we'll see what the old man is up to."                          ::
+::                                                                                                                    ::
+:: Your friends nod, and then leave to go prepare for your new mission...                                             ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                                     **New Task**
+                                                    GO TO HAY FIELD
+

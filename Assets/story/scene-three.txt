@@ -1,0 +1,37 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::                                           S              \|U|/         "" D ""         |_"K"_|                     ::
+::                                       _(____)_           (o o)         ^-O-O-^         (O) (o)                     ::
+::                               ----ooO_(_o__o_)_Ooo----ooO-(_)-Ooo----ooO--U--Ooo----OOO--(_)--OOOo---              ::
+::                                          ,,      ,,       ,\\//,            ,,      ,,                             ::
+::                                        ,\\//,  ,\\//,    ,\\\///,   ,,    ,\\//,  ,\\//,                           ::
+::                                       ,\\\///,,\\\///,   \\\\//// ,\\//, ,\\\///,,\\\///,                          ::
+::                        +&-            \\\\////\\\\////    \\\/// ,\\\///,\\\\////\\\\////                          ::
+::                     _.-^-._    .--.    \\\///  \\\///     ###### \\\\//// \\\///  \\\///                           ::
+::                  .-'   _   '-. |__|    ######  ######    ////\\\\ \\\///  ######  ######                           ::
+::                 /     |_|     \|  |    ///\\\ ////\\\\  /////\\\\\###### ////\\\\////\\\\                          ::
+::                /               \  |                                                                                ::
+::               /|     _____     |\ |                             /\\      _____                                     ::
+::                |    |==|==|    |  |     _ F      _-------- _   /  \\____/__|__\__                                  ::
+::|---|---|---|---|    |--|--|    |  |      / \   /--[xxxxxxxx]- /   |____     |____\                                 ::
+::|---|---|---|---|    |==|==|    |  |     | \    ==(o)-----(o)==    `(o)-------(o)=”                                 ::
+::^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Sneaking out of your house took time, and you are the last one to arrive at the field.                             ::
+::                                                                                                                    ::
+:: "Anything yet?" You ask Sara, who is perched on top of a hay bale with some Army surplus binoculars.               ::
+:: "No. He hasn't even-  Wait! There he is!"                                                                          ::
+::                                                                                                                    ::
+:: You can barely make out the figure of an old man, dragging a large sack of *something* towards the barn.           ::
+:: As you watch him pull and stumble closer to the barn doors, Dewey gets the group's attention.                      ::
+::                                                                                                                    ::
+:: "Hey, I think I'm allergic to hay you guys..." Dewey makes a weird face, and, at the worst possible moment...      ::
+:: sneezes!                                                                                                           ::
+::                                                                                                                    ::
+:: "Who's out there!?" Farmer Augustus calls, pulling a flashlight from his over-alls and                             ::
+:: flashing it in your direction. "Get out of my fields!"                                                             ::
+::                                                                                                                    ::
+:: If you don't do something fast, everyone will be caught!                                                           ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
