@@ -23,11 +23,10 @@ Game written in Java using the JSON.Simple library for data manipulation.
 ## Contributors
 [Michael](https://github.com/AgentKD6-37) ||[Fan](https://github.com/fanwu513)|| [Zi-Cheng](https://github.com/thrashghost)
 
-## Release Version
-beta 1.1 
+>## Release Version
+>Build 1.3
 
-Java runtime environment is required. Dowload it here:
-https://www.java.com/en/
+Java runtime environment is required. [Dowload it here](https://www.java.com/en/)
 
 ```Installation Instructions:
 1. Download the .zip file
