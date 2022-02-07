@@ -21,7 +21,7 @@ Game written in Java using the JSON.Simple library for data manipulation.
    
 
 ## Contributors
-[Michael](https://github.com/AgentKD6-37) ||[Fan](https://github.com/fanwu513)|| [Zi-Cheng](https://github.com/thrashghost)
+[Michael](https://github.com/AgentKD6-37) ||[Fan](https://github.com/fanwu513)|| [Zicheng Li](https://github.com/thrashghost)
 
 >## Release Version
 >Build 1.3
