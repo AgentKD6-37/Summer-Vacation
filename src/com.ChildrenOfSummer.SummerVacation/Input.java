@@ -261,6 +261,7 @@ public class Input {
                     System.out.println("You've escaped from the farmer.");
                     FileManager.getAssetFile("scene-three-end.txt");
                     sceneThreePass = true;
+                    FileManager.sceneWriter(true, "SceneThreePass");
                 } else if (scan.equals("no")){
                     System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
@@ -365,6 +366,7 @@ public class Input {
             }
             FileManager.getAssetFile("scene-five-end.txt");
             sceneFivePass = true;
+            FileManager.sceneWriter(true, "sceneFivePassed");
         }else{
             sceneFivePass = false;
         }

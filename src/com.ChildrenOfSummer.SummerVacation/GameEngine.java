@@ -64,7 +64,6 @@ public class GameEngine {
     static boolean sceneThree() {
         doWhile("Hay Field");
         FileManager.getAssetFile("scene-three.txt");
-        FileManager.sceneWriter(true, "sceneThreePassed");
         return  Input.sceneThree();
     }
 
