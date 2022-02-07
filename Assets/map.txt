@@ -1,7 +1,0 @@
-island-------river-------kory------------sara--------------dewey----------new house north------new north east
-  |            |           |                |                |                 |               |
-woods west---woods east----lonely guy---player's house--janie's house---new house south---waste pile
-  |           |            |                |                 |                |               |
-corn---------hay-------fast journey-----dollar store------angus queen-------old house north---warehouse
-  |           |               |              |              |                   |               |
-farmhouse----barn---------bill's produce---school-------beth's treats-------old house south---paine field

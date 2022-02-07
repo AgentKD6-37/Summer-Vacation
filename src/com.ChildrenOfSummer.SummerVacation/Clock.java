@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 class Clock {
+    //planned feature class that did not make it into production
 
     private static int NEXTDAYCOUNTER;
     private static int THREEHOURCOUNTER;

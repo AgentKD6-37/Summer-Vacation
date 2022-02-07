@@ -2,82 +2,87 @@ package com.ChildrenOfSummer.SummerVacation;
 
 import org.json.simple.JSONObject;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class GameEngine {
-    boolean sceneOnePassed = false;
+    static boolean sceneOnePassed;
+    static boolean sceneTwoPassed;
+    static boolean sceneThreePassed;
+    static boolean sceneFourPassed;
+    static boolean sceneFivePassed;
 
-    public void execute() {
+    public static void execute() {
+        FileManager.loadDefaults();
         if (Input.startMenu()) {
-            introduction();
+            Input.introduction();
+
+        } else {
+            sceneOnePassed = FileManager.sceneReader("sceneOnePassed");
+            sceneTwoPassed = FileManager.sceneReader("sceneTwoPassed");
+            sceneThreePassed = FileManager.sceneReader("sceneThreePassed");
+            sceneFourPassed = FileManager.sceneReader("sceneFourPassed");
+            sceneFivePassed = FileManager.sceneReader("sceneFivePassed");
         }
-        else{
-            sceneOnePassed = SaveEditor.sceneReader("sceneOnePassed");
+        while (!sceneOnePassed){
+            sceneOnePassed = sceneOne();
         }
-        sceneOnePassed = sceneOne();
-        if (sceneOnePassed == true){
-            sceneTwo();
+        while (!sceneTwoPassed){
+            sceneTwoPassed = sceneTwo();
         }
+        while (!sceneThreePassed){
+            sceneThreePassed = sceneThree();
+        }
+        while (!sceneFourPassed){
+            sceneFourPassed = sceneFour();
+        }
+        while (!sceneFivePassed){
+            sceneFivePassed = sceneFive();
+        }
+        FileManager.getAssetFile("win-text.txt");
     }
 
-    private void introduction() {
-        SaveEditor.getAssetFile("introduction.txt");
-        System.out.println("\n");
+    private static boolean sceneOne() {
+        doWhile("Paine Field");
+        return sceneOnePassed = Input.sceneOneTransition();
     }
 
-//     At the airport
-    private boolean sceneOne() {
-        /*
-         * This is the first cutscene check, essentially it allows the game to run in the background by calling Input.inputCommandsLogic()
-         * over and over again until the player location hits the required area. At that point it *SHOULD* trigger the scene-one.txt to play out.
-         */
-        boolean sceneOnePassed = false;
+    static boolean sceneTwo() {
+        boolean sceneTwoPassed;
+        doWhile("Player's House");
+        FileManager.getAssetFile("scene-two.txt");
+        sceneTwoPassed = true;
+        FileManager.sceneWriter(true, "sceneTwoPassed");
+        return sceneTwoPassed;
+    }
+
+    static boolean sceneThree() {
+        doWhile("Hay Field");
+        FileManager.getAssetFile("scene-three.txt");
+        return  Input.sceneThree();
+    }
+
+    static boolean sceneFour() {
+        boolean sceneFourPassed;
+        doWhile("Old House South");
+        FileManager.getAssetFile("scene-four.txt");
+        sceneFourPassed = true;
+        FileManager.sceneWriter(true,"sceneFourPassed");
+        return sceneFourPassed;
+    }
+
+    private static boolean sceneFive() {
+        doWhile("River");
+        return Input.sceneFive();
+    }
+
+    private static void doWhile(String location) {
         JSONObject saveFile;
         String playerLocation;
-        do  {
+        do {
             Input.inputCommandsLogic();
-            saveFile = SaveEditor.loadGame();
+            saveFile = FileManager.loadGame();
             playerLocation = (String) saveFile.get("location");
-        } while (!playerLocation.equals("Paine Field"));
-//        SaveEditor.getAssetFile("scene-one.txt");
-       return sceneOnePassed = Input.sceneOneTransition();
+        } while (!playerLocation.equals(location));
     }
-
-    static void sceneOneEnd(){
-        SaveEditor.getAssetFile("scene-one-end.txt");
-        sceneTwo();
-        SaveEditor.sceneWriter(true, "sceneOnePassed");
-    }
-
-    private static void sceneTwo() {
-        boolean sceneTwoPassed = false;
-        JSONObject saveFile;
-        String playerLocation;
-        do  {
-            Input.inputCommandsLogic();
-            saveFile = SaveEditor.loadGame();
-            playerLocation = (String) saveFile.get("location");
-        }while (playerLocation.equals("Player's House"));{
-            System.out.println("SCENE TWO PLACEHOLDER");
-        }
-    }
-
-    private static void sceneThree() {
-        System.out.println("Insert paragraph for scene three");
-    }
-
-    private void sceneFour() {
-        System.out.println("work in progress");
-    }
-
-    private void sceneFive() {
-        System.out.println("work in progress");
-    }
-
-    private void sceneSix() {
-        System.out.println("work in progress");
-    }
-
-    private void sceneSeven() {
-        System.out.println("work in progress");
-    }
-
 }

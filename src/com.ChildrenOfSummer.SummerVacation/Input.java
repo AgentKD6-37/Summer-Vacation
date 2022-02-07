@@ -1,17 +1,20 @@
 package com.ChildrenOfSummer.SummerVacation;
 
+import com.ChildrenOfSummer.SummerVacation.Util.Directions;
 import org.json.simple.JSONObject;
 
 import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Input {
     private static Scanner scanner = new Scanner(System.in);   //takes direct input currently from the user and passes it to the program
     private static String ANSWER;
     private static ArrayList<String> empty = new ArrayList<>();
-    private static Player player1 = new Player("default", "Player's House", "Suburb", empty);
-    private static final Clip clip = SaveEditor.getMusic(null);
+    private static Player player1 = Player.getInstance("default", "Player's House", "Suburb", empty);
+    private static final Clip clip = FileManager.getMusic(null);
 
 
     public static boolean startMenu() {
@@ -22,21 +25,28 @@ public class Input {
          */
 
         boolean newGame = false;
-        SaveEditor.menuFiles();
+        FileManager.menuFiles();
         String startMenuChoice = scanner.nextLine().strip().toLowerCase();
         switch (startMenuChoice) {
             case "new game":
+                player1.setPlayerInventory(empty);
+                player1.setPlayerName("default");
+                player1.setPlayerLocation("Player's House");
+                player1.setPlayerZone("Suburb");
                 playerCreator();
-                SaveEditor.loadDefaults();
+                FileManager.loadDefaults();
                 newGame = true;
                 break;
             case "load game":
-                JSONObject saveFile = SaveEditor.loadGame();
+                JSONObject saveFile = FileManager.loadGame();
                 String name = (String) saveFile.get("name");
                 String location = (String) saveFile.get("location");
                 String zone = (String) saveFile.get("zone");
                 ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
-                player1 = new Player(name, location, zone, inventory);
+                player1.setPlayerInventory(inventory);
+                player1.setPlayerName(name);
+                player1.setPlayerLocation(location);
+                player1.setPlayerZone(zone);
                 break;
             case "quit":
                 System.exit(0);
@@ -47,17 +57,24 @@ public class Input {
         return newGame;
     }
 
+    static void introduction() {
+        FileManager.getAssetFile("introduction.txt");
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
+        System.out.print("\033[H\033[2J");
+        FileManager.getZoneArtFile("zone2.txt");
+        FileManager.getAssetFile("game-start.txt");
+    }
+
 
     static void playerCreator(){
         /*
          *Takes in your name and saves the save file with default values.
-         * todo: also reset the location items to default!! IMPORTANT!!
-         *  -MS
          */
         System.out.print("Enter your name:");
         ANSWER = scanner.nextLine().strip();
-        player1.playerName = ANSWER;
-        SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+        player1.setPlayerName(ANSWER);
+        FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
 
     }
 
@@ -70,32 +87,30 @@ public class Input {
          * and for the noun by some robust if->else or for loops, we can prevent the player from breaking the program with an
          * unknown command. -MS
          */
-         ArrayList<String> locationList = SaveEditor.getLocationItems(player1.playerLocation);
-         ArrayList<String> playerList = SaveEditor.getPlayerItems();
+        ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
+        ArrayList<String> playerList = FileManager.getPlayerItems();
         if (!locationList.isEmpty()) {
-            System.out.println("You see the following items on the ground: ");
+            System.out.println("You see the following items lying around: ");
             for (String item : locationList) {
                 System.out.print("|" + item);
             }
             System.out.println("|");
         }
-        System.out.print("What would you like to do?");
+        System.out.print("\nWhat would you like to do?");
 
         ANSWER = scanner.nextLine().strip().toLowerCase();
         String[] answerWords = ANSWER.split(" ");
         String verb = answerWords[0];
-        String noun1 = "out of bounds saver";
-        if (answerWords.length > 1) {
-            noun1 = answerWords[1]; //ONLY USED FOR COMBINING
-        }
         String noun2 = answerWords[answerWords.length - 1];
 
-
-
         switch (verb) {
-            case "see":
-                SaveEditor.getAssetFile("map.txt");
-                System.out.println("\nYour current location is " + player1.playerLocation);
+            case "map":
+                FileManager.getAssetFile("map.txt");
+                System.out.println("\nYour current location is " + player1.getPlayerLocation());
+                inputCommandsLogic();
+                break;
+            case "inventory":
+                System.out.println("Your inventory has: " + playerList);
                 break;
             case "go":
                 boolean didMove = false;
@@ -108,15 +123,16 @@ public class Input {
                 if (!didMove) {
                     System.out.println("you were unable to move " + noun2 + ".");
                 }
-                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
+                FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
                 break;
             case "get":
                 if (locationList.contains(noun2)) {
                     locationList.remove(noun2);
                     playerList.add(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
-                    SaveEditor.savePlayerItems(playerList);
-                    player1.playerInventory = playerList;
+                    FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
+                    FileManager.savePlayerItems(playerList);
+                    player1.setPlayerInventory(playerList);
+                    System.out.println("Your inventory has: " + playerList);
                 } else {
                     System.out.println("I can't get that! There's no " + noun2 + " for me to pick up!");
                 }
@@ -125,25 +141,12 @@ public class Input {
                 if (playerList.contains(noun2)) {
                     locationList.add(noun2);
                     playerList.remove(noun2);
-                    SaveEditor.updateLocationItems(player1.playerLocation, locationList);
-                    SaveEditor.savePlayerItems(playerList);
-                    player1.playerInventory = playerList;
+                    FileManager.updateLocationItems(player1.getPlayerLocation(), locationList);
+                    FileManager.savePlayerItems(playerList);
+                    player1.setPlayerInventory(playerList);
                 } else {
                     System.out.println("I can't drop what I don't have!");
                 }
-                break;
-            case "combine":
-                if (playerList.contains(noun2) && playerList.contains(noun1))
-                    if ((noun1.equals("planks") || noun1.equals("rope")) && (noun2.equals("rope") || noun2.equals("planks"))) {
-                        System.out.println("You tie the planks to each other using the rope to create a ladder!");
-                        playerList.remove(noun1);
-                        playerList.remove(noun2);
-                        playerList.add("ladder");
-                        SaveEditor.savePlayerItems(playerList);
-                        player1.playerInventory = playerList;
-                    } else {
-                        System.out.println("I can't combine that!");
-                    }
                 break;
             case "use":
                 //do final stuff
@@ -153,10 +156,10 @@ public class Input {
                 System.out.println(player1.talk(noun2));
                 break;
             case "help":
-                System.out.println("Your current location is " + player1.playerLocation);
-                SaveEditor.getAssetFile("help.txt");
+                System.out.println("Your current location is " + player1.getPlayerLocation());
+                FileManager.getAssetFile("help.txt");
+                inputCommandsLogic();
                 break;
-
             case "music":
                 switch (noun2) {
                     case "on":
@@ -173,45 +176,200 @@ public class Input {
 
                 break;
             case "quit":
-                SaveEditor.saveGame(player1.playerName, player1.playerLocation, player1.playerZone, player1.playerInventory);
-                System.exit(0);
+                FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
+                System.out.println("Press 1 to quit to menu or 2 to exit game:");
+                int choice = scanner.nextInt();
+                switch (choice){
+                    case 2:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        GameEngine.execute();
+                        break;
+                    default:
+                        System.out.println("Invalid choice");
+                        inputCommandsLogic();
+                }
+
             default:
                 System.out.println("I didn't understand that command. for help type help.");
+                inputCommandsLogic();
+
         }
-        if (!playerList.isEmpty()) {
-            System.out.println("Your inventory has: " + playerList);
-        }
-       //"recursion" happens in the while loop of the scene
+        FileManager.saveGame(player1.getPlayerName(), player1.getPlayerLocation(), player1.getPlayerZone(), player1.getPlayerInventory());
     }
 
+    static boolean sceneOneAction() {
+        boolean sceneOnePass = FileManager.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        System.out.println("You noticed that your rope and planks could be combined!\n " +
+                "You can create a ladder to get out!\n " +
+                "Do you wish to combine the items to get out?");
+        String scan = scanner.nextLine().strip();
+        if (scan.equals("yes")) {
+            sceneOnePass = true;
+            player1.getPlayerInventory();
+            playerList.remove("rope");
+            playerList.remove("planks");
+            playerList.add("ladder");
+            player1.setPlayerInventory(playerList);
+            FileManager.savePlayerItems(playerList);
+            FileManager.getAssetFile("scene-one-end.txt");
+            FileManager.sceneWriter(true, "sceneOnePassed");
+        } else if (scan.equals("no")){
+            System.out.println("Game Over. Press enter to continue...");
+            scanner.nextLine();
+            startMenu();
+        }
+        else{
+            System.out.println("Input not valid, enter yes or no");
+            sceneOneAction();
+        }
+        return sceneOnePass;
+    }
     static boolean sceneOneTransition(){
-        boolean sceneOnePass = SaveEditor.sceneReader("sceneOnePassed");
-        ArrayList<String> playerList = SaveEditor.getPlayerItems();
-        if (player1.playerLocation.equals("Paine Field") && !sceneOnePass) {
-            SaveEditor.getAssetFile("scene-one.txt");
+        boolean sceneOnePass = FileManager.sceneReader("sceneOnePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        if (player1.getPlayerLocation().equals("Paine Field") && !sceneOnePass) {
+            FileManager.getAssetFile("scene-one.txt");
+            System.out.println("Press Enter to continue...");
+            scanner.nextLine();
             if (playerList.contains("rope") && playerList.contains("planks")) {
-                System.out.println("You noticed that you have a rope and some planks. " +
-                        "You can create a ladder to get out. " +
-                        "Do you wish to combine the items to get out?");
-                String scan = scanner.nextLine().strip();
+                sceneOnePass = sceneOneAction();
+            } else {
+                System.out.println();
+                System.out.println("With no items to help you, you and your friends are caught by security! You're grounded!");
+                System.out.println("Game Over. Press Enter to continue...");
+                scanner.nextLine();
+                GameEngine.execute();
+            }
+        }
+        return sceneOnePass;
+    }
+
+    static boolean sceneThree(){
+        boolean sceneThreePass = FileManager.sceneReader("sceneThreePassed");
+
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        System.out.println(player1.getPlayerLocation());
+
+        if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
+            if (playerList.contains("rock")) {
+                System.out.println("You can throw a rock to escape. Do you want to?");
+                String scan = scanner.nextLine().strip().toLowerCase();
                 if (scan.equals("yes")) {
-                    sceneOnePass = true;
-                    playerList.remove("rope");
-                    playerList.remove("planks");
-                    playerList.add("ladder");
-                    SaveEditor.savePlayerItems(playerList);
-                    GameEngine.sceneOneEnd();
-                } else {
-                    System.out.println("Game Over. Press enter to continue");
+                    System.out.println("You've escaped from the farmer.");
+                    FileManager.getAssetFile("scene-three-end.txt");
+                    sceneThreePass = true;
+                    FileManager.sceneWriter(true, "SceneThreePass");
+                } else if (scan.equals("no")){
+                    System.out.println("You got caught! Game Over. Press enter to continue");
                     scanner.nextLine();
                     startMenu();
                 }
+                else{
+                    System.out.println("Input not valid, enter yes or no");
+                }
             } else {
-                System.out.println("Game Over. Press enter to continue");
+                System.out.println("You reached into your inventory to find something to throw at the farmer" +
+                        "but there's nothing there! You've been caught!");
+                System.out.println("Game Over. You should explore the map to find something" +
+                        "to throw at the farmer to distract him. A rock, maybe? Press enter to continue");
                 scanner.nextLine();
                 startMenu();
             }
         }
-        return sceneOnePass;
+        player1.getPlayerInventory();
+        playerList.remove("rock");
+        player1.setPlayerInventory(playerList);
+        FileManager.savePlayerItems(playerList);
+        return sceneThreePass;
+    }
+
+    static boolean sceneFive(){
+        boolean sceneFivePass = FileManager.sceneReader("sceneFivePassed");
+        ArrayList<String> playerList = FileManager.getPlayerItems();
+        System.out.println(player1.getPlayerLocation());
+        if (playerList.contains("raft")&& playerList.contains("paddle") && playerList.contains("shovel") && !sceneFivePass) {
+            FileManager.getAssetFile("scene-five.txt");
+            System.out.println("Press Enter to continue...");
+            scanner.nextLine();
+            boolean rapidsComplete = false;
+            int raftHP = 5;
+            while (raftHP > 0 && !rapidsComplete) {
+                System.out.println("Rapids rush up to meet you in the middle of the river!\n Which way will you paddle to avoid them?");
+                System.out.print("type 'paddle left' or 'paddle right': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                boolean complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "paddle left":
+                            System.out.println("You paddle left. A tree branch in the river snags your raft! It takes some damage.");
+                            raftHP--;
+                            complete = true;
+                            break;
+                        case "paddle right":
+                            System.out.println("You paddle right. A massive boulder stops your progress... \n After dislodging your raft you are free.");
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now! Type 'paddle right' or 'paddle left'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
+                    }
+                }
+                System.out.println("The river curves left\n You need to choose to hug the inner bank of center the raft in the river.");
+                System.out.print("type 'hug the inner bank' or 'center the raft': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "hug the inner bank":
+                            System.out.println("A rock in the shallow inner bank scrapes your raft! ");
+                            raftHP-=2;
+                            complete = true;
+                            break;
+                        case "center the raft":
+                            System.out.println("The raft hits no obstacles as you glide around the bend.");
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now! Type 'hug the inner bank' or 'center the raft'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
+                    }
+                }
+                System.out.println("Ahead, thorny branches almost cover the water.\n They will snag you unless you find a way to avoid them!");
+                System.out.print("type 'duck under branches' or 'use paddle on branches': ");
+                ANSWER = scanner.nextLine().strip().toLowerCase();
+                complete = false;
+                while (!complete) {
+                    switch (ANSWER) {
+                        case "duck under branches":
+                            System.out.println("The branches puncture holes in your raft!");
+                            raftHP-=3;
+                            complete = true;
+                            break;
+                        case "use paddle on branches":
+                            System.out.println("You push the thorny branches out of the way of your raft.");
+                            rapidsComplete = true;
+                            complete = true;
+                            break;
+                        default:
+                            System.out.println("You can't do that right now! Type 'duck under branches' or 'use paddle on branches'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
+                    }
+                }
+            }
+            if(0 >= raftHP) {
+                System.out.println("The raft punctures dumping you and Sara into the water!\nYou didn't reach the island.\n Game Over! Press enter to continue...");
+                scanner.nextLine();
+                startMenu();
+            }
+            FileManager.getAssetFile("scene-five-end.txt");
+            sceneFivePass = true;
+            FileManager.sceneWriter(true, "sceneFivePassed");
+        }else{
+            sceneFivePass = false;
+        }
+        return sceneFivePass;
     }
 }

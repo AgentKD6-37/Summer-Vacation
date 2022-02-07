@@ -1,0 +1,41 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::                                                                                                                    ::
+::                            _ = = _                                                                                 ::
+::                            ||   ||       U /                                                                       ::
+::                            ||o  ||      /|                                                                         ::
+::                       _____||   || ____ / \ ______                                                                 ::
+::                                       ___ [] ____[]                                                                ::
+::                                            []_____[]                                                               ::
+::                                             []_____[]            __     S/__                                       ::
+::                                              []_____[]         /:/:/    |  (\                                      ::
+::                     -----------------------------------------------------------------------                        ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: You finally find Sara in one of the downstairs room of the southern old house. She's crouched on the floor         ::
+:: staring at something. As you head over, she waves for you to hurry.                                                ::
+::                                                                                                                    ::
+:: "Look at this," she says, pointing to an old map, "The old man has treasure."                                      ::
+::                                                                                                                    ::
+:: Stretched between a broken doorknob, the edge of an old couch, a rock,                                             ::
+:: and Sara's bag is a massive old map of the town.                                                                   ::
+:: You recognize some roads, but notice that where your houses are today was once farm land, and the new suburbs      ::
+:: that are being built now were once grazing area for cows. It seems the farm used to be much larger than it is today::
+:: Sara is pointing to a spot on the river where it forks, leaving a small island between the east and west banks.    ::
+:: On the tip of the island, someone has drawn a blue 'X'.                                                            ::
+::                                                                                                                    ::
+:: "We need to get to the island and dig up his treasure. I bet it's valuable!" Sara says, looking excited.           ::
+:: "But first we need some supplies. Here's a list."                                                                  ::
+::                                                                                                                    ::
+:: You look at the list:                                                                                              ::
+::                                                                                                                    ::
+:: 1. Raft                                                                                                            ::
+:: 2. Shovel                                                                                                          ::
+:: 3. Food                                                                                                            ::
+:: 4. Paddle                                                                                                          ::
+::                                                                                                                    ::
+:: "When you find everything, come meet us at the river. We'll figure out the rest when we get this treasure!"        ::
+:: Sara packs up the map and runs off.                                                                                ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                                     **New Task**
+                                                     FIND SUPPLIES
+                                                   GET TO THE RIVER
+
