@@ -313,7 +313,8 @@ public class Input {
                             complete = true;
                             break;
                         default:
-                            System.out.println("You can't do that right now!");
+                            System.out.println("You can't do that right now! Type 'paddle right' or 'paddle left'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
                     }
                 }
                 System.out.println("The river curves left\n You need to choose to hug the inner bank of center the raft in the river.");
@@ -332,7 +333,8 @@ public class Input {
                             complete = true;
                             break;
                         default:
-                            System.out.println("You can't do that right now!");
+                            System.out.println("You can't do that right now! Type 'hug the inner bank' or 'center the raft'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
                     }
                 }
                 System.out.println("Ahead, thorny branches almost cover the water.\n They will snag you unless you find a way to avoid them!");
@@ -352,7 +354,8 @@ public class Input {
                             complete = true;
                             break;
                         default:
-                            System.out.println("You can't do that right now!");
+                            System.out.println("You can't do that right now! Type 'duck under branches' or 'use paddle on branches'");
+                            ANSWER = scanner.nextLine().strip().toLowerCase();
                     }
                 }
             }
