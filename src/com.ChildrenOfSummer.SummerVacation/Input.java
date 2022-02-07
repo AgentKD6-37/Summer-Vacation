@@ -253,7 +253,7 @@ public class Input {
         ArrayList<String> playerList = FileManager.getPlayerItems();
         System.out.println(player1.getPlayerLocation());
 
-        if (player1.getPlayerLocation().equals("Hay Field") && sceneThreePass) {
+        if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
             if (playerList.contains("rock")) {
                 System.out.println("You can throw a rock to escape. Do you want to?");
                 String scan = scanner.nextLine().strip().toLowerCase();
@@ -278,9 +278,6 @@ public class Input {
                 scanner.nextLine();
                 startMenu();
             }
-        }
-        else if (player1.getPlayerLocation().equals("Hay Field") && !sceneThreePass) {
-            System.out.println("You're at the Hay Field. You should probably go to Paine Field first");
         }
         player1.getPlayerInventory();
         playerList.remove("rock");
