@@ -16,20 +16,17 @@ Game written in Java using the JSON.Simple library for data manipulation.
   * pick-up items items  
 * drop
   * remove items  
-* combine
-  * combine items to make a new items 
-  
-####Navigation
-* go north 
-* go south
-* go west
-* go east 
+* go
+  * travel through the town and explore to find items and friends! 
+   
 
 ## Contributors
-_Michael_ || _Fan_ || _Zed_
+[Michael](https://github.com/AgentKD6-37) ||[Fan](https://github.com/fanwu513)|| [Zi-Cheng](https://github.com/thrashghost)
 
-## Release Version
-beta 1.1 
+>## Release Version
+>Build 1.3
+
+Java runtime environment is required. [Dowload it here](https://www.java.com/en/)
 
 ```Installation Instructions:
 1. Download the .zip file
