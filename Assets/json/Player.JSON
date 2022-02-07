@@ -1,1 +1,1 @@
-{"sceneFivePassed":false,"money":0,"zone":"Suburb","sceneTwoPassed":false,"name":"tim","sceneThreePassed":false,"location":"Janie's House","sceneFourPassed":false,"inventory":[],"sceneOnePassed":false}
+{"sceneFivePassed":true,"money":0,"zone":"Wild Field","sceneTwoPassed":true,"name":"timmy","sceneThreePassed":false,"location":"River","sceneFourPassed":true,"inventory":["raft","paddle","shovel","ladder"],"sceneOnePassed":true,"SceneThreePass":true}
