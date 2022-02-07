@@ -214,8 +214,8 @@ public class Input {
             playerList.add("ladder");
             player1.setPlayerInventory(playerList);
             FileManager.savePlayerItems(playerList);
-            GameEngine.sceneOneEnd();
-
+            FileManager.getAssetFile("scene-one-end.txt");
+            FileManager.sceneWriter(true, "sceneOnePassed");
         } else if (scan.equals("no")){
             System.out.println("Game Over. Press enter to continue...");
             scanner.nextLine();

@@ -47,11 +47,6 @@ public class GameEngine {
         return sceneOnePassed = Input.sceneOneTransition();
     }
 
-    static void sceneOneEnd() {
-        FileManager.getAssetFile("scene-one-end.txt");
-        FileManager.sceneWriter(true, "sceneOnePassed");
-    }
-
     static boolean sceneTwo() {
         boolean sceneTwoPassed;
         doWhile("Player's House");
