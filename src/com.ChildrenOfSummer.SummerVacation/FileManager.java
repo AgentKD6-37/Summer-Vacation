@@ -70,24 +70,26 @@ public class FileManager {
      */
 
 
-    private static JSONObject grabJSONData(String path) {
+    public static JSONObject grabJSONData(String path) {
         /*
          * We made this method to grab any whole dang JSON file to simplify some other methods from being a huge mess
          * of variable declarations. -MS
          */
 
-        JSONObject locationJSON = null;
-        try {
-            //create JSON Parser and file reader then create a JSON reader by combining them
-            FileReader fileReader = new FileReader(path);
-            Object obj = jsonParser.parse(fileReader);
-            locationJSON = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
-            fileReader.close();
+        JSONObject jsonObj = null;
 
+        try {
+            if (Files.exists(Path.of(path))) {
+                //create JSON Parser and file reader then create a JSON reader by combining them
+                FileReader fileReader = new FileReader(path);
+                Object obj = jsonParser.parse(fileReader);
+                jsonObj = (JSONObject) obj;//THIS IS THE WHOLE JSON FILE
+                fileReader.close();
+            }
         } catch (IOException | ParseException e) {
             System.err.print("Error. Failed to load location.");
         }
-        return locationJSON;
+        return jsonObj;
     }
 
     public static String getNewLocation(String zone, String location, String direction) {

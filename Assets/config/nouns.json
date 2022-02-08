@@ -1,0 +1,103 @@
+{
+  "desk": [
+    "table",
+    "counter"
+  ],
+  "drawer": [
+    "cabinet"
+  ],
+  "key": [
+    "opener"
+  ],
+  "laptop": [
+    "computer",
+    "lap top"
+  ],
+  "paper": [
+    "sheet",
+    "form",
+    "document",
+    "writings"
+  ],
+  "crowbar": [
+    "tool",
+    "hook",
+    "bar",
+    "pry bar"
+  ],
+  "lock": [
+    "keypad",
+    "padlock"
+  ],
+  "door": [
+    "gate",
+    "passage",
+    "entry",
+    "portal",
+    "opening",
+    "hatch",
+    "gateway"
+  ],
+  "candle": [
+    "light",
+    "wax",
+    "torch"
+  ],
+  "blanket": [
+    "sheet",
+    "cover",
+    "comforter",
+    "quilt"
+  ],
+  "matches": [
+    "lighter",
+    "match",
+    "fire"
+
+  ],
+  "safe": [
+    "wall safe"
+  ],
+  "bed": [
+    "cot",
+    "mattress",
+    "bunk"
+  ],
+  "chair": [
+
+  ],
+  "lamp": [
+
+  ],
+  "window": [
+
+  ],
+  "picture": [
+    "image",
+    "painting",
+    "figure",
+    "drawing",
+    "icon",
+    "photo",
+    "portrait",
+    "photograph",
+    "sketch",
+    "canvas",
+    "doodle",
+    "panorama"
+  ],
+  "inventory": [
+    "stock",
+    "supply",
+    "cache",
+    "purse",
+    "hoard",
+    "stockpile"
+  ],
+  "left": [
+
+  ],
+  "right": [
+
+  ]
+}
