@@ -94,8 +94,8 @@ public class Input {
          * and for the noun by some robust if->else or for loops, we can prevent the player from breaking the program with an
          * unknown command. -MS
          */
-         ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
-         ArrayList<String> playerList = FileManager.getPlayerItems();
+        ArrayList<String> locationList = FileManager.getLocationItems(player1.getPlayerLocation());
+        ArrayList<String> playerList = FileManager.getPlayerItems();
         if (!locationList.isEmpty()) {
             System.out.println("You see the following items lying around: ");
             for (String item : locationList) {
