@@ -73,27 +73,33 @@ public class TextParser {
      * will return an array with verb keywords removed
      */
 
-//    public static ArrayList<String> getNouns(String userInput) {
-//        ArrayList<String> parsedArr = parseText(userInput.toLowerCase());
-//        ArrayList<String> nouns = new ArrayList<>();
-//        String word;
-//
-//        //keywords from JSON as LinkedTreeMap
-//        Map<String, ArrayList<String>> nounMap = FileManager.loadJson("nouns.json");
-//
-//        for (String s : parsedArr) {
-//            word = s;
-//            assert nounMap != null;
-//            if (nounMap.containsKey(word)) {
-//                nouns.add(word);
-//            }
-//            for (Map.Entry<String, ArrayList<String>> entry : nounMap.entrySet()) {
-//                if (entry.getValue().contains(word)) {
-//                    nouns.add(entry.getKey());
-//                }
-//            }
-//        }
-//        return nouns;
-//    }
+    public static ArrayList<String> getNouns(String userInput) {
+        ArrayList<String> parsedArr = parseText(userInput.toLowerCase());
+        String path = "./Assets/config/nouns.json";
+        // This gets the file as a JSON Object
+        JSONObject nounJson;
+        nounJson = FileManager.grabJSONData(path);
+
+        ArrayList<String> nouns = new ArrayList<>();
+        String word;
+
+        //keywords from JSON loaded to Map
+        Map<String, ArrayList<String>> keywordMap;
+        keywordMap = nounJson;
+
+        for (String s : parsedArr) {
+            word = s;
+            assert keywordMap != null;
+            if (keywordMap.containsKey(word)) {
+                nouns.add(word);
+            }
+            for (Map.Entry<String, ArrayList<String>> entry : keywordMap.entrySet()) {
+                if (entry.getValue().contains(word)) {
+                    nouns.add(entry.getKey());
+                }
+            }
+        }
+        return nouns;
+    }
 
 }
