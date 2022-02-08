@@ -64,7 +64,7 @@ public class TextParser {
                 }
             }
         }
-        return null;
+        return "";
     }
 
     /*
