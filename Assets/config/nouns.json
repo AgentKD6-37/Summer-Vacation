@@ -1,29 +1,102 @@
 {
-  "desk": [
-    "table",
-    "counter"
+  "north": [
+    "up"
   ],
-  "drawer": [
-    "cabinet"
+  "south": [
+    "down"
   ],
-  "key": [
-    "opener"
+  "east": [
+    "right"
   ],
-  "laptop": [
-    "computer",
-    "lap top"
+  "west": [
+    "left"
   ],
+  "map": [
+    "location",
+    "where am i"
+  ],
+  "inventory": [
+    "stock",
+    "supply",
+    "cache",
+    "purse",
+    "hoard",
+    "stockpile"
+  ],
+  "River": [],
+  "Island": [],
+  "School": [],
+  "Dead Presidents": [],
+  "Fast Journey": [],
+  "Bill's Produce": [],
+  "Beth's Treats": [],
+  "Angus Queen": [],
+  "Warehouse": [],
+  "Paine Field": [],
+  "Old House North": [],
+  "Old House South": [],
+  "Sara's House": [],
+  "Player's House": [],
+  "Fred's House": [],
+  "Dewey's House": [],
+  "Kory's House": [],
+  "Janie's House": [],
+  "Waste Pile": [],
+  "New House North": [],
+  "New House South": [],
+  "New House Northeast": [],
+  "Corn Field": [],
+  "Hay Field": [],
+  "Wild Field": [],
+  "Suburbs": [],
+  "New Suburb": [],
+  "FarmField": [],
+  "Town Center": [],
+  "Old Town": [],
+  "Barn": [],
+  "paddle": [],
+  "raft": [],
+  "rope": [],
+  "shoes": [],
+  "hat": [],
+  "notebook": [],
+  "doorknob": [],
+  "bowtie": [],
+  "chips": [],
+  "rock": [],
+  "comic": [],
+  "ball": [],
+  "book": [],
+  "controller": [],
+  "tea": [],
+  "planks": [],
+  "shovel": [],
+  "string": [],
+  "hammer": [],
+  "nails": [],
+  "corn": [],
+  "pitchfork": [],
+  "Fred": [],
+  "Kory": [],
+  "Bill": [],
+  "Al": [],
+  "Sara": [],
+  "Elanor": [],
+  "The Twins": [],
+  "Neville": [],
+  "Dad": [],
+  "Mom": [],
+  "Kristy": [],
+  "Peter": [],
+  "Dewey": [],
+  "Helena": [],
+  "Janie": [],
+  "Beth": [],
   "paper": [
     "sheet",
     "form",
     "document",
     "writings"
-  ],
-  "crowbar": [
-    "tool",
-    "hook",
-    "bar",
-    "pry bar"
   ],
   "lock": [
     "keypad",
@@ -37,67 +110,5 @@
     "opening",
     "hatch",
     "gateway"
-  ],
-  "candle": [
-    "light",
-    "wax",
-    "torch"
-  ],
-  "blanket": [
-    "sheet",
-    "cover",
-    "comforter",
-    "quilt"
-  ],
-  "matches": [
-    "lighter",
-    "match",
-    "fire"
-
-  ],
-  "safe": [
-    "wall safe"
-  ],
-  "bed": [
-    "cot",
-    "mattress",
-    "bunk"
-  ],
-  "chair": [
-
-  ],
-  "lamp": [
-
-  ],
-  "window": [
-
-  ],
-  "picture": [
-    "image",
-    "painting",
-    "figure",
-    "drawing",
-    "icon",
-    "photo",
-    "portrait",
-    "photograph",
-    "sketch",
-    "canvas",
-    "doodle",
-    "panorama"
-  ],
-  "inventory": [
-    "stock",
-    "supply",
-    "cache",
-    "purse",
-    "hoard",
-    "stockpile"
-  ],
-  "left": [
-
-  ],
-  "right": [
-
   ]
 }
