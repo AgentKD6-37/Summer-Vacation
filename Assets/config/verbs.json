@@ -1,0 +1,53 @@
+{
+  "start": [
+    "run",
+    "execute",
+    "play"
+  ],
+  "quit": [
+    "exit",
+    "leave"
+  ],
+  "go": [
+    "move",
+    "turn"
+  ],
+  "get": [
+    "pick up",
+    "pickup",
+    "pick",
+    "grab",
+    "take",
+    "add"
+  ],
+  "inspect": [
+    "look at",
+    "look",
+    "examine",
+    "see",
+    "check out",
+    "search",
+    "investigate",
+    "scan",
+    "review",
+    "view",
+    "study",
+    "view",
+    "check"
+  ],
+  "use": [
+    "enter",
+    "interact",
+    "open"
+  ],
+  "help": [
+    "instructions",
+    "menu"
+  ],
+  "drop": [
+    "discard"
+  ],
+  "save": [],
+  "commands": ["command"]
+
+}
