@@ -25,37 +25,43 @@ public class Input {
          */
 
         boolean newGame = false;
-        FileManager.menuFiles();
-        String startMenuChoice = scanner.nextLine().strip().toLowerCase();
-        switch (startMenuChoice) {
-            case "new game":
-                player1.setPlayerInventory(empty);
-                player1.setPlayerName("default");
-                player1.setPlayerLocation("Player's House");
-                player1.setPlayerZone("Suburb");
-                playerCreator();
-                FileManager.loadDefaults();
-                newGame = true;
-                break;
-            case "load game":
-                JSONObject saveFile = FileManager.loadGame();
-                String name = (String) saveFile.get("name");
-                String location = (String) saveFile.get("location");
-                String zone = (String) saveFile.get("zone");
-                ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
-                player1.setPlayerInventory(inventory);
-                player1.setPlayerName(name);
-                player1.setPlayerLocation(location);
-                player1.setPlayerZone(zone);
-                break;
-            case "quit":
-                System.exit(0);
-            default:
-                System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
-                startMenu();
+
+        while (!newGame) {  //loop until new game option selected, error msg for invalid input -JH
+            FileManager.menuFiles();    //display menu text
+            String startMenuChoice = scanner.nextLine().strip().toLowerCase();
+            switch (startMenuChoice) {
+                case "new game":
+                    player1.setPlayerInventory(empty);
+                    player1.setPlayerName("default");
+                    player1.setPlayerLocation("Player's House");
+                    player1.setPlayerZone("Suburb");
+                    playerCreator();
+                    FileManager.loadDefaults();
+                    return true;
+
+                case "load game":
+                    JSONObject saveFile = FileManager.loadGame();
+                    String name = (String) saveFile.get("name");
+                    String location = (String) saveFile.get("location");
+                    String zone = (String) saveFile.get("zone");
+                    ArrayList<String> inventory = (ArrayList<String>) saveFile.get("inventory");
+                    player1.setPlayerInventory(inventory);
+                    player1.setPlayerName(name);
+                    player1.setPlayerLocation(location);
+                    player1.setPlayerZone(zone);
+                    return false;
+
+                case "quit":
+                    System.exit(0);
+
+                default:
+                    System.out.println("invalid!\n Please type 'new game' for new game, 'load game' to load your save or 'quit' to quit.\n");
+            }
+
         }
         return newGame;
     }
+
 
     static void introduction() {
         FileManager.getAssetFile("introduction.txt");
